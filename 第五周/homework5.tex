@@ -1,0 +1,723 @@
+\documentclass{article}
+\usepackage{xeCJK,amsmath,geometry,graphicx,amssymb,zhnumber,booktabs,setspace,tasks,verbatim,amsthm,amsfonts,mathdots,mathtools}
+\geometry{a4paper,scale=0.82}   
+\MHInternalSyntaxOn
+\def\MT_start_cases_ams:n #1{%
+  \RIfM@\else
+   \nonmatherr@{\begin{\@currenvir}}
+  \fi
+  \MH_group_align_safe_begin:
+  \left#1
+  \alignedat@a
+}
+\def\MH_end_cases_ams:{%
+  \endaligned
+  \MH_group_align_safe_end:
+}
+\newcommand*\defcases[3]{%
+ \newenvironment{#1}
+   {\MT_start_cases_ams:n {#2}}
+   {\MH_end_cases_ams:\right#3}
+}
+\MHInternalSyntaxOff
+\defcases{mylcases}{\lbrace}{.}
+\defcases{myrcases}{.}{\rbrace}
+\defcases{mybcases}{\lbrace}{\rbrace}
+\defcases{mylrcases}{[}{\rbrace}
+\title{线性代数homework (第五周)}
+\author{PB20000113孔浩宇}
+\date{\today}
+\begin{document}
+\maketitle
+\section{周二}
+\subsection{习题四}
+\begin{enumerate}
+    \item [24.]设$A$是奇数阶反对称复方阵，证明：$\det(A)=0$.
+    \begin{proof}
+        记$A$的阶数为$n$ ($n$为奇数),则有
+        \[\det(A)=\det(A^T)=\det(-A)={(-1)}^{n}\det(A)=-\det(A) \Rightarrow \det(A)=0\]
+    \end{proof}
+    \item [25.]设$A$是$m\times n$矩阵,$B$是$n\times m$矩阵，证明：
+    \[
+        \det(I_n -BA)
+        =\det
+        \begin{pmatrix}
+            I_m & A\\
+            B & I_n
+        \end{pmatrix}
+        =\det(I_m-AB).
+    \]
+    \begin{proof}
+        \begin{align*}
+            &\begin{pmatrix}
+                I_m & A\\
+                B & I_n
+            \end{pmatrix}
+            \begin{pmatrix}
+                I_m & -A\\
+                O & I_n
+            \end{pmatrix}
+            =\begin{pmatrix}
+                I_m & O\\
+                B & I_n-BA
+            \end{pmatrix}\\
+            \Rightarrow
+            \det&\begin{pmatrix}
+                I_m & A\\
+                B & I_n
+            \end{pmatrix}
+            \begin{pmatrix}
+                I_m & -A\\
+                O & I_n
+            \end{pmatrix}
+            =\det\begin{pmatrix}
+                I_m & A\\
+                B & I_n
+            \end{pmatrix}
+            =\det\begin{pmatrix}
+                I_m & O\\
+                B & I_n-BA
+            \end{pmatrix}
+            =\det(I_n-BA)\\
+        \end{align*}
+        \begin{align*}
+            &\begin{pmatrix}
+                I_m & A\\
+                B & I_n
+            \end{pmatrix}
+            \begin{pmatrix}
+                I_m & O\\
+                -B & I_n
+            \end{pmatrix}
+            =\begin{pmatrix}
+                I_m-AB & A\\
+                O & I_n
+            \end{pmatrix}\\
+            \Rightarrow
+            \det&\begin{pmatrix}
+                I_m & A\\
+                B & I_n
+            \end{pmatrix}
+            \begin{pmatrix}
+                I_m & O\\
+                -B & I_n
+            \end{pmatrix}
+            =\det\begin{pmatrix}
+                I_m & A\\
+                B & I_n
+            \end{pmatrix}
+            =\det\begin{pmatrix}
+                I_m-AB & O\\
+                B & I_n
+            \end{pmatrix}
+            =\det(I_m-AB)\\
+        \end{align*}
+    \end{proof}
+    \item [26.]设$A,B$是$n$阶方阵,$\lambda$是数，证明:
+    \begin{flalign*}
+        &(1)\ {(\lambda A)}^*=\lambda^{n-1} A^*; &(2)&\ {(AB)}^*=B^* A^*; &(3)&\ \det(A^*)={\left(\det(A)\right)}^{n-1}.
+    \end{flalign*}
+    \begin{proof}
+        \begin{enumerate}
+            \item [(1)]
+            \begin{align*}
+                {(\lambda A)}^*
+                &=\det(\lambda A)\cdot{(\lambda A)}^{-1}\\
+                &={\lambda}^{n} \det(A) \cdot {\lambda}^{-1} \displaystyle{\frac{A^*}{\det(A)}}\\
+                &=\lambda^{n-1} A^*.
+            \end{align*}
+            \item [(2)]
+            \begin{align*}
+                {(AB)}^*
+                &=\det(AB)\cdot {(AB)}^{-1}\\
+                &=\det(A)\cdot \det(B)\cdot B^{-1} A^{-1}\\
+                &=\det(A)\cdot \det(B)\cdot \displaystyle{\frac{B^*}{\det(B)}}\cdot \displaystyle{\frac{A^*}{\det(A)}}\\
+                &=B^* A^*.
+            \end{align*}
+            \item [(3)]
+            \begin{align*}
+                \det(A^*)
+                &=\det\left(\det(A) \cdot A^{-1}\right)\\
+                &={\left(\det(A)\right)}^n \cdot {\left(\det(A)\right)}^{-1}\\
+                &={\left(\det(A)\right)}^{n-1}.
+            \end{align*}
+        \end{enumerate}
+    \end{proof}
+    \item [27.]设方阵A的逆矩阵$A^{-1}=
+    \begin{pmatrix}
+        1 & 1 & 1\\
+        1 & 2 & 1\\
+        1 & 1 & 3
+    \end{pmatrix}$,求$A^*$.
+    \begin{align*}
+        A^*&=\det(A)\cdot A^{-1}=\displaystyle{\frac{1}{\det(A^{-1})}} \cdot A^{-1}\\
+        &=\displaystyle{\frac{1}{2}} \cdot A^{-1}
+        =\begin{pmatrix}
+            \displaystyle{\frac{1}{2}} & \displaystyle{\frac{1}{2}} & \displaystyle{\frac{1}{2}}\\
+            & & \\
+            \displaystyle{\frac{1}{2}} & 1 & \displaystyle{\frac{1}{2}}\\
+            & & \\
+            \displaystyle{\frac{1}{2}} & \displaystyle{\frac{1}{2}} & \displaystyle{\frac{3}{2}}
+        \end{pmatrix}.
+    \end{align*}
+    \item [28.]设方阵A的伴随矩阵$A^*=
+    \begin{pmatrix}
+        0 & 0 & 0 & 1\\
+        0 & 0 & 2 & 0\\
+        0 & -1& 0 & 0\\
+        4 & 0 & 0 & 0
+    \end{pmatrix}$，求$A$.
+    \begin{align*}
+        &{\left(\det(A)\right)}^3=\det(A^*)=-8\quad \Rightarrow \det(A)=-2.\\
+        \Rightarrow
+        &A^{-1}=\displaystyle{\frac{A^*}{\det(A)}}=
+        \begin{pmatrix}
+            0 & 0 & 0 & -\frac{1}{2}\\
+            0 & 0 & -1 & 0\\
+            0 & \frac{1}{2}& 0 & 0\\
+            -2 & 0 & 0 & 0
+        \end{pmatrix}.\\
+        \Rightarrow
+        &A=\displaystyle{\frac{{(A^{-1})}^*}{\det(A^{-1})}}=-2\cdot 
+        \begin{pmatrix}
+            0 & 0 & 0 & \frac{1}{4}\\
+            0 & 0 & -1 & 0\\
+            0 & \frac{1}{2}& 0 & 0\\
+            1 & 0 & 0 & 0
+        \end{pmatrix}=
+        \begin{pmatrix}
+            0 & 0 & 0 & -\frac{1}{2}\\
+            0 & 0 & 2 & 0\\
+            0 & -1& 0 & 0\\
+            -2 & 0 & 0 & 0
+        \end{pmatrix}.
+    \end{align*}
+    \item [29.]设$n$阶方阵$A$的每行、每列元素之和都是0，证明:$A^*$的所有元素都相等.
+    \begin{proof}
+        $\forall 1\leq i,j,x,y\leq n$,有$a_{xl}=-\sum\limits_{k\neq x}a_{kl},a_{ky}=-\sum\limits_{l\neq y}a_{kl}$.
+        \begin{align*}
+            A_{ij}&={(-1)}^{i+j}
+            \begin{vmatrix}
+                a_{11} & \cdots & a_{1,j-1} & a_{1,j+1} & \cdots & a_{1n} \\
+                \vdots &        & \vdots & \vdots & & \vdots\\
+                a_{i-1,1} & \cdots & a_{i-1,j-1} & a_{i-1,j+1} &\cdots & a_{i-1,n}\\
+                a_{i+1,1} & \cdots & a_{i+1,j-1} & a_{i+1,j+1} &\cdots & a_{i+1,n}\\
+                \vdots &        & \vdots & \vdots & & \vdots\\
+                a_{n1} & \cdots & a_{n,j-1} & a_{n,j+1} & \cdots & a_{nn} \\
+            \end{vmatrix}\\
+            &={(-1)}^{i+j}
+            \begin{vmatrix}
+                a_{11} & \cdots & a_{1,j-1} & a_{1,j+1} & \cdots & a_{1n} \\
+                \vdots &        & \vdots & \vdots & & \vdots\\
+                -\sum\limits_{k\neq x}a_{k1} & \cdots & -\sum\limits_{k\neq x}a_{k,j-1} & -\sum\limits_{k\neq x}a_{k,j+1} & \cdots & -\sum\limits_{k\neq x}a_{kn}\\
+                \vdots &        & \vdots & \vdots & & \vdots\\
+                a_{i-1,1} & \cdots & a_{i-1,j-1} & a_{i-1,j+1} &\cdots & a_{i-1,n}\\
+                a_{i+1,1} & \cdots & a_{i+1,j-1} & a_{i+1,j+1} &\cdots & a_{i+1,n}\\
+                \vdots &        & \vdots & \vdots & & \vdots\\
+                a_{n1} & \cdots & a_{n,j-1} & a_{n,j+1} & \cdots & a_{nn} \\
+            \end{vmatrix}\\
+            &={(-1)}^{i+j}
+            \begin{vmatrix}
+                a_{11} & \cdots & a_{1,j-1} & a_{1,j+1} & \cdots & a_{1n} \\
+                \vdots &        & \vdots & \vdots & & \vdots\\
+                -a_{i1} & \cdots & -a_{i,j-1} & -a_{i,j+1} & \cdots & -a_{in}\\
+                \vdots &        & \vdots & \vdots & & \vdots\\
+                a_{i-1,1} & \cdots & a_{i-1,j-1} & a_{i-1,j+1} &\cdots & a_{i-1,n}\\
+                a_{i+1,1} & \cdots & a_{i+1,j-1} & a_{i+1,j+1} &\cdots & a_{i+1,n}\\
+                \vdots &        & \vdots & \vdots & & \vdots\\
+                a_{n1} & \cdots & a_{n,j-1} & a_{n,j+1} & \cdots & a_{nn} \\
+            \end{vmatrix}\\
+            &={(-1)}^{i+j+(i-1-x)+1}
+            \begin{vmatrix}
+                a_{11} & \cdots & a_{1,j-1} & a_{1,j+1} & \cdots & a_{1n} \\
+                \vdots &        & \vdots & \vdots & & \vdots\\
+                a_{x-1,1} & \cdots & a_{x-1,j-1} & a_{x-1,j+1} &\cdots & a_{x-1,n}\\
+                a_{x+1,1} & \cdots & a_{x+1,j-1} & a_{x+1,j+1} &\cdots & a_{x+1,n}\\
+                \vdots &        & \vdots & \vdots & & \vdots\\
+                a_{n1} & \cdots & a_{n,j-1} & a_{n,j+1} & \cdots & a_{nn} \\
+            \end{vmatrix}\\
+            &={(-1)}^{x+j}
+            \begin{vmatrix}
+                a_{11} & \cdots & a_{1,j-1} & a_{1,j+1} & \cdots & a_{1n} \\
+                \vdots &        & \vdots & \vdots & & \vdots\\
+                a_{x-1,1} & \cdots & a_{x-1,j-1} & a_{x-1,j+1} &\cdots & a_{x-1,n}\\
+                a_{x+1,1} & \cdots & a_{x+1,j-1} & a_{x+1,j+1} &\cdots & a_{x+1,n}\\
+                \vdots &        & \vdots & \vdots & & \vdots\\
+                a_{n1} & \cdots & a_{n,j-1} & a_{n,j+1} & \cdots & a_{nn} \\
+            \end{vmatrix}\\
+            &=A_{xj}.\quad (\forall 1\leq i,j,x\leq n)
+        \end{align*}        
+        $A^T$也满足每行、每列元素之和都是0，则可得
+        \[A_{ij}={(A^T)}_{ji}={(A^T)}_{yi}=A_{iy}.\quad (\forall 1\leq i,j,y\leq n)\]
+        综合以上可得\[A_{ij}=A_{xy}.\quad (\forall 1\leq i,j,x,y\leq n)\]
+    \end{proof}
+    \item [30.]设$A$是方阵，证明：线性方程组$Ax=0$有非零解当且仅当$\det(A)=0$.
+    \begin{proof}
+        记$A={(a_{ij})}_{n\times n}\quad (\exists a_{ij}\neq 0)$.
+            \begin{align*}
+                Ax=0\mbox{有非零解}
+                \Leftrightarrow & \exists x={(x_1,x_2,\ldots,x_n)}^T\neq 0,Ax=0;\\
+                \Leftrightarrow & \exists x={(x_1,x_2,\ldots,x_n)}^T\neq 0,\sum\limits_{j=1}^{n} x_j {(a_{1j},\ldots,a_{nj})}^T={(0,\ldots,0)}^T;\\
+                \Leftrightarrow & \exists x={(x_1,x_2,\ldots,x_n)}^T\neq 0,\\
+                &\det(A)=\frac{1}{x_k}\det
+                \begin{pmatrix}
+                    a_{11} & a_{12} & \cdots & \sum\limits_{j=1}^{n} x_{j} a_{1j} & \cdots & a_{1n}\\
+                    a_{21} & a_{22} & \cdots & \sum\limits_{j=1}^{n} x_{j} a_{2j} & \cdots & a_{2n}\\
+                    \vdots & \vdots &        & \vdots                             &        & \vdots\\
+                    a_{n1} & a_{n2} & \cdots & \sum\limits_{j=1}^{n} x_{j} a_{nj} & \cdots & a_{nn}
+                \end{pmatrix}
+                =0.\quad(x_k\neq 0)
+            \end{align*}
+    \end{proof}
+\end{enumerate}
+\section{周四}
+\subsection{习题四}
+\begin{enumerate}
+    \item [31.]用Cramer法则求解下列线性方程组:
+    \[
+        (1)\begin{mylcases}{7}
+            \ x_1\; & -\; &   & x_2\; & +\; &   & x_3 &=3,\\
+            \ x_1\; & +\; & 2 & x_2\; & +\; & 4 & x_3 &=5,\\
+            \ x_1\; & +\; & 3 & x_2\; & +\; & 9 & x_3 &=7;
+        \end{mylcases}\qquad\qquad
+        (2)\begin{mylcases}{10}
+            \ 2 x_1\; & +\; &   & x_2\; & -\; & 5 & x_3\; & +\; &   & x_4 & = 8,\\
+            \   x_1\; & -\; & 3 & x_2\; &  \; &   &    \; & -\; & 6 & x_4 & = 9,\\
+            \      \; &  \; & 2 & x_2\; & -\; &   & x_3\; & +\; & 2 & x_4 & = -5,\\
+            \   x_1\; & +\; & 4 & x_2\; & -\; & 7 & x_3\; & +\; & 6 & x_4 & = 0.
+        \end{mylcases}
+    \]
+    \begin{enumerate}
+        \item [(1)]
+        \[
+            \Delta=\begin{vmatrix}
+                1 & -1 & 1\\
+                1 & 2 & 4\\
+                1 & 3 & 9
+            \end{vmatrix}=12,\ 
+            \Delta_{1}=\begin{vmatrix}
+                3 & -1 & 1\\
+                5 & 2 & 4\\
+                7 & 3 & 9
+            \end{vmatrix}=36,\
+            \Delta_{2}=\begin{vmatrix}
+                1 & 3 & 1\\
+                1 & 5 & 4\\
+                1 & 7 & 9
+            \end{vmatrix}=4,\
+            \Delta_{3}=\begin{vmatrix}
+                1 & -1 & 3\\
+                1 & 2 & 5\\
+                1 & 3 & 7
+            \end{vmatrix}=4.
+        \]
+        故方程组的解为\[x_1=3,\ x_2=\displaystyle{\frac{1}{3}},\ x_3=\displaystyle{\frac{1}{3}}.\]
+        \item [(2)]
+        \begin{flalign*}
+            &\Delta=\begin{vmatrix}
+                2 & 1 & -5 & 1 \\
+                1 & -3 & 0 & -6\\
+                0 & 2 & -1 & 2 \\
+                1 & 4 & -7 & 6
+            \end{vmatrix}=27,
+            &\Delta_{1}&=\begin{vmatrix}
+                8 & 1 & -5 & 1 \\
+                9 & -3 & 0 & -6\\
+                -5 & 2 & -1 & 2 \\
+                0 & 4 & -7 & 6
+            \end{vmatrix}=81,
+            & &\\
+            &\Delta_{2}=\begin{vmatrix}
+                2 & 8  & -5 & 1 \\
+                1 & 9  & 0 & -6\\
+                0 & -5 & -1 & 2 \\
+                1 & 0  & -7 & 6
+            \end{vmatrix}=-108,
+            &\Delta_{3}&=\begin{vmatrix}
+                2 & 1 &  8 & 1 \\
+                1 & -3 & 9 & -6\\
+                0 & 2 & -5 & 2 \\
+                1 & 4 & 0 & 6
+            \end{vmatrix}=-27,
+            & &\\
+            &\Delta_{4}=\begin{vmatrix}
+                2 & 1 & -5 & 8 \\
+                1 & -3 & 0 & 9\\
+                0 & 2 & -1 & -5 \\
+                1 & 4 & -7 & 0
+            \end{vmatrix}=27.
+            & &
+            & &
+        \end{flalign*}
+        故方程组的解为\[x_1=3,\ x_2=-4,\ x_3=-1,\ x_4=1.\]
+    \end{enumerate}
+    \item [32.]设是$x_0,x_1,\ldots,x_n$及$y_0,y_1,\ldots,y_n$是任给实数,其中$x_i(0\leqslant i \leqslant n)$两两不等.
+    证明:存在唯一的次数不超过$n$的多项式$p(x)$,满足$p(x_i)=y_i,i=0,1,\ldots,n$.
+    \begin{proof}
+    设$p(x)=a_0 + a_1 x + \cdots + a_n x^n $,则求$p(x)$满足$p(x_i)=y_i\ (i=0,1,\ldots,n)$等价于解
+    \[
+        \begin{pmatrix}
+            1 & x_0 & \cdots & {x_0}^n\\
+            1 & x_1 & \cdots & {x_1}^n\\
+            \vdots & \vdots & &\vdots \\
+            1 & x_n & \cdots & {x_n}^n
+        \end{pmatrix}
+        \begin{pmatrix}
+            a_0\\
+            a_1\\
+            \vdots\\
+            a_n
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            y_0\\
+            y_1\\
+            \vdots\\
+            y_n 
+        \end{pmatrix}
+    \]
+    \[
+        \mbox{又}\det
+        \begin{pmatrix}
+            1 & x_0 & \cdots & {x_0}^n\\
+            1 & x_1 & \cdots & {x_1}^n\\
+            \vdots & \vdots & &\vdots \\
+            1 & x_n & \cdots & {x_n}^n
+        \end{pmatrix}
+        =\displaystyle{\prod\limits_{1\leqslant i<j\leqslant n} (a_j-a_i)}\neq 0
+        \xrightarrow{\mbox{有唯一解}}
+        \begin{pmatrix}
+            a_0\\
+            a_1\\
+            \vdots\\
+            a_n
+        \end{pmatrix}
+        =
+        {\begin{pmatrix}
+            1 & x_0 & \cdots & {x_0}^n\\
+            1 & x_1 & \cdots & {x_1}^n\\
+            \vdots & \vdots & &\vdots \\
+            1 & x_n & \cdots & {x_n}^n
+        \end{pmatrix}}^{-1}
+        \begin{pmatrix}
+            y_0\\
+            y_1\\
+            \vdots\\
+            y_n 
+        \end{pmatrix}.
+    \]        
+    即证存在唯一的$a_0,a_1,\ldots,a_n$使得$p(x)=a_0 + a_1 x + \cdots + a_n x^n$满足$p(x_i)=y_i\ (i=0,1,\ldots,n)$.
+    \end{proof}
+    \item [34.]证明:初等方阵具有以下性质:
+    \begin{enumerate}
+        \item [(1)]$T_{ij}(\lambda)T_{ij}(\mu)=T_{ij}(\lambda+\mu)$;
+        \item [(2)]当$i\neq q$且$j\neq p$时,$T_{ij}(\lambda)T_{pq}(\mu)=T_{pq}(\mu)T_{ij}(\lambda)$;
+        \item [(3)]$D_{i}(-1)S_{ij}=S_{ij}D_{j}(-1)=T_{ji}(1)T_{ij}(-1)T_{ji}(1)$.
+    \end{enumerate}
+    \begin{proof}
+    \begin{enumerate}
+        \item [(1)]\[T_{ij}(\lambda)T_{ij}(\mu)=(I+\lambda E_{ij})(I+\mu E_{ij})=I+(\lambda+\mu)E_{ij}=T_{ij}(\lambda+\mu).\]
+        \item [(2)]
+        \[T_{ij}(\lambda)T_{pq}(\mu)=(I+\lambda E_{ij})(I+\mu E_{pq})=I+\lambda E_{ij}+\mu E_{pq}+\lambda\mu E_{ij}E_{pq}.\]
+        \[T_{pq}(\mu)T_{ij}(\lambda)=(I+\mu E_{pq})(I+\lambda E_{ij})=I+\mu E_{pq}+\lambda E_{ij}+\lambda\mu E_{pq}E_{ij}.\]
+        又$i\neq q$且$j\neq p$,可得
+        \[E_{ij} E_{pq}=E_{pq} E_{ij}=O \Rightarrow T_{ij}(\lambda)T_{pq}(\mu)=T_{pq}(\mu)T_{ij}(\lambda).\]
+        \item [(3)]
+        \begin{align*}
+            D_{i}(-1)S_{ij}
+            &=(I-2E_{ii})(I-E_{ii}-E_{jj}+E_{ij}+E_{ji})\\
+            &=I-E_{ii}-E_{jj}-E_{ij}+E_{ji};\\
+            \\
+            S_{ij}D_{j}(-1)
+            &=(I-E_{ii}-E_{jj}+E_{ij}+E_{ji})(I-2E_{jj})\\
+            &=I-E_{ii}-E_{jj}-E_{ij}+E_{ji};\\
+            \\
+            T_{ji}(1)T_{ij}(-1)T_{ji}(1)
+            &=(I+E_{ji})(I-E_{ij})(I+E_{ji})\\
+            &=(I+E_{ji}-E_{ij}-E_{jj})(I+E_{ji})\\
+            &=I-E_{ii}-E_{jj}-E_{ij}+E_{ji}.
+        \end{align*}
+        即证:\[D_{i}(-1)S_{ij}=S_{ij}D_{j}(-1)=T_{ji}(1)T_{ij}(-1)T_{ji}(1).\]
+    \end{enumerate}    
+    \end{proof}
+    \item [35.]求下列矩阵的逆矩阵:
+    \begin{enumerate}
+        \item [(1)]
+        \begin{align*}
+            &\begin{pmatrix}
+                1  &  0 & 1  & -4 & 1 & 0 & 0 & 0\\
+                -1 & -3 & -4 & -2 & 0 & 1 & 0 & 0\\
+                2  & -1 & 4  & 4  & 0 & 0 & 1 & 0\\
+                2  &  3 & -3 & 2  & 0 & 0 & 0 & 1
+            \end{pmatrix}
+            \xrightharpoondown[-2r_1 \to r_4]{r_1 \to r_2,-2r_1 \to r_3}
+            \begin{pmatrix}
+                1  &  0 & 1  & -4 & 1  & 0 & 0 & 0\\
+                0  & -3 & -3 & -6 & 1  & 1 & 0 & 0\\
+                0  & -1 & 2  & 12 & -2 & 0 & 1 & 0\\
+                0  &  3 & -5 & 10 & -2 & 0 & 0 & 1
+            \end{pmatrix}\\ &\\
+            \xrightharpoondown[3r_3 \to r_4]{-3r_3 \to r_2}
+            &\begin{pmatrix}
+                1  &  0 & 1  & -4 & 1  & 0 & 0 & 0\\
+                0  &  0 & -9 & -42& 7  & 1 & -3& 0\\
+                0  & -1 & 2  & 12 & -2 & 0 & 1 & 0\\
+                0  &  0 & 1  & 46 & -8 & 0 & 3 & 1
+            \end{pmatrix}
+            \xrightharpoondown[r_3 \leftrightarrow r_4]{r_2 \leftrightarrow r_3}
+            \begin{pmatrix}
+                1  &  0 & 1  & -4 & 1  & 0 & 0 & 0\\
+                0  & -1 & 2  & 12 & -2 & 0 & 1 & 0\\
+                0  &  0 & 1  & 46 & -8 & 0 & 3 & 1\\
+                0  &  0 & -9 & -42& 7  & 1 & -3& 0
+            \end{pmatrix}\\ &\\
+            \xrightharpoondown[9r_3 \to r_4]{-2r_3 \to r_2}
+            &\begin{pmatrix}
+                1  &  0 & 1  & -4 & 1  & 0 & 0 & 0\\
+                0  & -1 & 0  &-80 & 14 & 0 & -5& 0\\
+                0  &  0 & 1  & 46 & -8 & 0 & 3 & 1\\
+                0  &  0 & 0  &372 & -65& 1 &-24& 9
+            \end{pmatrix}
+            \xrightharpoondown[\frac{1}{372}r_4]{-r_2}
+            \begin{pmatrix}
+                1  &  0 & 1  & -4 & 1  & 0 & 0 & 0\\
+                0  &  1 & 0  & 80 & -14& 0 & 5 & 0\\
+                0  &  0 & 1  & 46 & -8 & 0 & 3 & 1\\
+                0  &  0 & 0  &  1 & -\frac{65}{372}& \frac{1}{372} & \frac{2}{31} & \frac{3}{124}
+            \end{pmatrix}
+        \end{align*}
+        \begin{align*}
+            \xrightarrow[-80r_4 \to r_2,4r_4 \to r_1]{-46r_4 \to r_3}
+            &\displaystyle{\begin{pmatrix}
+                1  &  0 & 1  & 0 & \displaystyle{\frac{28}{93}} & \displaystyle{\frac{1}{93}} & \displaystyle{\frac{8}{31}} & \displaystyle{\frac{3}{31}}\\
+                \\
+                0  &  1 & 0  & 0 & \displaystyle{-\frac{2}{93}}  & \displaystyle{-\frac{20}{93}}  & \displaystyle{-\frac{5}{31}} & \displaystyle{\frac{2}{31}}\\
+                \\
+                0  &  0 & 1  & 0 & \displaystyle{\frac{7}{186}}  & \displaystyle{-\frac{23}{186}} &  \displaystyle{\frac{1}{31}} & \displaystyle{-\frac{7}{62}}\\
+                \\
+                0  &  0 & 0  & 1 & \displaystyle{-\frac{65}{372}}&  \displaystyle{\frac{1}{372}}  & \displaystyle{\frac{2}{31}}  & \displaystyle{\frac{3}{124}} 
+            \end{pmatrix}}\\
+            & \\
+            \xrightarrow{-r_3 \to r_1}
+            &\displaystyle{\begin{pmatrix}
+                1  &  0 & 0  & 0 & \displaystyle{\frac{49}{186}} & \displaystyle{\frac{25}{186}}  & \displaystyle{\frac{7}{31}}  & \displaystyle{\frac{13}{62}}\\
+                \\
+                0  &  1 & 0  & 0 & \displaystyle{-\frac{2}{93}}  & \displaystyle{-\frac{20}{93}}  & \displaystyle{-\frac{5}{31}} & \displaystyle{\frac{2}{31}}\\
+                \\
+                0  &  0 & 1  & 0 & \displaystyle{\frac{7}{186}}  & \displaystyle{-\frac{23}{186}} &  \displaystyle{\frac{1}{31}} & \displaystyle{-\frac{7}{62}}\\
+                \\
+                0  &  0 & 0  & 1 & \displaystyle{-\frac{65}{372}}& \displaystyle{\frac{1}{372}} &  \displaystyle{\frac{2}{31}} & \displaystyle{\frac{3}{124}}
+            \end{pmatrix}}
+        \end{align*}         
+        即逆矩阵为
+        \[
+            \begin{pmatrix}
+                \displaystyle{\frac{49}{186}} & \displaystyle{\frac{25}{186}}  & \displaystyle{\frac{7}{31}}  & \displaystyle{\frac{13}{62}}\\
+                \\
+                \displaystyle{-\frac{2}{93}}  & \displaystyle{-\frac{20}{93}}  & \displaystyle{-\frac{5}{31}} & \displaystyle{\frac{2}{31}}\\
+                \\
+                \displaystyle{\frac{7}{186}}  & \displaystyle{-\frac{23}{186}} &  \displaystyle{\frac{1}{31}} & \displaystyle{-\frac{7}{62}}\\
+                \\
+                \displaystyle{-\frac{65}{372}}& \displaystyle{\frac{1}{372}} &  \displaystyle{\frac{2}{31}} & \displaystyle{\frac{3}{124}}
+            \end{pmatrix}.
+        \]   
+        \item [(2)]
+        \begin{align*}
+            &\begin{pmatrix}
+                1 &  4 & -1 & -1 & 1 & 0 & 0 & 0\\ \\
+                1 & -2 & -1 &  1 & 0 & 1 & 0 & 0\\ \\
+                -3&  3 & -4 & -2 & 0 & 0 & 1 & 0\\ \\
+                0 &  1 & -1 & -1 & 0 & 0 & 0 & 1
+            \end{pmatrix}
+            \xrightarrow[3r_1 \to r_3]{-r_1 \to r_2}
+            \begin{pmatrix}
+                1 &  4 & -1 & -1 & 1 & 0 & 0 & 0\\ \\
+                0 & -6 &  0 &  2 & -1& 1 & 0 & 0\\ \\
+                0 & 15 & -7 & -5 & 3 & 0 & 1 & 0\\ \\
+                0 &  1 & -1 & -1 & 0 & 0 & 0 & 1
+            \end{pmatrix}\\ & \\
+            \xrightarrow[-15r_4 \to r_3]{-4r_4 \to r_1,6r_4 \to r_2}
+            &\begin{pmatrix}
+                1 & 0 &  3 &  3 & 1 & 0 & 0 & -4\\ \\
+                0 & 0 & -6 & -4 & -1& 1 & 0 &  6\\ \\
+                0 & 0 &  8 & 10 & 3 & 0 & 1 & -15\\ \\
+                0 & 1 & -1 & -1 & 0 & 0 & 0 & 1
+            \end{pmatrix}
+            \xrightarrow[r_2 \leftrightarrow r_4]{-\frac{1}{8}r_3}
+            \begin{pmatrix}
+                1 & 0 &  3 &  3 & 1 & 0 & 0 & -4\\ \\
+                0 & 1 & -1 & -1 & 0 & 0 & 0 & 1\\ \\
+                0 & 0 &  1 & \displaystyle{\frac{5}{4}} & \displaystyle{\frac{3}{8}} & 0 & \displaystyle{\frac{1}{8}} & \displaystyle{-\frac{15}{8}}\\ \\
+                0 & 0 & -6 & -4 & -1& 1 & 0 &  6
+            \end{pmatrix}
+        \end{align*}
+        \begin{align*}
+            \xrightarrow[r_3 \to r_2,6r_3 \to r_4]{-3r_3 \to r_1}
+            &\begin{pmatrix}
+                1 & 0 & 0 & \displaystyle{-\frac{3}{4}} & \displaystyle{-\frac{1}{8}} & 0 & \displaystyle{-\frac{3}{8}} & \displaystyle{\frac{13}{8}}\\ \\
+                0 & 1 & 0 &  \displaystyle{\frac{1}{4}} & \displaystyle{ \frac{3}{8}} & 0 & \displaystyle{\frac{1}{8}} & \displaystyle{\frac{7}{8}}\\ \\
+                0 & 0 & 1 &  \displaystyle{\frac{5}{4}} &  \displaystyle{\frac{3}{8}} & 0 & \displaystyle{\frac{1}{8}} & \displaystyle{-\frac{15}{8}}\\ \\
+                0 & 0 & 0 &  \displaystyle{\frac{7}{2}} & \displaystyle{ \frac{5}{4}} & 1 & \displaystyle{\frac{3}{4}} & \displaystyle{-\frac{21}{4}}
+            \end{pmatrix}
+            \xrightarrow{\frac{2}{7} r_4}
+            \begin{pmatrix}
+                1 & 0 & 0 & \displaystyle{-\frac{3}{4}} & \displaystyle{-\frac{1}{8}} & 0 & \displaystyle{-\frac{3}{8}} & \displaystyle{\frac{13}{8}}\\ \\
+                0 & 1 & 0 &  \displaystyle{\frac{1}{4}} & \displaystyle{\frac{3}{8}} & 0 &  \displaystyle{\frac{1}{8}} & \displaystyle{\frac{7}{8}}\\ \\
+                0 & 0 & 1 &  \displaystyle{\frac{5}{4}} & \displaystyle{\frac{3}{8}} & 0 &  \displaystyle{\frac{1}{8}} & \displaystyle{-\frac{15}{8}}\\ \\
+                0 & 0 & 0 &  1 & \displaystyle{\frac{5}{14}} & \displaystyle{\frac{2}{7}} &  \displaystyle{\frac{3}{14}} &  \displaystyle{-\frac{3}{2}}
+            \end{pmatrix}\\ & \\
+            \xrightarrow[\frac{3}{4}r_1,-\frac{1}{4}r_4 \to r_2]{-\frac{5}{4}r_4 \to r_3}
+            &\begin{pmatrix}
+                1 & 0 & 0 & 0 &  \displaystyle{\frac{1}{7}}  &  \displaystyle{\frac{3}{14}} & \displaystyle{-\frac{3}{14}} & \displaystyle{\frac{1}{2}}\\ \\
+                0 & 1 & 0 & 0 &  \displaystyle{\frac{2}{7}}  & \displaystyle{-\frac{1}{14}} &  \displaystyle{\frac{1}{14}} & \displaystyle{-\frac{1}{2}}\\ \\
+                0 & 0 & 1 & 0 & \displaystyle{-\frac{1}{14}} & \displaystyle{-\frac{5}{14}} & \displaystyle{-\frac{1}{7}} & 0\\ \\
+                0 & 0 & 0 & 1 &  \displaystyle{\frac{5}{14}} &  \displaystyle{\frac{2}{7}} &  \displaystyle{\frac{3}{14}} &  \displaystyle{-\frac{3}{2}}
+            \end{pmatrix}
+        \end{align*}
+        即逆矩阵为
+        \[
+            \begin{pmatrix}
+                \displaystyle{\frac{1}{7}}   &  \displaystyle{\frac{3}{14}} & \displaystyle{-\frac{3}{14}} & \displaystyle{\frac{1}{2}}\\ \\
+                \displaystyle{\frac{2}{7}}   & \displaystyle{-\frac{1}{14}} & \displaystyle{\frac{1}{14}} & \displaystyle{-\frac{1}{2}}\\ \\
+                \displaystyle{-\frac{1}{14}} & \displaystyle{-\frac{5}{14}} & \displaystyle{-\frac{1}{7}}  & 0\\ \\
+                \displaystyle{\frac{5}{14}}  &  \displaystyle{\frac{2}{7}} &  \displaystyle{\frac{3}{14}} &  \displaystyle{-\frac{3}{2}}
+            \end{pmatrix}.
+        \]
+        \item [(3)]
+        \begin{align*}
+            &\begin{pmatrix}
+                  &         &         &      1 & 1 &   &        & \\
+                  &         &       1 &      1 &   & 1 &        & \\
+                  & \iddots & \iddots & \vdots &   &   & \ddots & \\ 
+                1 &      1  &  \cdots &      1 &   &   &        & 1
+            \end{pmatrix}
+            \xrightarrow[1\leqslant i \leqslant n/2]{r_{i}\leftrightarrow r_{n-i}}
+            \begin{pmatrix}
+                1 &      1 & \cdots &      1 &   &         &   & 1\\
+                  & \ddots & \ddots & \vdots &   &         & 1 &  \\
+                  &        &      1 &      1 &   & \iddots &   &  \\
+                  &        &        &      1 & 1 &         &   &  
+          \end{pmatrix}\\
+          &\xrightarrow{-r_2 \to r_1}
+          \xrightarrow{-r_3 \to r_2}
+          \cdots
+          \xrightarrow{-r_n \to r_{n-1}}
+          \begin{pmatrix}
+            1 &   &   &        &   &   &         & -1& 1\\
+              &   & 1 &        &   &   & \iddots & 1 &  \\
+              &   &   & \ddots &   & -1& \iddots &   & \\ 
+              &   &   &        & 1 & 1 &         &   & \\
+          \end{pmatrix}
+        \end{align*}
+        即逆矩阵为
+        \[
+            \begin{pmatrix}
+                   &   &         & -1& 1\\
+                   &   & \iddots & 1 &  \\
+                   & -1& \iddots &   & \\ 
+                 1 & 1 &         &   & \\
+              \end{pmatrix}.
+        \]
+        \item [(4)]记$A_i$的阶数为$n_i$.
+        \begin{align*}
+            &\begin{pmatrix}
+                    &         &     & A_1 & I_{n_1} &         &        & \\
+                    &         & A_2 &     &         & I_{n_2} &        & \\
+                    & \iddots &     &     &         &         & \ddots & \\
+                A_k &         &     &     &         &         &        & I_{n_k}
+            \end{pmatrix}
+            \xrightarrow[\mbox{\emph{多次相邻对换}}]{\mbox{\emph{类似}$23(4)$}}
+            \begin{pmatrix}
+                A_k &        &     &         &         & I_{n_k}\\
+                    & \ddots &     &         & \iddots & \\
+                    &        & A_1 & I_{n_1} &         & 
+            \end{pmatrix}
+        \end{align*}
+        左乘$diag(A_k^{-1},\ldots,A_1^{-1})$,得
+        \[
+            \begin{pmatrix}
+                I_{n_k} &        &         &          &         & A_k^{-1}\\
+                        & \ddots &         &          & \iddots & \\
+                        &        & I_{n_1} & A_1^{-1} &         & 
+            \end{pmatrix}
+        \]
+        即逆矩阵为
+        \[
+            \begin{pmatrix}
+                         &         &              & A_k^{-1}\\
+                         &         & A_{k-1}^{-1} & \\
+                         & \iddots &              & \\
+                A_1^{-1} &         &              & 
+            \end{pmatrix}.
+        \]
+        \item [(5)]记原矩阵为$A$,逆矩阵 (若存在)记为$A^{-1}=\frac{1}{\det(A)}A^*=B=(b_{ij})$.
+        \[  
+            A_{ij}=
+            \begin{cases}
+                \ \displaystyle{-\prod\limits_{k=1\atop k\neq i,j}^n a_k}; \quad &(i\neq j)\\
+                \ \displaystyle{\prod\limits_{k=1\atop k\neq i}^n a_k +\sum\limits_{l=1\atop l\neq i}^n \left(\prod\limits_{k=1\atop k\neq i,l}^n a_k \right)}. \quad &(i=j)
+            \end{cases}
+        \]
+        \begin{enumerate}
+            \item [(1)]$\exists\ i\neq j,\ a_i = a_j = 0$.则$\det(A)=0$,无逆矩阵.
+            \item [(2)]$\exists !\ m,\ a_m = 0$.则$\det(A)=\displaystyle{\prod\limits_{i=1 \atop i\neq m}^n a_i}\neq 0$.
+            \begin{enumerate}
+                \item [(a)]$i=j$
+                \[
+                    b_{ii}=\frac{A_{ij}}{c\cdot \displaystyle{\prod\limits_{i=1 \atop i\neq m} a_i}}=
+                    \begin{cases}
+                        \ \displaystyle{\frac{1}{a_i}}; & (i\neq m)\\
+                        &\\
+                        \ \displaystyle{1+\sum\limits_{j=1 \atop j\neq m}^n \frac{1}{a_j}}. & (i=m)
+                    \end{cases}
+                \]
+                \item [(b)]$i\neq j$
+                \[
+                    b_{ii}=\frac{A_{ij}}{c\cdot \displaystyle{\prod\limits_{i=1 \atop i\neq m} a_i}}=
+                    \begin{cases}
+                        \ 0\ ; & (i,j\neq m)\\
+                        &\\
+                        \ -\displaystyle{\frac{1}{a_j}}\ ; & (i=m)\\
+                        &\\
+                        \ -\displaystyle{\frac{1}{a_i}}\ . & (j=m)
+                    \end{cases}
+                \]
+            \end{enumerate}
+            则
+            \[
+                A^{-1}=
+                \begin{pmatrix}
+                    \displaystyle{\frac{1}{a_1}} & & & -\displaystyle{\frac{1}{a_1}} & & & \\
+                     & \ddots & & \vdots & & & \\
+                     & & \displaystyle{\frac{1}{a_{m-1}}} & -\displaystyle{\frac{1}{a_{m-1}}} & & & \\
+                     -\displaystyle{\frac{1}{a_1}} & \cdots & -\displaystyle{\frac{1}{a_{m-1}}} & 
+                     \displaystyle{1+\sum\limits_{j=1 \atop j\neq m}^n \frac{1}{a_j}} & -\displaystyle{\frac{1}{a_m}} & \cdots & -\displaystyle{\frac{1}{a_n}} \\
+                     & & & -\displaystyle{\frac{1}{a_{m+1}}} & -\displaystyle{\frac{1}{a_{m+1}}} & & \\
+                     & & & \vdots & & \ddots & \\
+                     & & & -\displaystyle{\frac{1}{a_n}} & & & \displaystyle{\frac{1}{a_n}}
+                \end{pmatrix}
+            \]
+            \item [(3)]$\forall\ i,\ a_i\neq 0$.则$\det(A)=\displaystyle{\left(1+\sum\limits_{i=1}^n \frac{1}{a_i} \right)\prod\limits_{i=1}^n a_i }$.
+            \[
+                \mbox{记}c=\displaystyle{\left(1+\sum\limits_{i=1}^n \frac{1}{a_i} \right)},\quad
+                b_{ji}=\frac{A_{ij}}{c\cdot \displaystyle{\prod\limits_{i=1} a_i}}=
+                \begin{cases}
+                    \ \displaystyle{-\frac{1}{a_i a_j c}}; \qquad &(i\neq j)\\
+                    &\\
+                    \ \displaystyle{\frac{1}{a_i}-\frac{1}{{a_i}^2 c}}. \quad &(i=j)
+                \end{cases}
+            \]
+            则
+            \[
+                A^{-1}=
+                \begin{pmatrix}
+                    \displaystyle{\frac{1}{a_1}-\frac{1}{{a_1}^2 c}} & -\displaystyle{\frac{1}{a_1 a_2 c}} & \cdots & -\displaystyle{\frac{1}{a_1 a_n c}}\\
+                    -\displaystyle{\frac{1}{a_1 a_2 c}} & \displaystyle{\frac{1}{a_2}-\frac{1}{{a_2}^2 c}} & & \vdots\\
+                    \vdots & & \ddots & \vdots\\
+                    -\displaystyle{\frac{1}{a_1 a_n c}} & \cdots & \cdots & \displaystyle{\frac{1}{a_n}-\frac{1}{{a_n}^2 c}}
+                \end{pmatrix}
+            \]
+        \end{enumerate}
+    \end{enumerate}    
+\end{enumerate}
+\end{document}

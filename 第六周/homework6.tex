@@ -1,0 +1,432 @@
+\documentclass{article}
+\usepackage{xeCJK,amsmath,geometry,graphicx,amssymb,zhnumber,booktabs,setspace,tasks,verbatim,amsthm,amsfonts,mathdots,mathtools}
+\geometry{a4paper,scale=0.8}
+\title{线性代数homework (第五周)}
+\author{PB20000113孔浩宇}
+\date{\today}
+\begin{document}
+\maketitle
+\section{周二}
+\subsection{习题四}
+    \begin{enumerate}
+        \item [36.]
+        \begin{enumerate}
+            \item [(1)]做初等变换
+            \begin{align*}
+                &\begin{pmatrix}
+                    3  & 2 & -1 & 9\\
+                    -2 & 1 & -4 & 2\\
+                    -1 & -2& 3  & -2\\
+                    3  & 2 & -1 & 9
+                \end{pmatrix}
+                \longrightarrow 
+                \begin{pmatrix}
+                    0 & -4 & -1 & 9\\
+                    0 & 5  & -10& 6\\
+                    -1& -2 & 3 & -2\\
+                    0 & 0 & 0 & 0
+                \end{pmatrix}
+                \longrightarrow
+                \begin{pmatrix}
+                    1 & 0 & 0 & 0\\
+                    0 & -4 & -1 & 9\\
+                    0 & 5 & -10 & 6\\
+                    0 & 0 & 0 & 0
+                \end{pmatrix}\\
+                \longrightarrow
+                &\begin{pmatrix}
+                    1 & 0 & 0 & 0\\
+                    0 & 0 & -1 & 0\\
+                    0 & 35 & 0 & -84\\
+                    0 & 0 & 0 & 0
+                \end{pmatrix}
+                \longrightarrow
+                \begin{pmatrix}
+                    1 & 0 & 0 & 0\\
+                    0 & 0 & -1 & 0\\
+                    0 & 0 & 0 & -84\\
+                    0 & 0 & 0 & 0
+                \end{pmatrix}
+                \longrightarrow
+                \begin{pmatrix}
+                    1 & 0 & 0 & 0\\
+                    0 & 1 & 0 & 0\\
+                    0 & 0 & 1 & 0\\
+                    0 & 0 & 0 & 0
+                \end{pmatrix}
+            \end{align*}
+            即\[
+                \mbox{rank}\begin{pmatrix}
+                    3  & 2 & -1 & 9\\
+                    -2 & 1 & -4 & 2\\
+                    -1 & -2& 3  & -2\\
+                    3  & 2 & -1 & 9
+                \end{pmatrix}=3.
+            \]
+        \end{enumerate}
+        \item [37.]对于$a,b$的各种取值,讨论实矩阵
+        $\begin{pmatrix}
+            1 & 2 & 3\\
+            2 & 4 & a\\
+            3 & b & 9
+        \end{pmatrix}$的秩.
+        \[
+            \begin{pmatrix}
+                1 & 2 & 3\\
+                2 & 4 & a\\
+                3 & b & 9
+            \end{pmatrix}
+            \xrightarrow[-3r_1 \to r_3]{-2r_1 \to r_2}
+            \begin{pmatrix}
+                1 & 2 & 3\\
+                0 & 0 & a-6\\
+                0 & b-6 & 0
+            \end{pmatrix}
+            \xrightarrow[-3c_1 \to c_3]{-2c_1 \to c_2}
+            \begin{pmatrix}
+                1 & 0 & 0\\
+                0 & 0 & a-6\\
+                0 & b-6 & 0
+            \end{pmatrix}
+        \]
+        即
+        \[
+            \mbox{rank}\begin{pmatrix}
+                1 & 2 & 3\\
+                2 & 4 & a\\
+                3 & b & 9
+            \end{pmatrix}=
+            1+\mbox{rank}\begin{pmatrix}
+                0 & a-6\\
+                b-6 & 0
+            \end{pmatrix}.
+        \]
+        \begin{enumerate}
+            \item [(1)]$a-6=0,b-6=0$
+            \[
+                \mbox{rank}\begin{pmatrix}
+                    1 & 2 & 3\\
+                    2 & 4 & a\\
+                    3 & b & 9
+                \end{pmatrix}=
+                1+\mbox{rank}\begin{pmatrix}
+                    0 & 0\\
+                    0 & 0
+                \end{pmatrix}=1.\quad (a=6,b=6)
+            \]
+            \item [(2)]$a-6=0,b-0\neq 0$
+            \[
+                \mbox{rank}\begin{pmatrix}
+                    1 & 2 & 3\\
+                    2 & 4 & a\\
+                    3 & b & 9
+                \end{pmatrix}=
+                1+\mbox{rank}\begin{pmatrix}
+                    0 & 0\\
+                    b-6 & 0
+                \end{pmatrix}=2.\quad (a=6,b\neq 6)
+            \]
+            \item [(3)]$a-6\neq 0,b-6=0$
+            \[
+                \mbox{rank}\begin{pmatrix}
+                    1 & 2 & 3\\
+                    2 & 4 & a\\
+                    3 & b & 9
+                \end{pmatrix}=
+                1+\mbox{rank}\begin{pmatrix}
+                    0 & a-6\\
+                    0 & 0
+                \end{pmatrix}=2.\quad (a\neq 6,b=6)
+            \]
+            \item [(4)]$a-6\neq 0,b-6\neq 0$
+            \[
+                \mbox{rank}\begin{pmatrix}
+                    1 & 2 & 3\\
+                    2 & 4 & a\\
+                    3 & b & 9
+                \end{pmatrix}=
+                1+\mbox{rank}\begin{pmatrix}
+                    0 & a-6\\
+                    b-6 & 0
+                \end{pmatrix}=3.\quad (a\neq 6,b\neq 6)
+            \]
+        \end{enumerate}
+        \item [39.]设$A$是n阶矩阵,证明:$\mbox{rank}(A^*)=\begin{cases}
+            n, & \mbox{rank}(A)=n,\\
+            1, & \mbox{rank}(A)=n-1,\\
+            0, & \mbox{rank}(A)\leqslant n-2.
+        \end{cases}$
+        \begin{proof}
+            \begin{enumerate}
+                \item []
+                \item [(0)]
+                引理1:$\quad \mbox{rank}\begin{pmatrix} A & O\\ C & B \end{pmatrix} \geqslant \mbox{rank}(A)+\mbox{rank}(B)$.
+                \begin{proof}
+                    记$a=\mbox{rank}(A),b=\mbox{rank}(B)$,则存在可逆方阵$P_1,Q_1,P_2,Q_2$使
+                \[
+                    P_1 A Q_1=\begin{pmatrix}
+                        I_a & O\\
+                        O & O
+                    \end{pmatrix},\quad
+                    P_2 B Q_2=\begin{pmatrix}
+                        I_b & O\\
+                        O & O
+                    \end{pmatrix}
+                \]
+                取可逆方阵
+                \[
+                    P=\begin{pmatrix}
+                        P_1 & O\\
+                        O & P_2
+                    \end{pmatrix},\quad
+                    Q=\begin{pmatrix}
+                        Q_1 & O\\
+                        O & Q_2
+                    \end{pmatrix}
+                \]
+                则
+                \[
+                    S=P\begin{pmatrix}
+                        A & O\\
+                        C & B
+                    \end{pmatrix}Q
+                    =\begin{pmatrix}
+                        P_1 A Q_1 & O\\
+                        P_2 C Q_1 & P_2 B Q_2
+                    \end{pmatrix}
+                    =\begin{pmatrix}
+                        diag(I_a,O) & O\\
+                        P_2 C Q_2 & diag(I_b,O)
+                    \end{pmatrix}
+                \]
+                存在$a+b$阶子式$\begin{vmatrix} I_a & O\\ * & I_b \end{vmatrix}=1\neq 0$,因此
+                \[
+                    \mbox{rank}\begin{pmatrix}
+                        A & O\\
+                        C & B
+                    \end{pmatrix}
+                    =\mbox{rank}(S)\geqslant a+b =\mbox{rank}(A)+\mbox{rank}(B).
+                \]
+                \end{proof}
+                引理2:$\quad \mbox{rank}(A)+\mbox{rank}B-n\leqslant \mbox{rank}(AB)$. (Sylvecter秩不等式)
+                \begin{proof}
+                即\[\mbox{rank}(A)+\mbox{rank}(B)\leqslant \mbox{rank}(I_n)+\mbox{rank}(AB)=\mbox{rank}\begin{pmatrix}AB & O \\ O & I_n \end{pmatrix}\]
+                进行初等变换
+                \[
+                    \begin{pmatrix}
+                        I_n & A\\
+                        O & I_n
+                    \end{pmatrix}
+                    \begin{pmatrix}
+                        AB & O\\
+                        O & I_n
+                    \end{pmatrix}
+                    \begin{pmatrix}
+                        I_n & O\\
+                        -B & I_n
+                    \end{pmatrix}
+                    =
+                    \begin{pmatrix}
+                        O & A\\
+                        -B & I_n
+                    \end{pmatrix},
+                    \quad
+                    \begin{pmatrix}
+                        O & A\\
+                        -B & I_n
+                    \end{pmatrix}
+                    \begin{pmatrix}
+                        O & -I_n\\
+                        I_n & O
+                    \end{pmatrix}
+                    =
+                    \begin{pmatrix}
+                        A & O\\
+                        I_n & B
+                    \end{pmatrix}
+                \]
+                即有
+                \[
+                    \mbox{rank}\begin{pmatrix}
+                        AB & O\\
+                        O & I_n
+                    \end{pmatrix}=
+                    \mbox{rank}\begin{pmatrix}
+                        A & O\\
+                        I_n & B
+                    \end{pmatrix}
+                    \geqslant \mbox{rank}(A)+\mbox{rank}(B).
+                \]
+                \end{proof}
+                \item [(1)]$\mbox{rank}(A)=n$
+                \[\mbox{rank}(A^*)=\mbox{rank}(A\cdot A^*)=\mbox{rank}(\det(A)I_n)=n.\]
+                \item [(2)]$\mbox{rank}(A)=n-1$
+                \[
+                    \begin{cases}
+                        \ A \cdot A^*=O &\Rightarrow \mbox{rank}(A^*)+\mbox{rank}(A)\leqslant n\\
+                        \ &\\
+                        \ \mbox{rank}(A)=n-1 &\Rightarrow \exists\ A_{ij}\neq 0 , \mbox{rank}(A^*)>0
+                    \end{cases}
+                    \Rightarrow
+                    0< \mbox{rank}(A^*) \leqslant n-\mbox{rank}(A)=1.
+                \]
+                显然有\[\mbox{rank}(A^*)=1.\]
+                \item [(3)]$\mbox{rank}(A)\leqslant n-2$
+                \[\mbox{rank}(A) \leqslant n-2 \Rightarrow \forall\ i,j,A_{ij}={(-1)}^{i+j} M_{ij}=0\Rightarrow \mbox{rank}(A^*)=\mbox{rank}(O)=0.\]
+            \end{enumerate}
+        \end{proof}
+        \item [41.]证明下列关于秩的等式和不等式: (其中$A,B,C$是使运算有意义的矩阵)
+        \begin{enumerate}
+            \item [(1)]$\mbox{max}\left( \mbox{rank}(A),\mbox{rank}(B),\mbox{rank}(A+B)\right)\leqslant \mbox{rank} \begin{pmatrix} A & B\end{pmatrix}$;
+            \item [(2)]$\mbox{rank} \begin{pmatrix} A & B\end{pmatrix}\leqslant \mbox{rank} (A) +\mbox{rank} (B)$;
+            \item [(3)]$\mbox{rank} \begin{pmatrix} A & C\\ O & B\end{pmatrix}\geqslant \mbox{rank}(A)+\mbox{rank} (B)$.
+        \end{enumerate}
+        \begin{proof}
+            \begin{enumerate}
+                \item []
+                \item [(1)]任意$A,B$的非零子式均为$\begin{pmatrix} A & B\end{pmatrix}$的非零子式,
+                即\[\mbox{rank}\begin{pmatrix} A & B\end{pmatrix}\geqslant \mbox{rank}(A),
+                \quad \mbox{rank}\begin{pmatrix} A & B\end{pmatrix}\geqslant \mbox{rank}(B)\]
+                记$A=\begin{pmatrix}\boldsymbol{a}_1 & \boldsymbol{a}_2 & \cdots & \boldsymbol{a}_n \end{pmatrix},
+                B=\begin{pmatrix}\boldsymbol{b}_1 & \boldsymbol{b}_2 & \cdots & \boldsymbol{b}_n \end{pmatrix}$.
+                则\[
+                    \mbox{rank}\begin{pmatrix} A & B\end{pmatrix}=
+                    \mbox{rank}\left\{\boldsymbol{a}_1,\ldots,\boldsymbol{a}_n,\boldsymbol{b}_1,\ldots,\boldsymbol{b}_n \right\}
+                    \geqslant
+                    \mbox{rank}\left\{\boldsymbol{a}_1+\boldsymbol{b}_1,\ldots,\boldsymbol{a}_n+\boldsymbol{b}_n \right\}
+                    =\mbox{rank}(A+B).
+                \]
+                综上\[\mbox{max}\left( \mbox{rank}(A),\mbox{rank}(B),\mbox{rank}(A+B)\right)\leqslant \mbox{rank} \begin{pmatrix} A & B\end{pmatrix}.\]
+                \item [(2)]记$a=\mbox{rank}(A),b=\mbox{rank}(B),
+                A=\begin{pmatrix}
+                    \boldsymbol{a}_1 & \boldsymbol{a}_2 & \cdots & \boldsymbol{a}_m
+                \end{pmatrix},
+                B=\begin{pmatrix}
+                    \boldsymbol{b}_1 & \boldsymbol{b}_2 & \cdots & \boldsymbol{b}_n
+                \end{pmatrix}$.
+                \[
+                    \forall \left\{\boldsymbol{a}_{i1} , \boldsymbol{a}_{i2} , \ldots , \boldsymbol{a}_{ia}\right\}
+                    \subseteq  \left\{\boldsymbol{a}_1 , \boldsymbol{a}_2 , \ldots , \boldsymbol{a}_m\right\},\ 
+                    \exists \ x_1,\ldots,x_a,x_1\cdot\boldsymbol{a}_{i1}+\cdots+x_a\cdot\boldsymbol{a}_{ia}=0.
+                \]
+                \[
+                    \forall \left\{\boldsymbol{b}_{j1} , \boldsymbol{b}_{j2} , \ldots , \boldsymbol{b}_{jb}\right\}
+                    \subseteq  \left\{\boldsymbol{b}_1 , \boldsymbol{b}_2 , \ldots , \boldsymbol{b}_n\right\},\ 
+                    \exists \ y_1,\ldots,y_b,y_1\cdot\boldsymbol{b}_{j1}+\cdots+y_b\cdot\boldsymbol{b}_{jb}=0.
+                \]
+                $\forall \left\{\boldsymbol{a}_{i1},\ldots,\boldsymbol{a}_{ia},\boldsymbol{b}_{j1},\ldots,\boldsymbol{b}_{jb}\right\}
+                    \subseteq  \left\{\boldsymbol{a}_1,\ldots,\boldsymbol{a}_m,\boldsymbol{b}_1,\ldots,\boldsymbol{b}_n\right\}$
+                \[
+                    \exists \ x_1,\ldots,x_a,y_1,\ldots,y_b,
+                    x_1\cdot\boldsymbol{a}_{i1}+\cdots+x_a\cdot\boldsymbol{a}_{ia}
+                    +y_1\cdot\boldsymbol{b}_{j1}+\cdots+y_b\cdot\boldsymbol{b}_{jb}=0.
+                \]
+                即
+                \[
+                    \mbox{rank}
+                    \begin{pmatrix}
+                        A & B
+                    \end{pmatrix}=
+                    \mbox{rank}
+                    \left\{\boldsymbol{a}_1,\ldots,\boldsymbol{a}_m,\boldsymbol{b}_1,\ldots,\boldsymbol{b}_n\right\}
+                    \leqslant a+b=\mbox{rank}(A)+\mbox{rank}(B).
+                \]
+                \item [(3)]记$a=\mbox{rank}(A),b=\mbox{rank}(B)$,则存在可逆方阵$P_1,Q_1,P_2,Q_2$使
+                \[
+                    P_1 A Q_1=\begin{pmatrix}
+                        I_a & O\\
+                        O & O
+                    \end{pmatrix},\quad
+                    P_2 B Q_2=\begin{pmatrix}
+                        I_b & O\\
+                        O & O
+                    \end{pmatrix}
+                \]
+                取可逆方阵
+                \[
+                    P=\begin{pmatrix}
+                        P_1 & O\\
+                        O & P_2
+                    \end{pmatrix},\quad
+                    Q=\begin{pmatrix}
+                        Q_1 & O\\
+                        O & Q_2
+                    \end{pmatrix}
+                \]
+                则
+                \[
+                    S=P\begin{pmatrix}
+                        A & C\\
+                        O & B
+                    \end{pmatrix}Q
+                    =\begin{pmatrix}
+                        P_1 A Q_1 & P_1 C Q_2\\
+                        O & P_2 B Q_2
+                    \end{pmatrix}
+                    =\begin{pmatrix}
+                        diag(I_a,O) & P_1 C Q_2\\
+                        O & diag(I_b,O)
+                    \end{pmatrix}
+                \]
+                存在$a+b$阶子式$\begin{vmatrix} I_a & *\\ O & I_b \end{vmatrix}=1\neq 0$,因此
+                \[
+                    \mbox{rank}\begin{pmatrix}
+                        A & C\\
+                        O & B
+                    \end{pmatrix}
+                    =\mbox{rank}(S)\geqslant a+b =\mbox{rank}(A)+\mbox{rank}(B).
+                \]
+            \end{enumerate}
+        \end{proof}
+        \item [43.]设$n$阶方阵$A$满足$A^2=I$,证明:$\mbox{rank}(I+A)+\mbox{rank}(I-A)=n$.
+        \begin{proof}
+            进行初等变换
+            \[
+                \begin{pmatrix}
+                    I+A & O\\
+                    O & I-A
+                \end{pmatrix}
+                \longrightarrow
+                \begin{pmatrix}
+                    I+A & I-A\\
+                    O & I-A
+                \end{pmatrix}
+                \longrightarrow
+                \begin{pmatrix}
+                    I+A & 2I\\
+                    O & I-A
+                \end{pmatrix}
+            \]
+            \[
+                \longrightarrow
+                \begin{pmatrix}
+                    O & 2I\\
+                    -\frac{1}{2}(I-A)(I+A) & I-A
+                \end{pmatrix}
+                \longrightarrow
+                \begin{pmatrix}
+                    O & 2I\\
+                    O & I-A
+                \end{pmatrix}
+                \longrightarrow
+                \begin{pmatrix}
+                    O & 2I\\
+                    O & O
+                \end{pmatrix}
+            \]
+            即
+            \[
+                \mbox{rank}(I+A)+\mbox{rank}(I-A)=
+                \mbox{rank}\begin{pmatrix}
+                    I+A & O\\
+                    O & I-A
+                \end{pmatrix}=
+                \mbox{rank}\begin{pmatrix}
+                    O & 2I\\
+                    O & O
+                \end{pmatrix}
+                =n.
+            \]
+        \end{proof}
+    \end{enumerate}
+\end{document} 

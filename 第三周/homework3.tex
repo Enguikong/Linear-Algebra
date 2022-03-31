@@ -1,0 +1,790 @@
+\documentclass{article}
+\usepackage{xeCJK,amsmath,geometry,graphicx,amssymb,zhnumber,booktabs,setspace,tasks,verbatim,amsthm,amsfonts}
+\geometry{a4paper,scale=0.8}   
+\title{线性代数homework (第三周)}
+\author{PB20000113孔浩宇}
+\date{\today}
+\begin{document}
+\maketitle
+\section{周二}                             %——一号子标题  
+    \subsection{习题四}                      %——二号子标题
+    \begin{enumerate}
+        \item [7.]计算下列方阵的$k$次幂，$k\geqslant 1$.
+        \begin{align*}
+            (1)&
+            \begin{pmatrix}
+               \cos\theta &  \sin\theta\\
+               -\sin\theta  & \cos\theta
+            \end{pmatrix};
+            &(2)&
+            \begin{pmatrix}
+                a & b\\
+                -b & a
+            \end{pmatrix};
+            &(3)&
+            \begin{pmatrix}
+                1& a& 1& 0\\
+                0& 1& 0& 1\\
+                0& 0& 1& a\\
+                0& 0& 0& 1
+            \end{pmatrix};\\
+            (4)&
+            {\begin{pmatrix}
+                1& 1& \ & \ \\
+                \ & 1 & \ddots& \ \\
+                \ & \ & \ddots & 1\\
+                \ & \ & \ & 1
+            \end{pmatrix}}_{n\times n};
+            &(5)&
+            \begin{pmatrix}
+                a_{1}b_{1}& a_{1}b_{2}& \cdots &a_{1}b_{n}\\
+                a_{2}b_{1}& a_{2}b_{2}& \cdots &a_{2}b_{n}\\
+                \vdots & \vdots &\ddots &\vdots\\
+                a_{n}b_{1}& a_{n}b_{2}& \cdots &a_{n}b_{n}
+            \end{pmatrix}.
+            &\ &
+        \end{align*}
+
+        解:
+        \begin{enumerate}
+            \item [(1)]记
+            $A_k=\begin{pmatrix}
+                \cos k\theta&\sin k\theta\\
+                -\sin k\theta&\cos k\theta
+            \end{pmatrix}$.
+            \[
+                A_1=
+                \begin{pmatrix}
+                    \cos\theta &  \sin\theta\\
+                    -\sin\theta  & \cos\theta
+                 \end{pmatrix},
+                {A_1}^2=
+                \begin{pmatrix}
+                    {\cos}^{2}\theta-{\sin}^{2}\theta &  2\sin\cos\theta\\
+                    -2\sin\cos\theta  & {\cos}^{2}\theta-{\sin}^{2}\theta
+                 \end{pmatrix}
+                 =
+                 \begin{pmatrix}
+                    \cos 2\theta &  \sin 2\theta\\
+                    -\sin 2\theta  & \cos 2\theta
+                 \end{pmatrix}
+                 =A_2.
+            \]
+            不妨设${A_1}^{n}=A_n$.
+            \begin{enumerate}
+                \item [(a)]$n=1$,成立.
+                \item [(b)]若$n=k(k\geqslant 1)$时成立,则$n=k+1$时:
+                \begin{align*}
+                    {A_1}^{k+1}
+                    =A_k\cdot A_1
+                    &=
+                    \begin{pmatrix}
+                        \cos k\theta&\sin k\theta\\
+                        -\sin k\theta&\cos k\theta
+                    \end{pmatrix}
+                    \begin{pmatrix}
+                        \cos \theta&\sin \theta\\
+                        -\sin \theta&\cos \theta
+                    \end{pmatrix}\\
+                    &=
+                    \begin{pmatrix}
+                        \cos k\theta\cos\theta-\sin k\theta\sin\theta & \sin\theta\cos k\theta+\sin k\theta\cos\theta\\
+                        -\sin\theta\cos k\theta-\sin k\theta\cos\theta&\cos k\theta\cos\theta-\sin k\theta\sin\theta
+                    \end{pmatrix}\\
+                    &=
+                    \begin{pmatrix}
+                        \cos (k+1)\theta&\sin (k+1)\theta\\
+                        -\sin (k+1)\theta&\cos (k+1)\theta
+                    \end{pmatrix}\\
+                    &=A_{k+1}.
+                \end{align*}
+            \end{enumerate}
+            综合$(a)(b)$,即证${A_1}^{k}=A_k(k\geqslant 1)$,即
+            \[
+                {\begin{pmatrix}
+                    \cos \theta&\sin \theta\\
+                    -\sin \theta&\cos \theta
+                \end{pmatrix}}^{k}
+                =
+                \begin{pmatrix}
+                \cos k\theta&\sin k\theta\\
+                -\sin k\theta&\cos k\theta
+                \end{pmatrix}.
+            \]
+            \item [(2)]
+            \begin{enumerate}
+                \item [$1^\circ$]$a=b=0$
+                \[
+                    {\begin{pmatrix}
+                        a& b\\
+                        -b& a    
+                    \end{pmatrix}}^{k}
+                    =
+                    {\begin{pmatrix}
+                        0& 0\\
+                        0& 0
+                    \end{pmatrix}}^{k}
+                    =
+                    \begin{pmatrix}
+                        0& 0\\
+                        0& 0
+                    \end{pmatrix}
+                \]
+                \item [$2^\circ$]$ab\neq 0$
+                \[
+                    {\begin{pmatrix}
+                        a& b\\
+                        -b& a
+                    \end{pmatrix}}^{k}
+                    =
+                    {\left(
+                        \sqrt{a^2+b^2}
+                        \begin{pmatrix}
+                            \frac{a}{\sqrt{a^2+b^2}} & \frac{b}{\sqrt{a^2+b^2}}\\
+                            \frac{-b}{\sqrt{a^2+b^2}} & \frac{a}{\sqrt{a^2+b^2}}
+                        \end{pmatrix}
+                    \right)}^{k}
+                    \xrightarrow[\cos\theta=\frac{a}{\sqrt{a^2+b^2}}]{\sin\theta=\frac{b}{\sqrt{a^2+b^2}}}
+                    {\left(
+                        \sqrt{a^2+b^2}
+                        \begin{pmatrix}
+                            \cos\theta & \sin\theta \\
+                            -\sin\theta & \cos\theta
+                        \end{pmatrix}
+                    \right)}^{k}.
+                \]
+                \[
+                    \Rightarrow
+                    {\begin{pmatrix}
+                        a& b\\
+                        -b& a
+                    \end{pmatrix}}^{k}
+                    =
+                    {(a^2+b^2)}^{k/2}
+                    \begin{pmatrix}
+                        \cos k\theta & \sin k\theta\\
+                        -\sin k\theta & \cos k\theta
+                    \end{pmatrix}.
+                \]
+            \end{enumerate}
+            \item [(3)]
+            \[
+                {\begin{pmatrix}
+                    1& a& 1& 0\\
+                    0& 1& 0& 1\\
+                    0& 0& 1& a\\
+                    0& 0& 0& 1
+                \end{pmatrix}}^{k}
+                =
+                {\left(
+                    I+
+                    \begin{pmatrix}
+                        0& a& 1& 0\\
+                        0& 0& 0& 1\\
+                        0& 0& 0& a\\
+                        0& 0& 0& 0
+                    \end{pmatrix}
+                \right)}^{k}
+                \xrightarrow
+                    {A=\begin{pmatrix}
+                        0& a& 1& 0\\
+                        0& 0& 0& 1\\
+                        0& 0& 0& a\\
+                        0& 0& 0& 0
+                    \end{pmatrix}}
+                {\left(
+                    I+A
+                \right)}^{k}
+                =
+                \sum\limits_{i=0}^{k}\binom{k}{i}  A^{k-i}
+            \]
+            \[
+                A^2=
+                \begin{pmatrix}
+                    0& 0& 0& 2a\\
+                    0& 0& 0& 0\\
+                    0& 0& 0& 0\\
+                    0& 0& 0& 0    
+                \end{pmatrix},
+                A^3=O
+                \Rightarrow
+                {\left(
+                    I+A
+                \right)}^{k}
+                =I+kA+\frac{k(k-1)}{2}A^2
+                =
+                \begin{pmatrix}
+                    1& ka& k& k(k-1)a\\
+                    0& 1& 0& k\\
+                    0& 0& 1& ka\\
+                    0& 0& 0& 1
+                \end{pmatrix}.
+            \]
+            \item [(4)]
+            \[
+                {\begin{pmatrix}
+                    1& 1& \ & \ \\
+                    \ & 1 & \ddots& \ \\
+                    \ & \ & \ddots & 1\\
+                    \ & \ & \ & 1
+                \end{pmatrix}}_{n\times n}^{k}
+                =
+                {\left(I+{\begin{pmatrix}
+                    0& 1& \ & \ \\
+                    \ & 0& \ddots& \ \\
+                    \ & \ & \ddots & 1\\
+                    \ & \ & \ & 0
+                \end{pmatrix}}_{n\times n}\right)}^{k}
+                \xrightarrow
+                {A_m=\begin{cases}
+                    a_{ij}&=1 \quad j=i+m\\
+                    a_{ij}&=0 \quad j\neq i+m
+                \end{cases}}
+                =
+                {\left(I+A_1\right)}^{k}
+            \]
+            \[
+                {A_1}^2=
+                \begin{pmatrix}
+                    0 & 0 & 1 & \ & \ \\
+                    \ & 0 & \ddots& \ddots &\ \\
+                    \ & \ & \ddots & \ddots &1\\
+                    \ & \ & \  & 0 & 0\\
+                    \ & \ & \ & \ & 0
+                \end{pmatrix}
+                =A_2
+                \Rightarrow
+                {A_1}^{k}=
+                \begin{cases}
+                    A_k &k\leqslant n-1\\
+                    0 &k\geqslant n
+                \end{cases}
+            \]
+            \[
+                \Rightarrow
+                {(I+A_1)}^{k}=
+                \begin{cases}
+                    \sum\limits_{i=0}^{k} C_{k}^{i} A_i &k\leqslant n-1;\\
+                    \sum\limits_{i=0}^{n-1} C_{k}^{i} A_i &k\geqslant n.
+                \end{cases}
+            \]
+            \begin{enumerate}
+                \item [(a)]$k\leqslant n-1$
+                \[
+                    {(I+A_1)}^{k}=
+                    \begin{pmatrix}
+                        1 &  C_{k}^{1}&  \cdots&  C_{k}^{k}&  0     &  \cdots&  0\\
+                          &  \ddots   &  \ddots&           &  \ddots&  \ddots&  \vdots\\
+                          &           &  \ddots&     \ddots&        &  \ddots&  0\\
+                          &           &        &     \ddots&  \ddots&        &  C_{k}^{k}\\
+                          &           &        &           &  \ddots&  \ddots&  \vdots\\
+                          &           &        &           &        &  \ddots&  C_{k}^{1}\\
+                          &           &        &           &        &        &  1
+                    \end{pmatrix}.
+                \]
+                \item [(b)]$k\geqslant n$
+                \[
+                    {(I+A_1)}^{k}=
+                    \begin{pmatrix}
+                        1 &  C_{k}^{1}&  \cdots&  C_{k}^{n-1}\\
+                          &  \ddots   &  \ddots&     \vdots  \\
+                          &           &  \ddots&  C_{k}^{1}  \\
+                          &           &        &     1
+                    \end{pmatrix}.
+                \]
+            \end{enumerate}
+            \item [(5)]
+            \begin{align*}
+                {\begin{pmatrix}
+                    a_{1}b_{1}& a_{1}b_{2}& \cdots &a_{1}b_{n}\\
+                    a_{2}b_{1}& a_{2}b_{2}& \cdots &a_{2}b_{n}\\
+                    \vdots & \vdots &\ddots &\vdots\\
+                    a_{n}b_{1}& a_{n}b_{2}& \cdots &a_{n}b_{n}
+                \end{pmatrix}}^{k}
+                &=
+                    {\left(
+                        \begin{pmatrix}
+                            a_1\\
+                            a_2\\
+                            \vdots\\
+                            a_n
+                        \end{pmatrix}
+                        \begin{pmatrix}
+                            b_1& b_2& \cdots& b_n
+                        \end{pmatrix}
+                    \right)}^{k}\\
+                &=
+                    \begin{pmatrix}
+                        a_1\\
+                        a_2\\
+                        \vdots\\
+                        a_n
+                    \end{pmatrix}
+                    {\left(
+                        \begin{pmatrix}
+                        b_1& b_2& \cdots& b_n
+                        \end{pmatrix}
+                        \begin{pmatrix}
+                        a_1\\
+                        a_2\\
+                        \vdots\\
+                        a_n
+                    \end{pmatrix}
+                    \right)}^{k-1}
+                    \begin{pmatrix}
+                        b_1& b_2& \cdots& b_n
+                    \end{pmatrix}\\
+                &=
+                    {(a_1 b_1+a_2 b_2+\cdots+a_n b_n)}^{k-1}
+                    \begin{pmatrix}
+                        a_{1}b_{1}& a_{1}b_{2}& \cdots &a_{1}b_{n}\\
+                        a_{2}b_{1}& a_{2}b_{2}& \cdots &a_{2}b_{n}\\
+                        \vdots & \vdots &\ddots &\vdots\\
+                        a_{n}b_{1}& a_{n}b_{2}& \cdots &a_{n}b_{n}
+                    \end{pmatrix}
+            \end{align*}
+        \end{enumerate}
+        \item [10.]证明:与任意n阶方阵都乘法可交换的方阵一定是数量阵.
+        
+        \begin{proof}
+        设$A$是与任意n阶方阵都乘法可交换的方阵.
+        \[
+            \forall 1\leqslant i\leqslant n,E_{ij} A=A E_{ij}.
+        \] 
+        \begin{align*}
+             E_{ij}A&=(b_{mn})=
+            \begin{cases}
+                b_{mn}=a_{jn} &m=i;\\
+                b_{mn}=0      &m\neq i.
+            \end{cases},\\
+            AE_{ij}&=(c_{mn})=
+            \begin{cases}
+                c_{mn}=a_{mi} &n=j;\\
+                c_{mn}=0      &n\neq i.
+            \end{cases}\\
+            \Rightarrow
+            &a_{ii}=a_{jj},a_{jn}=0,a_{mi}=0(m\neq i,n\neq j)
+            \Rightarrow
+            \begin{cases}
+                a_{ii}=a_{jj},&\forall i, j.\\
+                a_{ij}=0,&\forall i\neq j.
+            \end{cases}     
+        \end{align*}
+        即证$A$为数量阵.    
+    \end{proof}
+        \item [12.]设$A_1,A_2,\ldots,A_k$都是n阶可逆方阵.证明:
+        \[{(A_1 A_2 \cdots A_k)}^{-1}=A_k^{-1} \cdots A_2^{-1} A_1^{-1}.\]
+
+        \begin{proof}
+            假设${(A_1 A_2 \cdots A_n)}^{-1}=A_n^{-1} \cdots A_2^{-1} A_1^{-1}$对于$1\leqslant n\leqslant k$成立.
+        \begin{enumerate}
+            \item [(1)]$n=1,{(A_1)}^{-1}={A_1}^{-1}$，成立.
+            \item [(2)]假设$m$时成立$(1\leqslant m\leqslant k-1)$,则
+            \[{(A_1 A_2 \cdots A_{m+1})}^{-1}={A_{m+1}}^{-1} {(A_1 A_2 \cdots A_m)}^{-1}={A_{m+1}}^{-1}{A_m}^{-1}\cdots {A_2}^{-1} {A_1}^{-1}.\]
+            综合$(1)(2),\ {(A_1 A_2 \cdots A_n)}^{-1}=A_n^{-1} \cdots A_2^{-1} A_1^{-1}$对于$1\leqslant n\leqslant k$成立.
+        \end{enumerate}
+        即证\[{(A_1 A_2 \cdots A_k)}^{-1}=A_k^{-1} \cdots A_2^{-1} A_1^{-1}.\]
+        \end{proof}
+    \end{enumerate}
+\section{周四}
+    \subsection{习题四}
+    \begin{enumerate}
+        \item [13.]设方阵$A$满足$A^k=O$,$k$为正整数.证明:$I+A$可逆.并求${(I+A)}^{-1}$.
+        \begin{proof}
+            \begin{align*}
+                &0=x^k=(x+1)\displaystyle{\sum\limits_{i=1}^{k} {(-1)}^{i+1}\cdot x^{k-i}}+{(-1)}^{k}\\
+                \Rightarrow
+                &O=A^k=(I+A)\cdot \displaystyle{\sum\limits_{i=1}^{k} {(-1)}^{i+1}\cdot A^{k-i}+{(-1)}^{k}I}\\
+                \Rightarrow
+                &(I+A)\cdot \displaystyle{\sum\limits_{i=1}^{k} {(-1)}^{i+1}\cdot A^{k-i}={(-1)}^{k}I}\\
+                \Rightarrow
+                &(I+A)\cdot \displaystyle{\sum\limits_{i=1}^{k} {(-1)}^{i+1+k}}\cdot A^{k-i}=I\\
+                \Rightarrow
+                &{(I+A)}^{-1}=\displaystyle{\sum\limits_{i=1}^{k} {(-1)}^{i+1+k}}\cdot A^{k-i}.
+            \end{align*}
+            即证$I+A$可逆,且\[{(I+A)}^{-1}=\displaystyle{\sum\limits_{i=1}^{k} {(-1)}^{i+1+k}}\cdot A^{k-i}.\]
+        \end{proof}
+        \item [14.]设方阵$A$满足$I-2A-3A^2+4A^3+5A^4-6A^5=O$.证明:$I-A$可逆.并求${(I-A)}^{-1}$.
+        \begin{proof}
+            \begin{align*}
+                &0=1-2x-3x^2+4x^3+5x^4-6x^5=(1-x)\cdot(6x^4+x^3-3x^2+2)-1\\
+                \Rightarrow
+                &O=I-2A-3A^2+4A^3+5A^4-6A^5=(I-A)\cdot(6A^4+A^3-3A^2+2I)-I\\
+                \Rightarrow
+                &(I-A)\cdot (6A^4+A^3-3A^2+2I)=I\\
+                \Rightarrow
+                &{(I-A)}^{-1}=6A^4+A^3-3A^2+2I.
+            \end{align*}
+            即证$I-A$可逆,且\[{(I-A)}^{-1}=6A^4+A^3-3A^2+2I.\]
+        \end{proof}
+        \item [17.]证明:${(A_1 A_2 \cdots A_k)}^{T}={A_k}^T \cdots {A_2}^T {A_1}^T$ (假设其中的矩阵乘法有意义).
+        \begin{proof}
+            假设${(A_1 A_2 \cdots A_n)}^{T}={A_n}^T \cdots {A_2}^T {A_1}^T,(\forall \ 1\leq n \leq k)$
+            \begin{enumerate}
+                \item [(1)]$n=1$
+                \[{(A_1)}^T={A_1}^T,\mbox{成立}.\]
+                \item [(2)]假设$n-1$时成立,则:
+                \begin{align*}
+                    {(A_1 A_2 \cdots A_{n-1} A_n)}^T 
+                    &= {((A_1 A_2\cdots A_{n-1})A_n)}^{T}\\
+                    &={A_n}^T {(A_1 A_2 \cdots A_{n-1})}^T\\
+                    &={A_n}^T {A_{n-1}}^T \cdots {A_2}^T {A_1}^T,\mbox{成立}.
+                \end{align*}
+                综合$(1)(2),{(A_1 A_2 \cdots A_n)}^{T}={A_n}^T \cdots {A_2}^T {A_1}^T,(\forall \ 1\leq n \leq k)$成立.即证.
+            \end{enumerate}
+        \end{proof}
+        \item [18.]求所有满足$A^2=O,B^2=I,{\overline{C}}^{T}C=I$的2阶复方阵$A,B,C$.
+        
+        解:分别设三个矩阵为
+        $\begin{pmatrix}
+            a& b\\
+            c& d
+        \end{pmatrix}(a,b,c,d\in \mathbb{C})$
+        \begin{enumerate}
+            \item [(1)]
+            \[
+                A^2=
+                \begin{pmatrix}
+                    a& b\\
+                    c& d
+                \end{pmatrix}
+                \begin{pmatrix}
+                    a& b\\
+                    c& d
+                \end{pmatrix}
+                =
+                \begin{pmatrix}
+                    a^2+bc& b(a+d)\\
+                    c(a+d)& d^2+bc
+                \end{pmatrix}
+                =O
+                \Rightarrow
+                \begin{cases}
+                    a^2+bc&=d^2+bc=0\\
+                    c(a+d)&=b(a+d)=0
+                \end{cases}
+            \]
+            \begin{enumerate}
+                \item [$1^\circ$]$a+d\neq 0$
+                \[
+                    \begin{cases}
+                        a+d&\neq 0\\
+                        c(a+d)&= 0\\
+                        b(a+d)&= 0
+                    \end{cases}
+                    \Rightarrow
+                    \begin{cases}
+                        b&=0\\
+                        c&=0.
+                    \end{cases}
+                    \quad
+                    \begin{cases}
+                        a^2+bc&=0\\
+                        d^2+bc&=0\\
+                        bc&=0
+                    \end{cases}
+                    \Rightarrow
+                    \begin{cases}
+                        a&=0\\
+                        d&=0.
+                    \end{cases}
+                    \Rightarrow
+                    a+d\neq 0,\mbox{矛盾.}
+                \]
+                \item [$2^\circ$]$a+d=0$
+                \[
+                    \begin{cases}
+                        a^2+bc&=d^2+bc=0\\
+                        c(a+d)&=b(a+d)=0\\
+                        a+d&=0
+                    \end{cases}
+                    \Leftrightarrow
+                    \begin{cases}
+                        a^2+bc&=0\\
+                        a+d&=0
+                    \end{cases}
+                    \Rightarrow
+                    A=
+                    \begin{pmatrix}
+                        \pm\sqrt{-bc} & b\\
+                        c & \mp\sqrt{-bc} 
+                    \end{pmatrix}.
+                \]
+            \end{enumerate}
+            即:
+            \[
+                A=
+                \begin{pmatrix}
+                    \pm\sqrt{-bc} & b\\
+                    c & \mp\sqrt{-bc} 
+                \end{pmatrix}.    
+            \]
+            \item [(2)]
+            \[
+                B^2=
+                {\begin{pmatrix}
+                    a& b\\
+                    c& d
+                \end{pmatrix}}^2
+                =
+                \begin{pmatrix}
+                    a^2+bc& b(a+d)\\
+                    c(a+d)& d^2+bc
+                \end{pmatrix}
+                =I
+                \Rightarrow
+                \begin{cases}
+                    a^2+bc&=d^2+bc=1\\
+                    c(a+d)&=b(a+d)=0
+                \end{cases}
+            \]
+            \begin{enumerate}
+                \item [$1^\circ$]$a+d\neq 0$
+                \[
+                    \begin{cases}
+                        (a+d)c&=0\\
+                        (a+d)d&=0\\
+                        a+d &\neq 0
+                    \end{cases}
+                    \Rightarrow
+                    \begin{cases}
+                        c&=0\\
+                        d&=0.
+                    \end{cases}
+                    \Rightarrow
+                    \begin{cases}
+                        a^2&=1\\
+                        d^2&=1\\
+                        a+d&\neq 0
+                    \end{cases}
+                    \Rightarrow
+                    \begin{cases}
+                        a&=1\\
+                        d&=1;
+                    \end{cases}
+                    \begin{cases}
+                        a&=-1\\
+                        d&=-1.
+                    \end{cases}
+                    \Rightarrow
+                    B=\pm I.
+                \]
+                \item [$2^\circ$]$a + d = 0$
+                \[
+                    \begin{cases}
+                        a^2+bc&=d^2+bc=1\\
+                        c(a+d)&=b(a+d)=0\\
+                        a+d&=0
+                    \end{cases}
+                    \Leftrightarrow
+                    \begin{cases}
+                        a^2+bc&=1\\
+                        a+d&=0
+                    \end{cases}
+                    \Rightarrow
+                    B=
+                    \begin{pmatrix}
+                        \pm\sqrt{1-bc} & b\\
+                        c & \mp\sqrt{1-bc}
+                    \end{pmatrix}.
+                \]
+            \end{enumerate}
+            即:
+            \[
+                B=
+                \begin{pmatrix}
+                    \pm\sqrt{1-bc} & b\\
+                    c & \mp\sqrt{1-bc}
+                \end{pmatrix},\quad
+                \pm I.
+            \]
+            \item [(3)]
+            \[
+                {\overline{C}}^{T}C=
+                \begin{pmatrix}
+                    \overline{a} & \overline{c}\\
+                    \overline{b} & \overline{d}
+                \end{pmatrix}
+                \begin{pmatrix}
+                    a & b\\
+                    c & d
+                \end{pmatrix}
+                =
+                \begin{pmatrix}
+                    \overline{a}a+\overline{c}c & \overline{a}b+\overline{c}d\\
+                    a\overline{b}+c\overline{d} & \overline{b}b+\overline{d}d
+                \end{pmatrix}
+                =
+                \begin{pmatrix}
+                    {|a|}^2+{|c|}^2 & \overline{a}b+\overline{c}d\\
+                    \overline{\overline{a}b+\overline{c}d} & {|b|}^2+{|d|}^2
+                \end{pmatrix}
+                =I
+            \]
+            \[
+                \begin{cases}
+                    {|a|}^2+{|c|}^2&=1\\
+                    {|b|}^2+{|d|}^2&=1
+                \end{cases}
+                \xrightarrow[\lambda ,\mu \in [0,2\pi)]{\alpha ,\beta ,\gamma ,\delta \in [0,2\pi)}
+                \begin{cases}
+                    a=\cos\lambda  e^{i\alpha},\quad
+                    &b=\cos\mu e^{i\beta},\\
+                    c=\sin\lambda  e^{i\gamma},\quad
+                    &d=\sin\mu e^{i\delta}.
+                \end{cases}
+            \]
+            \[
+                \Rightarrow
+                \overline{a}b+\overline{c}d
+                =\cos\lambda \cdot \cos\mu \cdot e^{i(\beta-\alpha)}
+                +\sin\lambda \cdot \sin\mu \cdot e^{i(\delta-\gamma)}=0
+            \]
+            \[
+                \Rightarrow
+                \begin{cases}
+                    \beta-\alpha&=\delta-\gamma\\
+                    \cos\lambda \cdot \cos\mu+\sin\lambda \cdot \sin\mu&=0.
+                \end{cases}
+                \Longleftrightarrow 
+                \begin{cases}
+                    \beta+\gamma&=\delta+\alpha;\\
+                    \cos(\lambda-\mu)&=0
+                \end{cases}
+            \]
+            即
+            \[
+                C=
+                \begin{pmatrix}
+                    \cos(\mu+\pi/2)\cdot e^{i\alpha} & \cos\mu\cdot e^{i\beta}\\
+                    \sin(\mu+\pi/2)\cdot e^{i\gamma} & \sin\mu\cdot e^{\beta+\gamma-\alpha}
+                \end{pmatrix}
+                \mbox{或}
+                \begin{pmatrix}
+                    \cos(\mu+3\pi/2)\cdot e^{i\alpha} & \cos\mu\cdot e^{i\beta}\\
+                    \sin(\mu+3\pi/2)\cdot e^{i\gamma} & \sin\mu\cdot e^{\beta+\gamma-\alpha}
+                \end{pmatrix}.
+            \]
+        \end{enumerate}
+        \item [19.]证明:不存在$n$阶复方阵$A,B$满足$AB-BA=I$.
+        \begin{proof}
+            设$A=(a_{ij}),B=(b_{ij}),AB=C=(c_{ij}),BA=D=(d_{ij})$,则:
+            \begin{align*}
+                &tr(AB)=\displaystyle{\sum\limits_{i=1}^{n}c_{ii}}=\displaystyle{\sum\limits_{i=1}^{n} \sum\limits_{k=1}^{n} a_{ik}b_{ki}},\\
+                &tr(AB)=\displaystyle{\sum\limits_{i=1}^{n}c_{ii}}=\displaystyle{\sum\limits_{k=1}^{n} \sum\limits_{i=1}^{n} b_{ki}a_{ik}}=tr(AB),\\
+                &tr(AB-BA)=te(AB)-tr(BA)=0,\\
+                &tr(I_n)=n \neq 0 \quad \Rightarrow AB-BA\neq I_n,\forall A,B \in \mathbb{C}^{n\times n}.
+            \end{align*}
+            即证不存在$n$阶复方阵$A,B$满足$AB-BA=I$.
+        \end{proof}
+        \item [20.]证明:可逆上 (下)三角、准对角、对称、反对称方阵的逆矩阵仍然分别是上 (下)三角、准对角、对称、反对称方阵.
+        \begin{proof}
+            \begin{enumerate}
+                \item [(1)]可逆上 (下)三角方阵
+                \begin{align*}
+                    &\forall A={(a_{ij})}_{n\times n},\mbox{有}
+                    a_{ij}=0(i<j),a_{ii}\neq 0;
+                    A^{-1}=\frac{1}{\det(A)}
+                    \begin{pmatrix}
+                        A_{11} & A_{21} & \cdots & A_{n1}\\
+                        A_{12} & A_{22} & \cdots & A_{n2}\\
+                        \vdots & \vdots &        & \vdots\\
+                        A_{1n} & A_{2n} & \cdots & A_{nn}
+                    \end{pmatrix}\\
+                    \Rightarrow
+                    &\forall i<j,\mbox{设}A_{ij}=\det{(c_{pq})},
+                    \mbox{则}c_{pq}=0,for\ p<q\ or\ p=q=i\\
+                    \Rightarrow
+                    &\forall i<j,A_{ij}=\prod\limits_{k=1}^{n-1} c_{kk}=\frac{c_{ii}}{a_{ii}\cdot a_{jj}} \prod\limits_{k=1}^{n}a_{kk}=0\\
+                    \Rightarrow
+                    &A^{-1}\mbox{仍为上三角方阵.}
+                \end{align*}
+                \item [(2)]可逆下三角方阵
+                \begin{align*}
+                    &\forall A={(a_{ij})}_{n\times n},\mbox{有}
+                    a_{ij}=0(i>j),a_{ii}\neq 0;
+                    A^{-1}=\frac{1}{\det(A)}
+                    \begin{pmatrix}
+                        A_{11} & A_{21} & \cdots & A_{n1}\\
+                        A_{12} & A_{22} & \cdots & A_{n2}\\
+                        \vdots & \vdots &        & \vdots\\
+                        A_{1n} & A_{2n} & \cdots & A_{nn}
+                    \end{pmatrix}\\
+                    \Rightarrow
+                    &\forall i>j,\mbox{设}A_{ij}=\det{(c_{pq})},
+                    \mbox{则}c_{pq}=0,for\ p>q\ or\ p=q=i\\
+                    \Rightarrow
+                    &\forall i>j,A_{ij}=\prod\limits_{k=1}^{n-1} c_{kk}=\frac{c_{ii}}{a_{ii}\cdot a_{jj}} \prod\limits_{k=1}^{n}a_{kk}=0\\
+                    \Rightarrow
+                    &A^{-1}\mbox{仍为下三角方阵.}
+                \end{align*}
+                \item [(3)]准对角方阵
+                \[
+                    \forall \mbox{可逆}A=
+                    \begin{pmatrix}
+                        A_1&      & \\
+                           &\ddots& \\
+                           &      &A_n
+                    \end{pmatrix},
+                    A^{-1}=
+                    \begin{pmatrix}
+                        {A_1}^{-1}&      & \\
+                                  &\ddots& \\
+                                  &      &{A_n}^{-1}
+                    \end{pmatrix}
+                    \mbox{仍为准对角方阵.}
+                \]
+                \item [(4)]对称方阵
+                \[
+                    \forall \mbox{可逆}A=A^T,
+                    {(A^{-1})}^T={(A^T)}^{-1}=A^{-1},
+                    \mbox{即$A^{-1}$仍为对称方阵.}
+                \]
+                \item [(5)]反对称方阵
+                \[
+                    \forall \mbox{可逆}A^T=-A,
+                    {(A^{-1})}^T={(A^T)}^{-1}={(-A)}^{-1}=-A^{-1},
+                    \mbox{即$A^{-1}$仍为反对称方阵.}
+                \]
+                \item [(6)]第一问其他做法
+                \begin{enumerate}
+                    \item [1.]$n=2$,可验证.
+                    \item [2.]假设$n-1$时成立,则:
+                    \begin{align*}
+                        &A_{n} {A_{n}}^{-1}=
+                        \begin{pmatrix}
+                            A_{n-1} & \gamma_{n}\\
+                            0 & a_{n}
+                        \end{pmatrix}
+                        \begin{pmatrix}
+                            B_{n-1} & \alpha_{n}\\
+                            \beta_{n} &b_{n}
+                        \end{pmatrix}
+                        =
+                        \begin{pmatrix}
+                            A_{n-1} B_{n-1}+\gamma_{n}\beta_{n} & A_{n-1}\alpha_{n}+b_{n}\gamma_{n}\\
+                            a_{n}\beta_{n} & a_{n}b_{n} 
+                        \end{pmatrix}
+                        =I.\\
+                        \Rightarrow
+                        &\begin{cases}
+                            a_{n}\beta_{n}&=0\\
+                            a_{n}b_{n}&=1
+                        \end{cases}
+                        \Rightarrow
+                        \begin{cases}
+                            \beta_{n}&=0\\
+                            b_{n}&=\frac{1}{a_{n}}
+                        \end{cases}
+                        \Rightarrow
+                        A_{n-1}B_{n-1}=I_{n-1}
+                        \Rightarrow
+                        B_{n-1}={A_{n-1}}^{-1},\mbox{为上三角阵}.\\
+                        \Rightarrow
+                        &{A_{n}}^{-1}\mbox{为上三角阵}.
+                    \end{align*}
+                \end{enumerate}
+            \end{enumerate}
+        \end{proof}
+    \end{enumerate}
+\end{document}

@@ -1,0 +1,600 @@
+\documentclass{article}
+\usepackage{xeCJK,amsmath,geometry,graphicx,amssymb,zhnumber,booktabs,setspace,tasks,verbatim,amsthm,amsfonts,mathdots}
+\geometry{a4paper,scale=0.8}   
+\title{线性代数homework (第三周)}
+\author{PB20000113孔浩宇}
+\date{\today}
+\begin{document}
+\maketitle
+\section{周二}
+\subsection{习题四 23}
+\begin{enumerate}
+    \item [23.]计算下列行列式:
+    \begin{enumerate}
+        \item [(1)]
+        \[
+            \begin{vmatrix}
+                1 & 0 & 1 & -4\\
+                -1& -3& -4& -2\\
+                2 & -1& 4 & 4 \\
+                2 & 3 & -3& 2
+            \end{vmatrix}=
+            \begin{vmatrix}
+                1 & 0 & 0 & 0\\
+                -1& -3& -3& -6\\
+                2 & -1& 2 & 12\\
+                2 & 3 & -5& 10
+            \end{vmatrix}=
+            \begin{vmatrix}
+                1 & 0 & 0 & 0\\
+                -1& -3& 0& 0\\
+                2 & -1& 3 & 14\\
+                2 & 3 & -8& 4
+            \end{vmatrix}=-372.
+        \]
+        \item [(2)]
+            \[
+            \begin{vmatrix}
+                1& 4& -1& -1\\
+                1& -2& -1& 1\\
+                -3& 3& -4& -2\\
+                0& 1& -1& -1
+            \end{vmatrix}=
+            \begin{vmatrix}
+                1& 0 & 0 & 0\\
+                1& -6& 0 & 2\\
+                -3& 15& -7& -5\\
+                0& 1 & -1& -1
+            \end{vmatrix}=
+            \begin{vmatrix}
+                1&  0 & 0 & 0\\
+                1&  0 & 0 & 2\\
+                -3& 0 & -7& -5\\
+                0&  -2 & -1& -1
+            \end{vmatrix}=
+            \begin{vmatrix}
+                0& 0& 2\\
+                0& -7& -5\\
+                -2& -1& -1
+            \end{vmatrix}
+            =14.
+            \]       
+        \item [(3)]
+        \[
+            \begin{vmatrix}
+                x+a & x+b & x+c\\
+                y+a & y+b & y+c\\
+                z+a & z+b & z+c
+            \end{vmatrix}=
+            \begin{vmatrix}
+                x+a & x+b & x+c\\
+                y-x & y-x & y-x\\
+                z-x & z-x & z-x
+            \end{vmatrix}=
+            \begin{vmatrix}
+                x+a & b-a & c-a\\
+                y-x & 0 & 0\\
+                z-x & 0 & 0
+            \end{vmatrix}=0.
+        \]
+        \item [(7)]
+        \[
+            \mbox{记}D_n=
+            \begin{vmatrix}
+                a_1 &        &     &     &        &b_1\\
+                    & \ddots &     &     & \iddots &   \\
+                    &        & a_n & b_n &        &   \\
+                    &        & c_n & d_n &        &   \\
+                    & \iddots &     &     & \ddots &   \\
+                c_1 &        &     &     &        &d_1
+            \end{vmatrix}
+            \Rightarrow
+            \begin{cases}
+                D_1&=a_1 d_1 - b_1 c_1,\\
+                D_2&=(a_1 d_1 - b_1 c_1)(a_2 d_2 - b_2 c_2)       
+           \end{cases}.
+        \]
+        假设$D_n=\prod\limits_{i=1}^{n}(a_i d_i - b_i c_i)$.
+        \begin{enumerate}
+            \item [$(a)$]$n=1$成立.
+            \item [$(b)$]假设$D_n=\prod\limits_{i=1}^{n}(a_i d_i - b_i c_i)$对$n=k$成立,则
+            \[
+                D_{k+1}=(a_1 d_1 - b_1 c_1)
+                \begin{vmatrix}
+                    a_2 &         &         &         &         & b_2\\
+                        & \ddots  &         &         & \iddots &    \\
+                        &         & a_{k+1} & b_{k+1} &         &    \\
+                        &         & c_{k+1} & d_{k+1} &         &    \\
+                        & \iddots &         &         & \ddots  &    \\
+                    c_2 &         &         &         &         & d_2
+                \end{vmatrix}
+                =\prod\limits_{i=1}^{k+1}(a_i d_i - b_i c_i)
+            \]
+            $n=k+1$时原式仍成立.
+        \end{enumerate}
+        综合$(a)(b)$即证$D_n=\prod\limits_{i=1}^{n}(a_i d_i - b_i c_i)$对任意$n\in \mathbb{N}^*$成立.
+        
+        即$D_n=\prod\limits_{i=1}^{n}(a_i d_i - b_i c_i)$.
+    \end{enumerate}
+\end{enumerate}
+\subsection{补充题}
+\begin{enumerate}
+    \item [1.]对于$a,b,c,d$为不全为$0$的实数
+    \[
+        \begin{pmatrix}
+            a & b & c & d\\
+            d & a & b & c\\
+            c & d & a & b\\
+            b & c & d & a
+        \end{pmatrix}
+    \]
+    求$M$的行列式.
+
+    做多项式$f(x)=a+bx+cx^2+dx^3$,令$\omega_{k}=\frac{2k\pi i}{4}=\frac{k\pi i}{2}$.
+    \begin{align*}
+        \begin{vmatrix}
+            a & b & c & d\\
+            d & a & b & c\\
+            c & d & a & b\\
+            b & c & d & a
+        \end{vmatrix}
+        \begin{vmatrix}
+            1 & 1 & 1 & 1\\
+            \omega_1 & \omega_1^2 & \omega_1^3 & \omega_1^4\\
+            \omega_2 & \omega_2^2 & \omega_2^3 & \omega_2^4\\
+            \omega_3 & \omega_3^2 & \omega_3^3 & \omega_3^4
+        \end{vmatrix}
+        &=
+        \det
+        \begin{pmatrix}
+            a & b & c & d\\
+            d & a & b & c\\
+            c & d & a & b\\
+            b & c & d & a
+        \end{pmatrix}
+        \begin{pmatrix}
+            1 & 1 & 1 & 1\\
+            \omega_1 & \omega_2 & \omega_3 & \omega_4\\
+            \omega_1^2 & \omega_2^2 & \omega_3^2 & \omega_4^2\\
+            \omega_1^3 & \omega_2^3 & \omega_3^3 & \omega_4^3
+        \end{pmatrix}\\
+        &=
+        \det
+        \begin{pmatrix}
+            f(\omega_1) & f(\omega_2) & f(\omega_3) & f(\omega_4)\\
+            \omega_1 f(\omega_1) & \omega_2 f(\omega_2) & \omega_3 f(\omega_3) & \omega_4 f(\omega_4)\\
+            \omega_1^2 f(\omega_1) & \omega_2^2 f(\omega_2) & \omega_3^2 f(\omega_3) & \omega_4^2 f(\omega_4)\\
+            \omega_1^3 f(\omega_1) & \omega_2^3 f(\omega_2) & \omega_3^3 f(\omega_3) & \omega_4^3 f(\omega_4)
+        \end{pmatrix}\\
+        &=
+        f(\omega_1) f(\omega_2) f(\omega_3) f(\omega_4)
+        \begin{vmatrix}
+            1 & 1 & 1 & 1\\
+            \omega_1 & \omega_1^2 & \omega_1^3 & \omega_1^4\\
+            \omega_2 & \omega_2^2 & \omega_2^3 & \omega_2^4\\
+            \omega_3 & \omega_3^2 & \omega_3^3 & \omega_3^4
+        \end{vmatrix}
+    \end{align*}
+    又$\omega_k$各不相同,
+    $\begin{vmatrix}
+        1 & 1 & 1 & 1\\
+        \omega_1 & \omega_2 & \omega_3 & \omega_4\\
+        \omega_1^2 & \omega_2^2 & \omega_3^2 & \omega_4^2\\
+        \omega_1^3 & \omega_2^3 & \omega_3^3 & \omega_4^3
+    \end{vmatrix}
+    \neq 0,\Rightarrow
+    \begin{vmatrix}
+        a & b & c & d\\
+        d & a & b & c\\
+        c & d & a & b\\
+        b & c & d & a
+    \end{vmatrix}=f(\omega_1) f(\omega_2) f(\omega_3) f(\omega_4)
+    $.
+
+    即:
+    \begin{align*}
+        \begin{vmatrix}
+            a & b & c & d\\
+            d & a & b & c\\
+            c & d & a & b\\
+            b & c & d & a
+        \end{vmatrix}
+        &=f(\omega_1) f(\omega_2) f(\omega_3) f(\omega_4)\\
+        &=(a+b+c+d)(a-b+c-d)(a+bi-c-di)(a-bi-c+di)\\
+        &=[{(a+c)}^2-{(b+d)}^2][{(a-c)}^2+{(b-d)}^2].
+    \end{align*}
+    \item [2.]写出行列式$M$中含有$x^4$和$x^3$的项.
+    \[
+        M=
+        \begin{vmatrix}
+            x & 1 & 2 & 3\\
+            x & x & 1 & 2\\
+            2 & 3 & x & 1\\
+            x & 2 & 3 & x
+        \end{vmatrix}.
+    \]
+    \[
+        M=
+        x\cdot
+        \begin{vmatrix}
+            x & 1 & 2\\
+            3 & x & 1\\
+            2 & 3 & x
+        \end{vmatrix} 
+        -x\cdot
+        \begin{vmatrix}
+            1 & 2 & 3\\
+            3 & x & 1\\
+            2 & 3 & x
+        \end{vmatrix} 
+        +2\cdot
+        \begin{vmatrix}
+            1 & 2 & 3\\
+            x & 1 & 2\\
+            2 & 3 & x
+        \end{vmatrix} 
+        -x\cdot
+        \begin{vmatrix}
+            1 & 2 & 3\\
+            x & 1 & 2\\
+            3 & x & 1
+        \end{vmatrix}
+    \]
+    \begin{enumerate}       
+        \item [(1)]$x^4$:仅第一部分有$x^4$,易得$M$中含有$x^4$的项为$x^4$.
+        \item [(2)]$x^3$:仅第二、四部分有$x^3$,易得$M$中含有$x^3$的项为$-x^3-3x^3=-4x^3$.
+    \end{enumerate}
+    \item [3.]计算行列式 (参考第四题)
+    \[
+        M=
+        \begin{vmatrix}
+            1  & 0  & 1 & 0 & 0\\
+            -3 & 1  & 3 & 1 & 0\\
+            2  & -3 & 2 & 3 & 1\\
+            0  & -2 & 0 & 2 & 3\\
+            0  &  0 & 0 & 0 & 2
+        \end{vmatrix}
+    \]
+    记$f(x)=x^3-3x^2+2x,g(x)=x^2+3x+2$.
+    \[
+        \mbox{解}f(x)=0
+        \Rightarrow
+        \begin{cases}
+            x_1&=0,\\
+            x_2&=1,\\
+            x_3&=2.
+        \end{cases}        
+        \Rightarrow
+        M=1^2\cdot g(x_1)\cdot g(x_2)\cdot g(x_3)=144.
+    \]
+    \item [4.]对于多项式$A,B\in \mathbb{C}[x]$有如下的展开
+    \begin{align*}
+        A&=a_0 x^d +a_1 x^{d-1} +\cdots +a_d\\
+        B&=b_0 x^e +b_1 x^{e-1} +\cdots +b_e
+    \end{align*}
+    并且它们的根分别为$\lambda_1,\ldots,\lambda_d$与$\mu_1,\ldots,\mu_e$.我们定义它们的Sylvester行列式为
+    \[
+        M=
+        \begin{pmatrix}
+            a_0    &   0    & \cdots &      0 &    b_0 &      0 & \cdots & 0\\
+            a_1    & a_0    & \cdots &      0 &    b_1 &    b_0 & \cdots & 0\\
+            a_2    & a_1    & \ddots &      0 &    b_2 &    b_1 & \ddots & 0\\
+            \vdots & \vdots & \ddots &    a_0 & \vdots & \vdots & \ddots & b_0\\
+            a_d    & a_{d-1}& \cdots & \vdots &    b_e & b_{e-1}& \cdots & \vdots\\
+            0      & a_d    & \ddots & \vdots &      0 &    b_e & \ddots & \vdots\\
+            \vdots & \vdots & \ddots & a_{d-1}& \vdots & \vdots & \ddots & b_{e-1}\\
+            0      &   0    & \cdots &    a_d &      0 &      0 & \cdots & b_e
+        \end{pmatrix}
+    \]
+    这对多项式的结式 (Resultant)定义为他们的Sylvester多项式的行列式，即\[res(A, B) = \det M.\]
+    请验证有如下的关系:\[res (A, B)={a_0}^e {b_0}^d \prod\limits_{1\leq i\leq d \atop 1\leq j\leq e}(\lambda_i -\mu_j)\]
+    \begin{enumerate}
+        \item [Remarque.]根据结果我们知道，结式可以用来判断两个多项式是否有公共的根，进而可以
+        知道两个多项式是否互素。除此以外，结式在数论、代数几何、交换代数中都有广泛的应用。
+        \item [Remarque.]事实:当$A$和$B$互素时，$M$可逆。
+        \item [Remarque.]当$d=3,e=2$时，$M$如下
+        \[
+            \begin{pmatrix}
+                a_0 &   0 & b_0 &   0 &  0\\
+                a_1 & a_0 & b_1 & b_0 &  0\\
+                a_2 & a_1 & b_2 & b_1 &  b_0\\
+                a_3 & a_2 & 0   & b_2 &  b_1\\
+                0   & a_3 & 0   & 0   &  b_2\\
+            \end{pmatrix}.
+        \]
+    \end{enumerate}
+    \begin{proof}1.
+    \[
+        M^T=N=
+        \begin{pmatrix}
+            a_0 & a_1 & \cdots &    a_d &     &        &     \\
+                & a_0 &    a_1 & \cdots & a_d &        &     \\
+                &     & \ddots & \ddots &     & \ddots &     \\
+                &     &        &    a_0 & a_1 & \cdots & a_d \\
+            b_0 & b_1 & \cdots &    b_e &     &        &     \\
+                & b_0 &    b_1 & \cdots & b_e &        &     \\
+                &     & \ddots & \ddots &     & \ddots &     \\
+                &     &        &    b_0 & a_1 & \cdots & b_e \\
+        \end{pmatrix}
+    \]
+    \[
+        \mbox{记}
+        N(B)=
+        \begin{pmatrix}
+            a_0 & a_1 & \cdots &    a_d &       &        &     \\
+                & a_0 &    a_1 & \cdots & a_d   &        &     \\
+                &     & \ddots & \ddots &       & \ddots &     \\
+                &     &        &    a_0 & a_1   & \cdots & a_d \\
+            b_0 & b_1 & \cdots &  b_e-B &       &        &     \\
+                & b_0 &    b_1 & \cdots & b_e-B &        &     \\
+                &     & \ddots & \ddots &       & \ddots &     \\
+                &     &        &    b_0 & a_1   & \cdots & b_e-B \\
+        \end{pmatrix}.
+    \]
+    记$x^i=x_i,l=d+e-1$,考虑关于$x_{l},x_{l-1},\ldots,x_0$的线性方程组:
+    \begin{align*}
+        &(1)\begin{cases}
+            \ a_0 x_l \quad +a_1 x_{l-1} +\cdots +a_d x_{e-1}&=0\\
+            \ a_0 x_{l-1} +a_1 x_{l-2} +\cdots +a_d x_{e-2}&=0\\
+            \ \qquad \qquad \qquad \vdots &\\
+            \ a_0 x_d \quad +a_1 x_{d-1} +\cdots +a_d x_0&=0\\
+        \end{cases}
+        \\
+        &(2)\begin{cases}
+            \ b_0 x_l \quad +b_1 x_{l-1} +\cdots +(b_e-B)x_{d-1}&=0\\
+            \ b_0 x_{l-1} +b_1 x_{l-2} +\cdots +(b_e-B)x_{d-2}&=0\\
+            \ \qquad \qquad \qquad \vdots &\\
+            \ b_0 x_e \quad +b_1 x_{e-1} +\cdots +(b_e-B)x_0&=0
+        \end{cases}
+    \end{align*}
+    $(1)$对于$A$的解$\lambda_1,\ldots,\lambda_d$成立;$(2)$对于$B$为恒等式.
+
+    又$x_0=1$,$A$的解$\lambda_1,\ldots,\lambda_d$对应$N(B)X=0$的$d$组非平凡解,即$rank\ N(B)<d+e,\det N(B)=0$:
+    \[
+        \det N(B)=c_0 B^d+ c_1 B^{d-1}+ \cdots+ c_d=0
+    \]
+    $\det N(B)$作为$B$的$d$次多项式,它的$d$个根为
+    \[B(\lambda_1),B(\lambda_2),\ldots,B(\lambda_d)\]
+    在上述$\det N(B)$的展开式中,显然有
+    \[c_0={(-1)}^d {a_0}^e,res(A,B)=\det N(0)=c_d\]
+    由根和系数的关系,得:
+    \[\prod\limits_{i=1}^d B(\lambda_i)={(-1)}^d \frac{c_d}{c_0}\]
+    即:
+    \[res(A,B)={a_0}^e \prod\limits_{i=1}^d B(\lambda_i)\]
+    又$B=b_0\prod\limits_{j=1}^e (x-\mu_j)$:
+    \[
+        res(A,B)
+        ={a_0}^e {b_0}^d \prod\limits_{i=1}^d \prod\limits_{j=1}^e (\lambda_i-\mu_j)
+        ={a_0}^e {b_0}^d \prod\limits_{1\leq i\leq d \atop 1\leq j\leq e}(\lambda_i -\mu_j)
+    \]
+    \end{proof}
+    \begin{proof}2.
+    记$f(x)=m_0 x^e + m_1 x^{e-1} + m_e,g(x)=n_0 x^d + n_1 x^{d-1} + n_d$.
+    解:
+    \[
+        f(x)A+g(x)B=1
+        \Leftrightarrow
+        \begin{pmatrix}
+            a_0    &   0    & \cdots &      0 &    b_0 &      0 & \cdots & 0\\
+            a_1    & a_0    & \cdots &      0 &    b_1 &    b_0 & \cdots & 0\\
+            a_2    & a_1    & \ddots &      0 &    b_2 &    b_1 & \ddots & 0\\
+            \vdots & \vdots & \ddots &    a_0 & \vdots & \vdots & \ddots & b_0\\
+            a_d    & a_{d-1}& \cdots & \vdots &    b_e & b_{e-1}& \cdots & \vdots\\
+            0      & a_d    & \ddots & \vdots &      0 &    b_e & \ddots & \vdots\\
+            \vdots & \vdots & \ddots & a_{d-1}& \vdots & \vdots & \ddots & b_{e-1}\\
+            0      &   0    & \cdots &    a_d &      0 &      0 & \cdots & b_e
+        \end{pmatrix}
+        \begin{pmatrix}
+            m_0\\
+            m_1\\
+            \vdots\\
+            m_e\\
+            n_0\\
+            n_1\\
+            \vdots\\
+            n_d
+        \end{pmatrix}
+        =
+        MX=
+        \begin{pmatrix}
+            0\\
+            0\\
+            \vdots\\
+            0\\
+            1
+        \end{pmatrix}
+    \]
+    \begin{align*}
+        f(x)A+g(x)B=1\mbox{有解}&\Leftrightarrow f(x),g(x)\mbox{互素}\\
+        MX={(0,0,\ldots,0,1)}^T \mbox{有解}&\Leftrightarrow \det(M)\neq 0\\
+        f(x),g(x)\mbox{互素}&\Leftrightarrow \det(M)\neq 0
+    \end{align*}
+    即:
+    \[\det(M)=0 \Leftrightarrow \exists 1\leq i \leq d, 1\leq j\leq e,\lambda_i=\mu_j \]
+    可得:
+    \[\det(M)=\xi \prod\limits_{1\leq i\leq d \atop 1\leq j\leq e}(\lambda_i -\mu_j)(\xi\mbox{为系数})\]
+    取$\lambda_1=\cdots=\lambda_d=0$,则$a_0\neq 0,a_1=\cdots=a_d=0$
+    \[
+        \det(M)=
+        \begin{vmatrix}
+            a_0    &   0     & \cdots &      0 &    b_0 &      0 & \cdots & 0\\
+            0      & a_0     & \cdots &      0 &    b_1 &    b_0 & \cdots & 0\\
+            0      & 0       & \ddots &      0 &    b_2 &    b_1 & \ddots & 0\\
+            \vdots & \vdots  & \ddots &    a_0 & \vdots & \vdots & \ddots & b_0\\
+            0      & 0       & \cdots & \vdots &    b_e & b_{e-1}& \cdots & \vdots\\
+            0      & 0       & \ddots & \vdots &      0 &    b_e & \ddots & \vdots\\
+            \vdots & \vdots  & \ddots &      0 & \vdots & \vdots & \ddots & b_{e-1}\\
+            0      &   0     & \cdots &      0 &      0 &      0 & \cdots & b_e
+        \end{vmatrix}
+        ={a_0}^e {b_e}^d={a_0}^e {({(-1)}^e b_0\cdot \mu_1 \cdot \mu_2 \cdots \mu_e)}^d
+    \]
+    又
+    \begin{align*}
+        \det(M)&={a_0}^e {({(-1)}^e b_0\cdot \mu_1 \cdot \mu_2 \cdots \mu_e)}^d\\
+        &={a_0}^e {b_0}^d {(-1)}^{de} {(\mu_1 \cdot \mu_2 \cdots \mu_e)}^d\\
+        &={a_0}^e {b_0}^d \prod\limits_{1\leq i\leq d \atop 1\leq j\leq e}{\lambda_i-\mu_j}
+    \end{align*}
+    可推出$\xi={a_0}^e {b_0}^d$,即证$res(A,B)={a_0}^e {b_0}^d \prod\limits_{1\leq i\leq d \atop 1\leq j\leq e}(\lambda_i -\mu_j)$.
+    \end{proof}
+\end{enumerate}
+\section{周四}
+\subsection{习题四}
+\begin{enumerate}
+    \item [21.]求以下排列的逆序数，并指出其奇偶性:
+    \begin{enumerate}
+        \item [(1)] (6,8,1,4,7,5,3,2,9) \quad 逆序数19,奇
+        \item [(2)] (6,4,2,1,9,7,3,5,8) \quad 逆序数15,奇
+        \item [(3)] (7,5,2,3,9,8,1,6,4) \quad 逆序数20,偶
+    \end{enumerate}
+    \item [23.]
+    \begin{enumerate}
+        \item [(4)]
+        \[
+            \begin{vmatrix}
+                    &         &     & A_1\\
+                    &         & A_2 &    \\
+                    & \iddots &          \\
+                A_k &         &     &     
+            \end{vmatrix}
+            \xrightarrow{n_1\sum\limits_{i=2}^{k}n_i\mbox{次相邻对调}}
+            {(-1)}^{\sum\limits_{i=2}^{k}n_1n_i}
+            \begin{vmatrix}
+                A_1 &     &         &     \\
+                    &     &         & A_2 \\
+                    &     & \iddots &     \\
+                    & A_k &         &     
+            \end{vmatrix}
+        \]
+        即:
+        \[
+            \begin{vmatrix}
+                &         &     & A_1\\
+                &         & A_2 &    \\
+                & \iddots &          \\
+            A_k &         &     &     
+            \end{vmatrix}
+            =
+            {(-1)}^{\sum\limits_{i<j} n_i n_j}
+            \begin{vmatrix}
+                A_1 &     &        &     \\
+                    & A_2 &        &     \\
+                    &     & \ddots &     \\
+                    &     &        & A_k 
+            \end{vmatrix}
+            =
+            {(-1)}^{\sum\limits_{i<j} n_i n_j}
+            \det(A_1)\cdots\det(A_k)
+        \]
+        \item [(6)]
+        \begin{align*}
+            \begin{vmatrix}
+                1+a_1 &     1 & \cdots&      1\\
+                    1 & 1+a_2 & \ddots& \vdots\\  
+                \vdots& \ddots& \ddots&      1\\
+                    1 & \cdots&     1 &  1+a_n\\
+                \end{vmatrix}
+                &=
+                \begin{vmatrix}
+                        1 &     1 &     1 & \cdots&      1\\
+                        0 & 1+a_1 &     1 & \cdots&      1\\
+                        0 &     1 & 1+a_2 & \ddots& \vdots\\  
+                        0 & \vdots& \ddots& \ddots&      1\\
+                        0 &     1 & \cdots&     1 &  1+a_n\\
+                \end{vmatrix}
+                =
+                \begin{vmatrix}
+                    1 &     1 &     1 & \cdots&      1\\
+                   -1 &   a_1 &     0 & \cdots&      0\\
+                   -1 &     0 &   a_2 & \ddots& \vdots\\  
+                   -1 & \vdots& \ddots& \ddots&      0\\
+                   -1 &     0 & \cdots&     0 &    a_n\\
+                \end{vmatrix}\\
+                &=
+                \begin{vmatrix}
+                    1+\sum\limits_{i=1}^n \frac{1}{a_i} &     0 &     0 & \cdots&      0\\
+                   -1 &   a_1 &     0 & \cdots&      0\\
+                   -1 &     0 &   a_2 & \ddots& \vdots\\  
+                   -1 & \vdots& \ddots& \ddots&      0\\
+                   -1 &     0 & \cdots&     0 &    a_n\\
+                \end{vmatrix}
+                =
+                \left(1+\sum\limits_{i=1}^n \frac{1}{a_i}\right)\prod\limits_{j=1}^n a_j.
+        \end{align*}
+        \item [(8)]
+        \begin{enumerate}
+            \item [(a)]$n=1$ \[\begin{vmatrix} a_1-b_1 \end{vmatrix}=a_1-b_1.\]
+            \item [(b)]$n=2$ 
+            \[
+                \begin{vmatrix}
+                    a_1-b_1 & a_1-b_2\\
+                    a_2-b_1 & a_2-b_2
+                \end{vmatrix}
+                =(a_1-b_1)(a_2-b_2)-(a_1-b_2)(a_2-b_1).
+            \]
+            \item [(c)]$n\geq 3$
+            \[
+                \begin{vmatrix}
+                    a_1-b_1 & a_1-b_2 & \cdots & a_1-b_n\\
+                    a_2-b_1 & a_2-b_2 & \cdots & a_2-b_n\\
+                    \vdots  & \vdots  &        & \vdots \\
+                    a_n-b_1 & a_n-b_2 & \cdots & a_n-b_n
+                \end{vmatrix}
+                =
+                \begin{vmatrix}
+                    a_1-b_1 & b_1-b_2 & \cdots & b_1-b_n\\
+                    a_2-b_1 & b_1-b_2 & \cdots & b_1-b_n\\
+                    \vdots  & \vdots  &        & \vdots \\
+                    a_n-b_1 & b_1-b_2 & \cdots & b_1-b_n
+                \end{vmatrix}
+                =0.
+            \]
+        \end{enumerate}
+    \end{enumerate}
+\end{enumerate}
+\subsection{补充题}
+\begin{enumerate}
+    \item [1.]确定$i,j$,使得$(1245i6j97)$分别为奇排列、偶排列。
+    \begin{enumerate}
+        \item [(1)]$i=3,j=8$,逆序数为$4$,偶排列;
+        \item [(2)]$i=8,j=3$,逆序数为$7$,奇排列.
+    \end{enumerate}
+    \item [2.]将$\lambda$作为变量，$a_{ij}(1\leq i,j\leq n)$作为常数，则
+    \[
+        f_{n}(\lambda)=
+        \begin{vmatrix}
+            \lambda-a_{11} & -a_{12} & \cdots & -a_{1n}\\
+            -a_{21} & \lambda-a_{22} & \cdots & -a_{2n}\\
+            \vdots  & \vdots  & \ddots & \vdots \\
+            -a_{n1} & -a_{n2} & \cdots & \lambda-a_{nn}\\
+        \end{vmatrix}
+    \]
+    为$\lambda$的多项式，求这个多项式的$n$次项和$n-1$次项。
+    \[
+        \mbox{记}f_{n}(\lambda)=
+        (\lambda-a_{nn})f_{n-1}(\lambda)
+        \begin{comment}
+            \begin{vmatrix}
+            \lambda-a_{11} & -a_{12} & \cdots & -a_{1(n-1)}\\
+            -a_{32} & \lambda-a_{33} & \cdots & -a_{2(n-1)}\\
+            \vdots  & \vdots  & \ddots & \vdots \\
+            -a_{(n-1)2} & -a_{(n-1)3} & \cdots & \lambda-a_{(n-1)(n-1)}\\
+            \end{vmatrix}
+        \end{comment}
+        +a_{12}
+        \begin{vmatrix}
+            -a_{21} & -a_{23} & \cdots & -a_{2n}\\
+            -a_{31} & \lambda-a_{33} & \cdots & -a_{3n}\\
+            \vdots  & \vdots  & \ddots & \vdots \\
+            -a_{n1} & -a_{n3} & \cdots & \lambda-a_{nn}\\
+        \end{vmatrix}
+        +\cdots.
+    \]
+    显然,后$n-1$个项中$\lambda$的次数均不超过$n-2$,仅第一项中含$n$次项和$n-1$次项,即在$f_{n-1}(\lambda)$中找$n-1$次项和$n-2$次项.
+
+    依此类推,可得$f(x)$的$n$次项和$n-1$次项均在$\prod\limits_{i=1}^n (\lambda-a_{ii})$里.
+    \begin{align*}
+        n\mbox{次项}&:\lambda^{n};\\
+        n-1\mbox{次项}&:-\sum\limits_{i=1}^{n} a_{ii} \lambda^{n-1}.
+    \end{align*}
+\end{enumerate}
+\end{document}
