@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021) (preloaded format=xelatex 2022.3.29)  31 MAR 2022 10:02
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021) (preloaded format=xelatex 2022.3.29)  31 MAR 2022 10:32
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -372,7 +372,7 @@ Package fontspec Info: Font family 'FandolSong-Regular(0)' created for font
 (fontspec)             <->"[FandolKai-Regular.otf]/OT:language=dflt;"
 (fontspec)             - 'italic small caps'  (m/scit) with NFSS spec.: 
 
-No file homework6.aux.
+(./homework6.aux)
 \openout1 = `homework6.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 7.
@@ -385,7 +385,7 @@ LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 7.
 LaTeX Font Info:    ... okay on input line 7.
 LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 7.
 LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 7.
-(/usr/local/texlive/2021/texmf-dist/tex/latex/base/ts1cmr.fd
+ (/usr/local/texlive/2021/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
 LaTeX Font Info:    ... okay on input line 7.
@@ -497,9 +497,9 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 ] [2] [3] [4] (./homework6.aux) ) 
 Here is how much of TeX's memory you used:
- 8174 strings out of 476919
- 198119 string characters out of 5821840
- 565559 words of memory out of 5000000
+ 8176 strings out of 476919
+ 198147 string characters out of 5821840
+ 565550 words of memory out of 5000000
  28050 multiletter control sequences out of 15000+600000
  412731 words of font info for 87 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
