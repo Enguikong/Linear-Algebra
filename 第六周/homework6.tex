@@ -446,16 +446,58 @@
                 \boldsymbol{b}=x\cdot\boldsymbol{a}_1+y\cdot\boldsymbol{a}_2+z\cdot\boldsymbol{a}_3
                 \Leftrightarrow
                 \begin{cases}
-                    \ \ \ -\  x+2y-4z &=8,\\
-                    \ \ \ \ \ \ \ 3x+\ \,y &=3\\
-                    \ \ \ \ \qquad\ \ \ \, 7y-2z &= -1\\
-                    \ -5x-3y+6z &=-25
+                    \ -\ x+2y-4z &=8,\\
+                    \ \ \;3x\qquad\ +\ \,z &=3,\\
+                    \ \qquad \ \ \ 7y-2z &= -1,\\
+                    \ -5x-3y+6z &=-25.
+                \end{cases}
+                \Leftrightarrow
+                \begin{cases}
+                    x&=2,\\
+                    y&=-1,\\
+                    z&=-3.
                 \end{cases}
             \]
+            能,$\quad\boldsymbol{b}=2\boldsymbol{a}_1-\boldsymbol{a}_2-3\boldsymbol{a}_3$.
             \item [(2)]
+            \[
+                \boldsymbol{b}=x\cdot\boldsymbol{a}_1+y\cdot\boldsymbol{a}_2+z\cdot\boldsymbol{a}_3
+                \Leftrightarrow
+                \begin{cases}
+                    \ \ \ \,3x-\ \,y+\ 3z&=2,\\
+                    \ -5x+7y+11z&=-30,\\
+                    \ \ \ \,2x-3y-\ 5z&=13,\\
+                    \ -4x+6y+10z&=-26.
+                \end{cases}
+                \Leftrightarrow
+                \begin{cases}
+                    x&=-1,\\
+                    y&=-5,\\
+                    z&=0.
+                \end{cases}
+            \]
+            能,$\quad\boldsymbol{b}=-\boldsymbol{a}_1-5\boldsymbol{a}_2$.
         \end{enumerate}
         \item [4.]设$\boldsymbol{a}_1=(1,0,0,0),\boldsymbol{a}_2=(1,1,0,0),\boldsymbol{a}_3=(1,1,1,0),\boldsymbol{a}_4=(1,1,1,1)$.
         证明:$\mathbb{F}^4$中任何向量都可以写成 的线性组合,且表示唯一.
+        \begin{proof}
+            \[
+            \forall\ \vec{\nu}\in\mathbb{F}^4,\ \exists!(x_1,x_2,x_3,x_4),
+            \vec{\nu}=x_1 \boldsymbol{e}_1+x_2 \boldsymbol{e}_2+x_3 \boldsymbol{e}_3+x_4 \boldsymbol{e}_4.
+            \]
+            \[
+                \mbox{又}
+                \begin{cases}
+                    \boldsymbol{e}_1&=\boldsymbol{a}_1,\\
+                    \boldsymbol{e}_2&=\boldsymbol{a}_2-\boldsymbol{a}_1,\\
+                    \boldsymbol{e}_3&=\boldsymbol{a}_3-\boldsymbol{a}_2,\\
+                    \boldsymbol{e}_4&=\boldsymbol{a}_4-\boldsymbol{a}_3.
+                \end{cases}
+                \Rightarrow
+                \ \exists!(x_1,x_2,x_3,x_4),
+                \vec{\nu}=x_1 \boldsymbol{a}_1+x_2 \boldsymbol{a}_2+x_3 \boldsymbol{a}_3+x_4 \boldsymbol{a}_4.
+            \]
+        \end{proof}
         \item [5.]设$P_i=(x_i,y_i,z_i),i=1,2,3,4$是三维几何空间中的点.证明:$P_i,i=1,2,3,4$共面的条件是
         \[
             \begin{vmatrix}
@@ -465,6 +507,80 @@
                 x_4 & y_4 & z_4 & 1
             \end{vmatrix}=0.
         \]
+        \begin{proof}
+            记$\alpha_1=\overrightarrow{P_1 P_4},\alpha_2=\overrightarrow{P_2 P_4},\alpha_3=\overrightarrow{P_3 P_4}$.
+            \[
+                \mbox{四点共面}
+                \Leftrightarrow
+                \alpha_1,\alpha_2,\alpha_3 \mbox{共面}
+                \Leftrightarrow
+                \exists\ m,n\in \mathbb{R},m\alpha_1+n\alpha_2=\alpha_3,
+                \begin{pmatrix}
+                    x_3-x_4\\
+                    y_3-y_4\\
+                    z_3-y_4
+                \end{pmatrix}
+                =m\begin{pmatrix}
+                    x_1-x_4\\
+                    y_1-y_4\\
+                    z_1-y_4
+                \end{pmatrix}
+                +n\begin{pmatrix}
+                    x_2-x_4\\
+                    y_2-y_4\\
+                    z_2-y_4
+                \end{pmatrix}.
+            \]
+            即
+            \[
+                P_i,i=1,2,3,4\mbox{共面}
+                \Leftrightarrow
+                \begin{pmatrix}
+                    x_3-x_4\\
+                    y_3-y_4\\
+                    z_3-y_4
+                \end{pmatrix}
+                ,\begin{pmatrix}
+                    x_1-x_4\\
+                    y_1-y_4\\
+                    z_1-y_4
+                \end{pmatrix}
+                ,\begin{pmatrix}
+                    x_2-x_4\\
+                    y_2-y_4\\
+                    z_2-y_4
+                \end{pmatrix}
+                \mbox{线性相关}
+                \Leftrightarrow
+                \begin{vmatrix}
+                    x_1-x_4 & x_2-x_4 & x_3-x_4\\
+                    y_1-y_4 & y_2-y_4 & y_3-y_4\\
+                    z_1-z_4 & z_2-z_4 & z_3-z_4
+                \end{vmatrix}=0.
+            \]
+            \[
+                \begin{vmatrix}
+                    x_1 & y_1 & z_1 & 1\\
+                    x_2 & y_2 & z_2 & 1\\
+                    x_3 & y_3 & z_3 & 1\\
+                    x_4 & y_4 & z_4 & 1
+                \end{vmatrix}=
+                \begin{vmatrix}
+                    x_1-x_4 & y_1-y_4 & z_1-z_4 & 0\\
+                    x_2-x_4 & y_2-y_4 & z_2-z_4 & 0\\
+                    x_3-x_4 & y_3-y_4 & z_3-z_4 & 0\\
+                    x_4 & y_4 & z_4 & 1
+                \end{vmatrix}
+                =
+                \begin{vmatrix}
+                    x_1-x_4 & x_2-x_4 & x_3-x_4\\
+                    y_1-y_4 & y_2-y_4 & y_3-y_4\\
+                    z_1-z_4 & z_2-z_4 & z_3-z_4
+                \end{vmatrix}=0.
+                \Leftrightarrow
+                P_i,i=1,2,3,4\mbox{共面}.
+            \]
+        \end{proof}
         \item [6.]设$\boldsymbol{a}_1,\boldsymbol{a}_2,\boldsymbol{a}_3,\boldsymbol{a}_4$是三维几何空间中的四个向量.证明它们必线性相关.
     \end{enumerate}
 \end{document} 

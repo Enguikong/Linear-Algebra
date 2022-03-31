@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021) (preloaded format=xelatex 2022.3.29)  31 MAR 2022 10:32
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021) (preloaded format=xelatex 2022.3.29)  31 MAR 2022 23:43
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -495,7 +495,17 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 8.
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
-] [2] [3] [4] (./homework6.aux) ) 
+] [2] [3] [4]
+Overfull \hbox (12.32434pt too wide) detected at line 560
+\OML/cmm/m/it/10 P[]; i \OT1/cmr/m/n/10 = 1\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 2\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 3\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 4[] \OMS/cmsy/m/n/10 , [] \OML/cmm/m/it/10 ; [] ; [] [] \OMS/cmsy/m/n/10 , [] \OT1/cmr/m/n/10 = 0\OML/cmm/m/it/10 :
+ []
+
+
+Overfull \hbox (28.1302pt too wide) detected at line 582
+[] \OT1/cmr/m/n/10 = [] = [] = 0\OML/cmm/m/it/10 : \OMS/cmsy/m/n/10 , \OML/cmm/m/it/10 P[]; i \OT1/cmr/m/n/10 = 1\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 2\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 3\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 4[]\OML/cmm/m/it/10 :
+ []
+
+[5] (./homework6.aux) ) 
 Here is how much of TeX's memory you used:
  8176 strings out of 476919
  198147 string characters out of 5821840
@@ -505,4 +515,4 @@ Here is how much of TeX's memory you used:
  1348 hyphenation exceptions out of 8191
  82i,14n,88p,299b,411s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on homework6.pdf (4 pages).
+Output written on homework6.pdf (5 pages).
