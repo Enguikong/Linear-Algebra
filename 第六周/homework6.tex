@@ -535,21 +535,7 @@
             \[
                 P_i,i=1,2,3,4\mbox{共面}
                 \Leftrightarrow
-                \begin{pmatrix}
-                    x_3-x_4\\
-                    y_3-y_4\\
-                    z_3-y_4
-                \end{pmatrix}
-                ,\begin{pmatrix}
-                    x_1-x_4\\
-                    y_1-y_4\\
-                    z_1-y_4
-                \end{pmatrix}
-                ,\begin{pmatrix}
-                    x_2-x_4\\
-                    y_2-y_4\\
-                    z_2-y_4
-                \end{pmatrix}
+                \alpha_1,\alpha_2,\alpha_3
                 \mbox{线性相关}
                 \Leftrightarrow
                 \begin{vmatrix}
@@ -577,5 +563,31 @@
             \]
         \end{proof}
         \item [6.]设$\boldsymbol{a}_1,\boldsymbol{a}_2,\boldsymbol{a}_3,\boldsymbol{a}_4$是三维几何空间中的四个向量.证明它们必线性相关.
+        \begin{proof}
+            设$\boldsymbol{a}_i={(x_i,y_i,z_i)}^T\ (i=1,2,3,4)$,记
+            $A=\begin{pmatrix}
+                x_1 & x_2 & x_3 & x_4\\
+                y_1 & y_2 & y_3 & y_4\\
+                z_1 & z_2 & z_3 & z_4\\
+            \end{pmatrix}$.
+
+            证$\boldsymbol{a}_1,\boldsymbol{a}_2,\boldsymbol{a}_3,\boldsymbol{a}_4$线性相关,即证
+            \[
+                A\lambda =
+                \begin{pmatrix}
+                    x_1 & x_2 & x_3 & x_4\\
+                    y_1 & y_2 & y_3 & y_4\\
+                    z_1 & z_2 & z_3 & z_4\\
+                \end{pmatrix}
+                \begin{pmatrix}
+                    \lambda_1\\
+                    \lambda_2\\
+                    \lambda_3\\
+                    \lambda_4
+                \end{pmatrix}
+                =0
+            \]
+            有非零解.又rank$A<3,A\lambda=0$有非零解,即证$\boldsymbol{a}_1,\boldsymbol{a}_2,\boldsymbol{a}_3,\boldsymbol{a}_4$线性相关.
+        \end{proof}
     \end{enumerate}
 \end{document} 
