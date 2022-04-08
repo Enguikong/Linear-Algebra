@@ -1,0 +1,180 @@
+\documentclass{article}
+\usepackage{xeCJK,amsmath,geometry,graphicx,amssymb,zhnumber,booktabs,setspace,tasks,verbatim,amsthm,amsfonts,mathdots,mathtools}
+\geometry{a4paper,scale=0.8}
+\MHInternalSyntaxOn
+\def\MT_start_cases_ams:n #1{%
+  \RIfM@\else
+   \nonmatherr@{\begin{\@currenvir}}
+  \fi
+  \MH_group_align_safe_begin:
+  \left#1
+  \alignedat@a
+}
+\def\MH_end_cases_ams:{%
+  \endaligned
+  \MH_group_align_safe_end:
+}
+\newcommand*\defcases[3]{%
+ \newenvironment{#1}
+   {\MT_start_cases_ams:n {#2}}
+   {\MH_end_cases_ams:\right#3}
+}
+\MHInternalSyntaxOff
+\defcases{mylcases}{\lbrace}{.}
+\defcases{myrcases}{.}{\rbrace}
+\defcases{mybcases}{\lbrace}{\rbrace}
+\defcases{mylrcases}{[}{\rbrace}
+\title{线性代数homework (第七周)}
+\author{PB20000113孔浩宇}
+\date{\today}
+\begin{document}
+\maketitle
+\section{周四}
+\subsection{习题五}
+\begin{enumerate}
+    \item [9.]判别下列线性方程组是否线性相关:
+    \[
+        (1)\begin{mylcases}{7}
+            \ -x_1\; & +\; & 2 & x_2\; & +\; & 3  & x_3 &=3,\\
+            \ 5x_1\; &  \; &   &    \; & -\; &    & x_3 &=5,\\
+            \ 8x_1\; & -\; & 6 & x_2\; & -\; & 10 & x_3 &=7;
+        \end{mylcases}\qquad\qquad
+        (2)\begin{mylcases}{10}
+            \ 2 x_1\; & +\; & 3 & x_2\; & +\; &   & x_3\; & +\; & 5 & x_4 & = 2,\\
+            \ 3 x_1\; & +\; & 2 & x_2\; & +\; & 4 & x_3\; & +\; & 2 & x_4 & = 3,\\
+            \   x_1\; & +\; &   & x_2\; & +\; & 2 & x_3\; & +\; & 4 & x_4 & = 1.
+        \end{mylcases}
+    \]
+    \begin{enumerate}
+        \item [(1)]
+        令$\begin{cases}
+            l_1 &=-x_1+2x_2+3x_3-4,\\
+            l_2 &=5x_1-x_3+1,\\
+            l_3 &=8x_1-6x_2-10x_3+13.
+        \end{cases}$,假设$l_3=\lambda_1 l_1+\lambda_2 l_2$,则
+        \[
+            \begin{cases}
+                -\ \lambda_1+5\lambda_2 &=8,\\
+                \ \ 2\lambda_1 &=-6,\\
+                \ \ 3\lambda_1-\ \lambda_2 &=-10,\\
+                -4\lambda_1+\ \lambda_2 &=13.
+            \end{cases}
+            \quad \Rightarrow
+            \begin{cases}
+                \lambda_1 &=-3,\\
+                \lambda_2 &=1.
+            \end{cases}
+            \quad \Rightarrow
+            l_3=-3l_1+l_2,\mbox{原方程组线性相关.}
+        \]
+        \item [(2)]令$\begin{cases}
+            \ l_1 &=2x_1+3x_2+x_3+5x_4-2,\\
+            \ l_2 &=3x_1+2x_2+4x_3+2x_4-3,\\
+            \ l_3 &=x_1+x_2+2x_3+4x_4-1.
+        \end{cases}$,假设$l_3=\lambda_1 l_1+\lambda_2 l_2$,则
+        \[
+            \begin{cases}
+                \ 2\lambda_1+3\lambda_2 &=1 ,\\
+                \ 3\lambda_1+2\lambda_2 &=1 ,\\
+                \ \lambda_1+4\lambda_2 &=2 ,\\
+                \ 5\lambda_1+2\lambda_2 &=4 ,\\
+                \ -2\lambda_1-3\lambda_2 &= -1,\\
+            \end{cases}
+            \quad \Rightarrow
+            \mbox{无解,即原方程组不线性相关.}
+        \]
+    \end{enumerate}
+    \item [10.]判断下列向量组是否线性相关:
+    \begin{enumerate}
+        \item [(2)]$a_1=(2,1,2,-4),a_2=(1,0,5,2),a_3=(-1,2,0,3)$.
+        
+        假设有$a_3=m\cdot a_1+n\cdot a_2$,则
+        \[
+            \begin{cases}
+                \ \;2m+n &=-1,\\
+                \quad m &=2,\\
+                \ \;2m+5n &=0,\\ 
+                -4m+2n &=3.
+            \end{cases} 
+            \quad \Rightarrow
+            \mbox{无解,向量组线性无关.}
+        \]
+        \item [(4)]$a_1=(1,-1,0,0),a_2=(0,1,-1,0),a_3=(0,0,1,-1),a_4=(-1,0,0,1)$.
+        
+        假设有$a_4=m\cdot a_1+n\cdot a_2+p\cdot a_3$,则
+        \[
+            \begin{cases}
+                m &=-1,\\
+                -m+n &=0,\\
+                -n+p &=0,\\
+                -p &=1.
+            \end{cases}
+            \quad \Rightarrow
+            \begin{cases}
+                m &=-1,\\
+                n &=-1,\\
+                p &=-1.
+            \end{cases}
+            \quad \Rightarrow
+            a_4=-a_1-a_2-a_3,\mbox{向量组线性相关.}
+        \]
+    \end{enumerate}
+    \item [12.]下列说法是否正确？为什么？
+    \begin{enumerate}
+        \item [(1)]错误.例如取$\alpha_1=(1,1),\alpha_2=(0,0)$,有$\alpha_2=0\cdot \alpha_1$,线性相关.
+        但不存在$\lambda$,使得$\alpha_1=\lambda\cdot \alpha_2$.
+        \item [(2)]错误.例如取$\alpha_1=(1,0),\alpha_2=(0,1),\alpha_3=(1,1)$,
+        有$\left\{\alpha_1,\alpha_2\right\},\left\{\alpha_1,\alpha_3\right\}\left\{\alpha_2,\alpha_3\right\}$线性无关,
+        但有$\alpha_3=\alpha_1+\alpha_2$.
+        \item [(5)]错误.例如取$s=2$,则$\alpha_1+\alpha_2,\alpha_2+\alpha_1$线性相关.
+        \item [(6)]正确.
+        \item []若$s$为偶数,
+        则$(\alpha_1+\alpha_2)+(\alpha_3+\alpha_4)+\cdots+(\alpha_{s-1}+\alpha_s)=(\alpha_2+\alpha_3)+(\alpha_4+\alpha_5)+\cdots+(\alpha_s+\alpha_1)$,线性相关;
+        \item []若$s$为奇数,取$\alpha_{i+s}=\alpha_i\ (1\leqslant i\leqslant s)$.则
+        $\alpha_i=\sum\limits_{k=0}^{s-1} {(-1)}^{k} (\alpha_{i+k}+\alpha_{i+k+1})$,两向量组等价.
+        
+        即$\mbox{rank}\left\{\alpha_1+\alpha_2,\ldots,\alpha_s+\alpha_1\right\}=\mbox{rank}\left\{\alpha_1,\ldots,\alpha_s \right\}<s$,即证线性相关.
+    \end{enumerate}
+    \item [15.]证明:非零向量组$\alpha_1,\ldots,\alpha_s$线性无关的充要条件是，每个$\alpha_i(1<i\leqslant s)$都不能用它面前的向量线性表示.
+    \begin{proof}
+        \begin{enumerate}
+            \item []
+            \item [(1)]必要性:显然.
+            \item [(2)]充分性:假设有非零向量组$\alpha_1,\ldots,\alpha_s$每个$\alpha_i(1<i\leqslant s)$都不能用它面前的向量线性表示,且线性相关.
+            
+            由$\alpha_1,\ldots,\alpha_s$线性相关,得$\exists\ \alpha_i=\sum\limits_{j\neq i} \lambda_j \alpha_j$,且$\lambda_j$不全为0.
+
+            取$k=\max \left\{\ j\ | \  \lambda_j\neq 0\right\}$,
+            \begin{enumerate}
+                \item [(a)]$k<i$.矛盾,不存在这样的非零向量组.
+                \item [(b)]$k>i$.则有$\alpha_k=\alpha_i-\sum\limits_{j\neq k,i} \alpha_j$,矛盾,不存在这样的非零向量组.
+            \end{enumerate}
+            即假设不成立,充分性即证.
+        \end{enumerate}
+        综上,即证非零向量组$\alpha_1,\ldots,\alpha_s$线性无关的充要条件是，每个$\alpha_i(1<i\leqslant s)$都不能用它面前的向量线性表示.
+    \end{proof}
+    \item [16.]设向量组$\alpha_1,\ldots,\alpha_s$线性无关,$\beta=\lambda_1 \alpha_1 +\cdots+\lambda_s \alpha_s$.
+    如果$\lambda_i \neq 0$,则用$\beta$代替$\alpha_i$后,向量组$\alpha_1,\ldots,\alpha_{i-1},\beta,\alpha_{i+1},\ldots,\alpha_s$线性无关.
+    \begin{proof}
+        \begin{align*}
+            &\alpha_j=\begin{cases}
+                & \alpha_i,\\
+                & \\
+                & \displaystyle{\frac{1}{\lambda_i}}\left(\beta-\left(\lambda_1 \alpha_1+\cdots+\lambda_{i-1} \alpha_{i-1}+\lambda_{i+1} \alpha_{i+1}+\cdots+\lambda_s \alpha_s\right)\right).            
+            \end{cases}\\
+            & \\
+            \Rightarrow
+            &\left\{\alpha_1,\ldots,\alpha_s\right\}\mbox{与}
+            \left\{\alpha_1,\ldots,\alpha_{i-1},\beta,\alpha_{i+1},\ldots,\alpha_s\right\}
+            \mbox{等价};\\
+            & \\
+            \Rightarrow
+            &\mbox{rank}\left\{\alpha_1,\ldots,\alpha_s\right\}=
+            \mbox{rank}\left\{\alpha_1,\ldots,\alpha_{i-1},\beta,\alpha_{i+1},\ldots,\alpha_s\right\}=s;\\
+            & \\
+            \Rightarrow
+            &\alpha_1,\ldots,\alpha_{i-1},\beta,\alpha_{i+1},\ldots,\alpha_s\mbox{线性无关}.
+        \end{align*}
+    \end{proof}
+\end{enumerate}
+\end{document} 
