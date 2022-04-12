@@ -1,0 +1,113 @@
+\documentclass{article}
+\usepackage{xeCJK,amsmath,geometry,graphicx,amssymb,zhnumber,booktabs,setspace,tasks,verbatim,amsthm,amsfonts,mathdots}
+\geometry{a4paper,scale=0.8}   
+\title{线性代数homework (第三周)}
+\author{PB20000113孔浩宇}
+\date{\today}
+\begin{document}
+\maketitle
+\section{周二}
+\subsection{习题五}
+\begin{enumerate}
+    \item [17.]设向量组$\alpha_1,\ldots,\alpha_r$线性无关,且$\alpha_1,\ldots,\alpha_r$可以由向量组$\beta_1,\ldots,\beta_r$线性表示,
+    则$\beta_1,\ldots,\beta_r$也线性无关.
+    \begin{proof}
+        \[
+            r=
+            \mbox{rank}(\alpha_1,\ldots,\alpha_r)
+            \leqslant
+            \mbox{rank}(\beta_1,\ldots,\beta_r)
+            \leqslant r 
+            \Rightarrow \mbox{rank}(\beta_1,\ldots,\beta_r)=r.
+            \]
+    \end{proof}
+    \item [19.]求下列向量组的极大无关组与秩:\begin{enumerate}
+        \item [(3)]
+        $\overrightarrow{a_1}=(0,1,2,3),\quad \overrightarrow{a_2}=(1,2,3,4),\quad \overrightarrow{a_3}=(3,4,5,6),\quad \overrightarrow{a_4}=(4,3,2,1),\quad \overrightarrow{a_5}=(6,5,4,3)$.
+    \end{enumerate}
+    \item [解]:记极大无关组为$S$.
+    \begin{enumerate}
+            \item [(a)]$S_1=\left\{\alpha_1\right\}$.
+            \item [(b)]假设存在$x$使得$x\cdot \alpha_1=\alpha_2$,则$0\cdot x=1$,显然无解,故取$S_2=S_1\cup \left\{\alpha_2\right\}=\left\{\alpha_1,\alpha_2\right\}$.
+            \item [(c)]假设存在$x,y$使得$x\cdot \alpha_1+y\cdot \alpha_2=\alpha_3$,则有
+            \[
+                \begin{cases}
+                    \ \qquad \quad y &=3,\\
+                    \ \ \;x+2y &=4,\\
+                    \ 2x+3y &=5,\\
+                    \ 3x+4y &=6.
+                \end{cases}
+                \Rightarrow
+                \begin{cases}
+                    \ x&=-2\\
+                    \ y&=3.
+                \end{cases}
+                \quad
+                \Rightarrow
+                S_3=S_2=\left\{\alpha_1,\alpha_2\right\}.
+            \]
+            \item [(d)]假设存在$x,y$使得$x\cdot \alpha_1+y\cdot \alpha_2=\alpha_4$,则有
+            \[
+                \begin{cases}
+                    \ \qquad \quad y &=4,\\
+                    \ \ \;x+2y &=3,\\
+                    \ 2x+3y &=2,\\
+                    \ 3x+4y &=1.
+                \end{cases}
+                \Rightarrow
+                \begin{cases}
+                    \ x&=-5\\
+                    \ y&=4.
+                \end{cases}
+                \quad
+                \Rightarrow
+                S_4=S_3=\left\{\alpha_1,\alpha_2\right\}.
+            \]
+            \item [(e)]假设存在$x,y$使得$x\cdot \alpha_1+y\cdot \alpha_2=\alpha_5$,则有
+            \[
+                \begin{cases}
+                    \ \qquad \quad y &=6,\\
+                    \ \ \;x+2y &=5,\\
+                    \ 2x+3y &=4,\\
+                    \ 3x+4y &=3.
+                \end{cases}
+                \Rightarrow
+                \begin{cases}
+                    \ x&=-7\\
+                    \ y&=6.
+                \end{cases}
+                \quad
+                \Rightarrow
+                S_5=S_4=\left\{\alpha_1,\alpha_2\right\}.
+            \]
+            \item []综上,极大无关组$S=\left\{\alpha_1,\alpha_2\right\},\mbox{rank}(\alpha_1,\ldots,\alpha_6)=2$.
+        \end{enumerate}
+    \item [22.]设向量组$\alpha_1,\ldots,\alpha_m$的秩为$r$,则其中任何$r$个线性无关的向量构成$\alpha_1,\ldots,\alpha_m$的极大无关组.
+    \begin{proof}
+        设有任何$r$个线性无关的向量$\alpha_{i1},\ldots,\alpha_{ir}$构成一个向量组$S_1$,$\forall\ \alpha_{j}\notin S_1,S_2=S_1\cup \left\{\alpha_{j}\right\}$.
+        \[
+            r+1>r=\mbox{rank}(\alpha_1,\ldots,\alpha_m)
+            \Rightarrow
+            S_2\mbox{线性相关},\mbox{又}S_1\mbox{线性无关}
+            \Rightarrow
+            S_1\mbox{构成}\alpha_1,\ldots,\alpha_m\mbox{的极大无关组}.
+        \]
+    \end{proof}
+    \item [23.]设向量组$\alpha_1,\ldots,\alpha_m$的秩为$r$,如果$\alpha_1,\ldots,\alpha_m$可以由它的$r$个向量线性表示,则这$r$个向量构成$\alpha_1,\ldots,\alpha_m$的极大无关组.
+    \begin{proof}将这$r$个向量记为$\alpha_{i1},\ldots,\alpha_{ir}$.
+        \begin{align*}
+            & r=\mbox{rank}(\alpha_1,\ldots,\alpha_m)
+            \leqslant
+            \mbox{rank}(\alpha_{i1},\ldots,\alpha_{ir})
+            \leqslant r
+            \Rightarrow
+            \mbox{rank}(\alpha_{i1},\ldots,\alpha_{ir})=r\\
+            \xrightarrow{\mbox{T22结论}}
+            & \mbox{rank}(\alpha_{i1},\ldots,\alpha_{ir})\mbox{构成}
+            \alpha_1,\ldots,\alpha_m\mbox{的极大无关组}.
+        \end{align*}
+    \end{proof}
+\end{enumerate}
+\section{周四}
+\subsection{习题五}
+\end{document}
