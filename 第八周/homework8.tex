@@ -110,4 +110,171 @@
 \end{enumerate}
 \section{周四}
 \subsection{习题五}
+\begin{enumerate}
+    \item [20.]求下列矩阵的秩,并求出它的行向量空间的一组基.
+    
+    (2) 进行初等变换:
+    \[
+        \begin{pmatrix}
+            3  &  6 &  1 &  5\\
+            1  &  4 & -1 &  3\\
+            -1 & -10&  5 & -7\\
+            4  & -2 &  8 &  0
+        \end{pmatrix}
+        \to
+        \begin{pmatrix}
+            0 & -6 &  4 & -6\\
+            1 &  4 & -1 &  3\\
+            0 & -6 &  4 & -4\\
+            0 & -18& 12 & -12
+        \end{pmatrix}
+        \to
+        \begin{pmatrix}
+            0 &  0 &  0 & -2\\
+            1 &  0 &  0 &  0\\
+            0 & -6 &  4 & -4\\
+            0 &  0 &  0 & 0
+        \end{pmatrix}
+        \to
+        \begin{pmatrix}
+            1 & 0 & 0 & 0\\
+            0 & 4 & 0 & 0\\
+            0 & 0 & -2& 0\\
+            0 & 0 & 0 & 0
+        \end{pmatrix}
+    \]
+    即
+    \[
+        \mbox{rank}
+        \begin{pmatrix}
+            3  &  6 &  1 &  5\\
+            1  &  4 & -1 &  3\\
+            -1 & -10&  5 & -7\\
+            4  & -2 &  8 &  0
+        \end{pmatrix}
+        =\mbox{rank}
+        \begin{pmatrix}
+            1 & 0 & 0 & 0\\
+            0 & 4 & 0 & 0\\
+            0 & 0 & -2& 0\\
+            0 & 0 & 0 & 0
+        \end{pmatrix}
+        =3.
+    \]
+    记原矩阵为${(\alpha_1\ \alpha_2\ \alpha_3\ \alpha_4)}^T$,由初等变换可得$\alpha_4 -4\cdot \alpha_2=3\cdot(\alpha_2+\alpha_3)$
+    \item [24.]证明:$\mbox{rank}(\alpha_1,\ldots,\alpha_r,\beta_1,\ldots,\beta_s)\leqslant\mbox{rank}(\alpha_1,\ldots,\alpha_r)+\mbox{rank}(\beta_1,\ldots,\beta_s)$.
+    \begin{proof}记$A=(\alpha_1,\ldots,\alpha_r),B=(\beta_1,\ldots,\beta_s)$.
+        \[
+            \mbox{rank}(\alpha_1,\ldots,\alpha_r,\beta_1,\ldots,\beta_s)
+            =\mbox{rank}\begin{pmatrix}A & B \end{pmatrix}
+            \leqslant
+            \mbox{rank}(A)+\mbox{rank}(B)
+            =\mbox{rank}(\alpha_1,\ldots,\alpha_r)+\mbox{rank}(\beta_1,\ldots,\beta_s)
+        \]
+    \end{proof}
+    \item [27.]设$A,B$是同阶矩阵.证明:$\mbox{rank}(A+B)\leqslant\mbox{rank}(A)+\mbox{rank}(B)$.
+    \begin{proof}
+        \[
+            \mbox{rank}(A+B)\leqslant
+            \max\left\{\mbox{rank}(A),\mbox{rank}(B),\mbox{rank}(A+B)\right\}
+            \leqslant
+            \mbox{rank}\begin{pmatrix}
+                A & B
+            \end{pmatrix}
+            \leqslant
+            \mbox{rank}(A)+\mbox{rank}(B)
+        \]
+    \end{proof}
+    \item [34.]以向量组$\alpha_1=(3,1,0),\alpha_2=(6,3,2),\alpha_3=(1,3,5)$为基,求$\beta=(2,-1,2)$的坐标.
+    
+    设$\beta=x\cdot \alpha_1+y\cdot \alpha_2+z\cdot \alpha_3$,有
+    \[
+        \begin{cases}
+            \ 3x+6y+\ \;z & =2\\
+            \ \ \;x+3y+3z & =-1\\
+            \ \qquad\ 2y+5z & =2
+        \end{cases}
+        \quad \Rightarrow
+        \begin{cases}
+            \ x & =-76\\
+            \ y & =\ 41\\
+            \ z & =-16
+        \end{cases}
+        ,\mbox{即}\beta=-76\alpha_1+41\alpha_2-16\alpha_3.
+    \]
+    \item [35.]设$\alpha_1=(3,2,-1,4),\alpha_2=(2,3,0,-1)$.
+    \begin{enumerate}
+        \item [(1)]将$\alpha_1,\alpha_2$扩充为$\mathbb{R}^4$的一组基;
+        \item [(2)]给出标准基在该组基下的表示;
+        \item [(3)]求$\beta=(1,3,4,-2)$在该组基下的坐标.
+    \end{enumerate}
+    解:
+    \begin{enumerate}
+        \item [(1)]显然$\alpha_1,\alpha_2$线性无关,取$\alpha_3=(0,0,1,0),\alpha_4=(0,0,0,1)$,有
+        \[
+            \mbox{rank}(\alpha_1,\alpha_2,\alpha_3,\alpha_4)=
+            \mbox{rank}\begin{pmatrix}
+                3 & 2 & -1 & 4\\
+                2 & 3 &  0 & -1\\
+                0 & 0 &  1 & 0\\
+                0 & 0 &  0 & 1
+            \end{pmatrix}
+            =\mbox{rank}
+            \begin{pmatrix}
+                3 & 0 & 0 & 0\\
+                0 & 3 & 0 & 0\\
+                0 & 0 & 1 & 0\\
+                0 & 0 & 0 & 1
+            \end{pmatrix}
+            =3
+        \]
+        即$\alpha_1,\alpha_2,\alpha_3,\alpha_4$即为$\mathbb{R}^4$的一组基.
+        \item [(2)]
+        \[
+            \begin{cases}
+                \ e_1 & =\displaystyle{\frac{3}{5}\alpha_1-\frac{2}{5}\alpha_2+\frac{3}{5}\alpha_3-\frac{14}{5}\alpha_4}\\
+                 & \\
+                \ e_2 & =\displaystyle{-\frac{2}{5}\alpha_1+\frac{3}{5}\alpha_2-\frac{2}{5}\alpha_3+\frac{11}{5}\alpha_4}\\
+                 & \\
+                \ e_3 & =\alpha_3\\
+                 & \\
+                \ e_4 & =\alpha_4
+            \end{cases}
+        \]
+        \item [(3)]
+        \[
+            \beta=(1,3,4,-2)
+            \begin{pmatrix}
+                e_1\\
+                e_2\\
+                e_3\\
+                e_4
+            \end{pmatrix}
+            =(1,3,4,-2)
+            \begin{pmatrix}
+                \ \displaystyle{\frac{3}{5}} &\displaystyle{-\frac{2}{5}}  & \ \displaystyle{\frac{3}{5}} & \displaystyle{-\frac{14}{5}}\\
+                & & & \\
+                \displaystyle{-\frac{2}{5}} & \ \displaystyle{\frac{3}{5}} & \displaystyle{-\frac{2}{5}} & \displaystyle{\frac{11}{5}}\\
+                & & & \\
+                0 & 0 & 1 & 0\\
+                & & & \\
+                0 & 0 & 0 & 1
+            \end{pmatrix}
+            \begin{pmatrix}
+                \alpha_1\\
+                \alpha_2\\
+                \alpha_3\\
+                \alpha_4
+            \end{pmatrix}
+            =\left(-\frac{3}{5},\frac{7}{5},\frac{17}{5},\frac{9}{5}\right)
+            \begin{pmatrix}
+                \alpha_1\\
+                \alpha_2\\
+                \alpha_3\\
+                \alpha_4
+            \end{pmatrix}.
+        \]
+        即$\beta=\displaystyle{-\frac{3}{5}\alpha_1+\frac{7}{5}\alpha_2+\frac{17}{5}\alpha_3+\frac{9}{5}\alpha_4}$.
+    \end{enumerate}
+\end{enumerate}
 \end{document}
