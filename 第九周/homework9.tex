@@ -1,0 +1,361 @@
+\documentclass{article}
+\usepackage{xeCJK,amsmath,geometry,graphicx,amssymb,zhnumber,booktabs,setspace,tasks,verbatim,amsthm,amsfonts,mathdots}
+\geometry{a4paper,scale=0.8}   
+\title{线性代数homework (第九周)}
+\author{PB20000113孔浩宇}
+\date{\today}
+\begin{document}
+\maketitle
+\section{周二}
+\subsection{习题五}
+\begin{enumerate}
+    \item [37.]设$n$元$n-1$个方程的齐次线性方程组的系数阵$A$的秩为$n-1$,求该齐次线性方程组的基础解系.
+    
+    解:
+    \begin{enumerate}
+        \item []设$A={(a_{ij})}_{(n-1)*n}$,则基础解系个数为1;取方阵$B=\begin{pmatrix}A\\ \beta\end{pmatrix},\beta=(b_1,\ldots,b_n)$;
+        \item []记$B$第$n$行对应的代数余子式为$B_1,\ldots,B_n$,则有$\sum\limits_{i=1}^n b_i\cdot B_i=\det(B)$;
+        \item []取$\beta=(a_{i1},\ldots,a_{in})$,则$\mbox{rank}(A)=n-1,\sum\limits_{i=1}^n b_i\cdot B_i=\det(B)=0$;
+        \item []即$\alpha={(B_1,\ldots,B_n)}^T$为该齐次线性方程组的基础解系.
+    \end{enumerate}
+    \item [38.]设$\alpha_1,\ldots,\alpha_s$为非齐次方程组$Ax=b$的一组解,$\lambda_1,\ldots,\lambda_s$为常数.
+    给出$\lambda_1 \alpha_s+\cdots+\lambda_s \alpha_s$为该线性方程组的解的充要条件.
+    \begin{align*}
+        A(\lambda_1 \alpha_s+\cdots+\lambda_s \alpha_s)=b
+        \Leftrightarrow
+        &\quad \lambda_1\cdot A\alpha_1+\cdots+\lambda_s\cdot A\alpha_s=b;\\
+        \Leftrightarrow
+        &\quad (\lambda_1+\cdots+\lambda_s)b=b;\\
+        \Leftrightarrow
+        &\quad \lambda_1+\cdots+\lambda_s=1.
+    \end{align*}
+    \item [40.]求下列齐次线性方程组的基础解系与通解:
+    \[
+        (2)
+        \begin{cases}
+            \quad x_1 + \,\;x_2 +\,\; x_3 +\;\; x_4 - 4x_5 &=0\\
+            \quad x_1 - 2x_2 + 3x_3 -4x_4 +2x_5 &=0\\
+            \;-x_1 + 3x_2 - 5x_3 + 7x_4 - 4x_5 &=0\\
+            \quad x_1 + 2x_2 -\,\; x_3 +\, 4x_4 - 6x_5 &=0
+        \end{cases}
+        \Leftrightarrow
+        \begin{pmatrix}
+            1 & 1 & 1 & 1 & -4\\
+            1 &-2 & 3 &-4 & 2\\
+            -1& 3 &-5 & 7 & -4\\
+            1 & 2 &-1 & 4 & -6
+        \end{pmatrix}
+        \begin{pmatrix}
+            x_1\\
+            x_2\\
+            x_3\\
+            x_4\\
+            x_5
+        \end{pmatrix}
+        =0.
+    \]
+    对增广矩阵进行线性变换:
+    \begin{align*}
+        &\begin{pmatrix}
+            1 & 1 & 1 & 1 & -4\\
+            1 &-2 & 3 &-4 & 2\\
+            -1& 3 &-5 & 7 & -4\\
+            1 & 2 &-1 & 4 & -6
+        \end{pmatrix}
+        \to
+        \begin{pmatrix}
+            1 & 1 & 1 & 1 & -4\\
+            0 &-3 & 2 &-5 & 6\\
+            0 & 4 &-4 & 8 & -8\\
+            0 & 1 &-2 & 3 & -2
+        \end{pmatrix}
+        \to
+        \begin{pmatrix}
+            1 & 1 & 1 & 1 & -4\\
+            0 &-3 & 2 &-5 & 6\\
+            0 & 1 &-1 & 2 & -2\\
+            0 & 1 &-2 & 3 & -2
+        \end{pmatrix}\\
+        &\\
+        \to &
+        \begin{pmatrix}
+            1 & 1 & 1 & 1 & -4\\
+            0 & 0 &-1 & 1 & 0\\
+            0 & 1 &-1 & 2 & -2\\
+            0 & 0 &-1 & 1 & 0
+        \end{pmatrix}
+        \to
+        \begin{pmatrix}
+            1 & 1 & 1 & 1 & -4\\
+            0 & 1 &-1 & 2 & -2\\
+            0 & 0 &-1 & 1 & 0\\
+            0 & 0 & 0 & 0 & 0
+        \end{pmatrix}
+        \to
+        \begin{pmatrix}
+            1 & 0 & 0 & 1 & -2\\
+            0 & 1 & 0 & 1 & -2\\
+            0 & 0 &-1 & 1 & 0\\
+            0 & 0 & 0 & 0 & 0
+        \end{pmatrix}
+    \end{align*}
+    即原方程组等价于
+    \[
+        \begin{pmatrix}
+            1 & 0 & 0 & 1 & -2\\
+            0 & 1 & 0 & 1 & -2\\
+            0 & 0 &-1 & 1 & 0\\
+            0 & 0 & 0 & 0 & 0
+        \end{pmatrix}
+        \begin{pmatrix}
+            x_1\\
+            x_2\\
+            x_3\\
+            x_4\\
+            x_5
+        \end{pmatrix}=0
+        \Leftrightarrow
+        \begin{cases}
+            x_1 + x_4 - 2x_5 &=0\\
+            x_2 + x_4 - 2x_5 &=0\\
+            \quad \ \,-x_3 + x_4 &=0
+        \end{cases}
+        \xrightarrow[x_5=b]{x_4=a}
+        \begin{pmatrix}
+            x_1\\
+            x_2\\
+            x_3\\
+            x_4\\
+            x_5
+        \end{pmatrix}=
+        \begin{pmatrix}
+            -a+2b\\
+            -a+2b\\
+            a\\
+            a\\
+            b
+        \end{pmatrix}.
+    \]
+    即基础解系为${(-1,-1,1,1,0)}^T,{(2,2,0,0,1)}^T$;通解为${(-a+2b,-a+2b,a,a,b)}^T$.
+    \item [41.]已知$\mathbb{F}^5$中向量$\eta _1={(1,2,3,2,1)}^T$及$\eta _2={(1,3,2,1,2)}^T$.找一个齐次线性方程组,使得$\eta_1$与$\eta_2$为该方程组的基础解系.
+    \[
+        A
+        \begin{pmatrix}
+            \eta_1 & \eta_2
+        \end{pmatrix}=0
+        \Leftrightarrow
+        \begin{pmatrix}
+            \eta_1 ^T\\
+            \eta_2 ^T
+        \end{pmatrix}
+        A^T=0
+        \Leftrightarrow
+        \begin{pmatrix}
+            1 & 2 & 3 & 2 & 1\\
+            1 & 3 & 2 & 1 & 2
+        \end{pmatrix}
+        \begin{pmatrix}
+            a_{11} & a_{21} & a_{31}\\
+            a_{12} & a_{22} & a_{32}\\
+            a_{13} & a_{23} & a_{33}\\
+            a_{14} & a_{24} & a_{34}\\
+            a_{15} & a_{25} & a_{35}\\
+        \end{pmatrix}
+        =O.
+    \]
+    \[
+        \begin{pmatrix}
+            1 & 2 & 3 & 2 & 1\\
+            1 & 3 & 2 & 1 & 2
+        \end{pmatrix}
+        \begin{pmatrix}
+            a_1\\ a_2\\ a_3\\ a_4\\ a_5
+        \end{pmatrix}=O
+        \Leftrightarrow
+        \begin{pmatrix}
+            1 & 0 & 5 & 4 & 1\\
+            0 & 1 &-1 &-1 & 1
+        \end{pmatrix}
+        \begin{pmatrix}
+            a_1\\ a_2\\ a_3\\ a_4\\ a_5
+        \end{pmatrix}=O
+        \Leftrightarrow
+        \begin{pmatrix}
+            a_1\\ a_2\\ a_3\\ a_4\\ a_5
+        \end{pmatrix}=
+        \begin{pmatrix}
+            -5a_3-4a_4-a_5 \\ a_3+a_4-a_5 \\ a_3 \\ a_4 \\ a_5
+        \end{pmatrix}
+    \]
+    即$\begin{pmatrix}\eta_1 ^T\\\eta_2 ^T\end{pmatrix} \alpha=0$基础解系为${(-5,1,1,0,0)}^T,{(-4,1,0,1,0)}^T,{(-1,-1,0,0,1)}^T$.可得
+    \[
+        A=\begin{pmatrix}
+            -5 & 1 & 1 & 0 & 0\\
+            -4 & 1 & 0 & 1 & 0\\
+            1 & -1 & 0 & 0 & 1
+        \end{pmatrix}.
+    \]
+    \item [43.]判断下列集合关于规定的运算是否构成线性空间:
+    \begin{enumerate}
+        \item [(1)]$V$是所有实数对$(x,y)$的集合,数域$F=\mathbb{R}$.定义\[(x_1,y_1)+ (x_2,y_2)= (x_1+x_2,y_1 + y_2), \lambda(x,y)= (x,y).\]
+        \item [(2)]$V$是所有满足$f(-1)=0$的实函数的集合,数域$F=\mathbb{R}$.定义加法为函数的加法,数乘为数与函数的乘法.
+        \item [(3)]$V$是所有满足$f(0)\neq 0$的实函数的集合，数域$F=\mathbb{R}$.定义加法为函数的加法，数乘为数与函数的乘法.
+        \item [(4)]$V$是数域$F$上所有$n$阶可逆方阵的全体,加法为矩阵的加法,数乘为矩阵的数乘.
+    \end{enumerate}
+    解:
+    \begin{enumerate}
+        \item [(1)]不构成线性空间.$\lambda (x,y)+\mu (x,y)=(2x,2y)\neq (\lambda+\mu)(x,y)\quad(x,y\neq 0)$
+        \item [(2)]构成线性空间
+        \begin{align*}
+            \forall\ f,g,h\in V;\lambda,\mu \in \mathbb{R}:
+            &\ (A1)\ f+g=g+f,\mbox{且}(f+g)(-1)=f(-1)+g(-1)=0\Rightarrow f+g\in V;\\
+            &\ (A2)\ (f+g)+h=f+(g+h);\\
+            &\ (A3)\ \exists\ O=0,f+O=O+f=f;\\
+            &\ (A4)\ \exists\ p,\forall\ x\in\mathbb{R},p(x)=-f(x),f+p=p+f=O=0;\\
+            &\ (D1)\ \lambda(f+g)=\lambda f+\lambda g,\mbox{且} (\lambda f)(-1)=\lambda f(-1)=0\Rightarrow \lambda f\in V;\\
+            &\ (D2)\ (\lambda+\mu)f=\lambda f+\mu f;\\
+            &\ (D3)\ \lambda(\mu f)=(\lambda \mu)f;\\
+            &\ (D4)\ 1f=f.
+        \end{align*}
+        \item [(3)]不构成线性空间.$\forall\ f\in V,\mbox{显然}-f\in V,f+(-f)=0\Rightarrow f+(-f)\notin V$,对加法不封闭.
+        \item [(4)]不构成线性空间.$\forall\ A\in V,\mbox{显然}-A\in V,A+(-A)=O\Rightarrow A+(-A)\notin V$,对加法不封闭.
+    \end{enumerate}
+\end{enumerate}
+\section{周四}
+\subsection{习题五}
+\begin{enumerate}
+    \item [44.]设V是所有实函数全体在实数域上构成的线性空间,判断下列函数组是否线性相关.
+    \begin{enumerate}
+        \item [(1)]$1,x, \sin x$;
+        \item [(2)]$1,x,e^x$;
+        \item [(3)]$1, \cos 2x, \cos ^2 x$;
+        \item [(4)]$1,x^2,{(x-1)}^3,{(x+1)}^3$;
+        \item [(5)]$\cos x,\cos 2x,\ldots，\cos nx$.
+    \end{enumerate}
+    解:
+    \begin{enumerate}
+        \item [(1)]线性无关.若存在$a,b,c\in \mathbb{R},a+bx+c\sin x\equiv 0$,取$x=0,x=\frac{\pi}{2},x=\pi$,则
+        \[a=a+b\pi=a+\frac{b\pi}{2}+c=0\Rightarrow a=b=c=0.\]
+        \item [(2)]线性无关.若存在$a,b,c\in R,a+bx+c\cdot e^x\equiv 0$,取$x=0,1,-1$,则
+        \[a+c=a+b+c\cdot e=a-b+\frac{c}{e}=0\Rightarrow a=b=c=0.\]
+        \item [(3)]线性相关.$\cos 2x=2\cos^2 x -1=0$.
+        \item [(4)]线性相关.${(x+1)}^3={(x-1)}^3 +6x^2+2$.
+        \item [(5)]线性无关.若存在$a_1,a_2,\ldots,a_n \in \mathbb{R},\sum\limits_{i=1}^n a_i\cdot \cos ix\equiv 0$,则记$f(x)=\sum\limits_{i=1}^n a_i\cdot \cos ix$.
+        \[
+            f(x)=0 \Leftrightarrow \forall\ k\geqslant 0,f^{(k)}(x)=0 \Rightarrow f(x)=f^{(4)}(x)=\cdots=f^{(4\cdot(n-1))}(x)=0
+        \]
+        即
+        \[
+            \begin{pmatrix}
+                1 & 1 & \cdots & 1\\
+                1 & 2^4 & \cdots & n^4\\
+                1 & {(2^4)}^2 & \cdots & {(n^4)}^2\\
+                \vdots & \vdots & & \vdots\\
+                1 & {(2^4)}^{n-1} & \cdots & {(n^4)}^{n-1}
+            \end{pmatrix}
+            \begin{pmatrix}
+                a_1\cdot \cos x\\
+                a_2\cdot \cos 2x \\
+                \vdots\\
+                a_n\cdot \cos nx
+            \end{pmatrix}=O
+            \xrightarrow{\mbox{由$Vandermonde$矩阵}}
+            \begin{pmatrix}
+                a_1\cdot \cos x\\
+                a_2\cdot \cos 2x \\
+                \vdots\\
+                a_n\cdot \cos nx
+            \end{pmatrix}=O.
+        \]
+        显然有$a_1=a_2=\cdots=a_n=0$.
+    \end{enumerate}
+    \item [46.]设$F_n [x]$是次数小于或等于n的多项式全体构成的线性空间.
+    \begin{enumerate}
+        \item [(1)]证明:$ S=\left\{1,x-1,{(x-1)}^2,\ldots,{(x-1)}^n\right\}$构成$\mathbb{F}^n [x]$的一组基;
+        \item [(2)]求$S$到基$T=\left\{1,x,\ldots,x^n\right\}$之间的过渡矩阵;
+        \item [(3)]求多项式$p(x)=a_0+a_1 x+\cdots+a_n x^n \in \mathbb{F}[x]$在基$S$下的坐标.
+    \end{enumerate}
+    \begin{proof}
+        \begin{enumerate}
+            \item []
+            \item [(1)]
+            \[
+                {\begin{pmatrix}
+                    1 \\ x-1 \\ {(x-1)}^2 \\ \vdots \\{(x-1)}^n
+                \end{pmatrix}}^T
+                =
+                {\begin{pmatrix}
+                    1 \\ x \\ x^2 \\ \ldots \\ x^n
+                \end{pmatrix}}^T
+                \begin{pmatrix}
+                    C_{0}^{0}\cdot{(-1)}^{0} & C_{1}^{0}\cdot {(-1)}^{1} & C_{2}^{0}\cdot {(-1)}^{2} & \cdots & C_{n}^{0}\cdot {(-1)}^{n}\\
+                    0 & C_{1}^{1}\cdot {(-1)}^{0} & C_{2}^{1}\cdot {(-1)}^{1} &\cdots &  C_{n}^{1}\cdot {(-1)}^{n-1}\\
+                    0 & 0 & C_{2}^{2}\cdot {(-1)}^{0} & \cdots & C_{n}^{2}\cdot {(-1)}^{n-2}\\
+                    \vdots & \vdots & \vdots & & \vdots\\
+                    0 & 0 & 0 & \cdots & C_{n}^{n}\cdot {(-1)}^{0}
+                \end{pmatrix}.
+            \]
+            由过渡矩阵
+            \[
+                \det(T)=\det\begin{pmatrix}
+                    C_{0}^{0}\cdot{(-1)}^{0} & C_{1}^{0}\cdot {(-1)}^{1} & C_{2}^{0}\cdot {(-1)}^{2} & \cdots & C_{n}^{0}\cdot {(-1)}^{n}\\
+                    0 & C_{1}^{1}\cdot {(-1)}^{0} & C_{2}^{1}\cdot {(-1)}^{1} &\cdots &  C_{n}^{1}\cdot {(-1)}^{n-1}\\
+                    0 & 0 & C_{2}^{2}\cdot {(-1)}^{0} & \cdots & C_{n}^{2}\cdot {(-1)}^{n-2}\\
+                    \vdots & \vdots & \vdots & & \vdots\\
+                    0 & 0 & 0 & \cdots & C_{n}^{n}\cdot {(-1)}^{0}
+                \end{pmatrix}=1,\Rightarrow
+                \mbox{即证}.
+            \]
+            \item [(2)]由 (1)可得过渡矩阵为
+            \[
+                \begin{pmatrix}
+                    C_{0}^{0}\cdot{(-1)}^{0} & C_{1}^{0}\cdot {(-1)}^{1} & C_{2}^{0}\cdot {(-1)}^{2} & \cdots & C_{n}^{0}\cdot {(-1)}^{n}\\
+                    0 & C_{1}^{1}\cdot {(-1)}^{0} & C_{2}^{1}\cdot {(-1)}^{1} &\cdots &  C_{n}^{1}\cdot {(-1)}^{n-1}\\
+                    0 & 0 & C_{2}^{2}\cdot {(-1)}^{0} & \cdots & C_{n}^{2}\cdot {(-1)}^{n-2}\\
+                    \vdots & \vdots & \vdots & & \vdots\\
+                    0 & 0 & 0 & \cdots & C_{n}^{n}\cdot {(-1)}^{0}
+                \end{pmatrix}.
+            \]
+            \item [(3)]记$p(x)$在基$S$下的坐标为$(b_0,b_1,\ldots,b_n)$,则
+            \[
+                p(x)=\sum\limits_{i=0}^n b_i\cdot {(x-1)}^i
+                \Rightarrow
+                b_i= \displaystyle{\frac{1}{i!}} p^{(i)}(1)
+                \Rightarrow
+                (b_0,b_1,\ldots,b_n)=
+                \left(\sum\limits_{i=0}^{n} C_{i}^{0} a_i,\sum\limits_{i=1}^{n} C_{i}^{1} a_i,\ldots,\sum\limits_{i=n}^n C_{i}^{n} a_n \right)
+            \]
+        \end{enumerate}
+    \end{proof}
+    \item [47.]$V$是数域$\mathbb{F}$上所有$n$阶对称矩阵的全体,定义加法为矩阵的加法，数乘为矩阵的数乘.证明: $V$是线性空间，并求$V$的一组基及维数. 
+    \begin{proof}
+        \begin{enumerate}
+            \item []
+            \item [(1)]证明$V$是线性空间:
+            \begin{align*}
+                \forall\ A,B,C\in V;\lambda,\mu \in \mathbb{R}:
+                &\ (A1)\ A+B=B+A,\mbox{且}{(A+B)}^T=A^T+B^T=A+B \Rightarrow A+B\in V;\\
+                &\ (A2)\ (A+B)+C=A+(B+C);\\
+                &\ (A3)\ \exists\ O\in V,A+O=O+A=A;\\
+                &\ (A4)\ \exists\ A'=-A,{(-A)}^T=-A\Rightarrow A'\in V,\mbox{且}A+A'=0;\\
+                &\ (D1)\ \lambda(A+B)=\lambda A+\lambda B,\mbox{且} {(\lambda A)}^T=\lambda A^T=\lambda A \Rightarrow \lambda A\in V;\\
+                &\ (D2)\ (\lambda+\mu)A=\lambda A+\mu A;\\
+                &\ (D3)\ \lambda(\mu A)=(\lambda \mu)A;\\
+                &\ (D4)\ 1A=A.
+            \end{align*}
+            \item [(2)]
+            \[
+                \forall\ A=(a_{ij})\in V,
+                A=\sum\limits_{i=1}^n a_{ii}E_{ii}+\sum\limits_{i=1}^n \sum\limits_{j=i+1}^n a_{ij}(E_{ij}+E_{ji}).
+            \]
+            又$S=\left\{E_{ii}(1\leq i\leq n),E_{ij}+E_{ji}(1\leq i\leq j\leq n)\right\}$为线性无关组,故可取S为V的一组基.
+            
+            即
+            \[
+                \mbox{基}S=\left\{E_{ii}(1\leq i\leq n),E_{ij}+E_{ji}(1\leq i\leq j\leq n)\right\},\
+                \mbox{rank}V=\mbox{rank}S=\displaystyle{\frac{n(n+1)}{2}}.
+            \]
+        \end{enumerate}
+    \end{proof}
+\end{enumerate}
+\end{document}
