@@ -1,0 +1,419 @@
+\documentclass{article}
+\usepackage{xeCJK,amsmath,geometry,graphicx,amssymb,zhnumber,booktabs,setspace,tasks,verbatim,amsthm,amsfonts,mathdots}
+\geometry{a4paper,scale=0.8}   
+\title{线性代数homework (第九周)}
+\author{PB20000113孔浩宇}
+\date{\today}
+\begin{document}
+\maketitle
+\section{周二}
+\subsection{习题五}
+\begin{enumerate}
+    \item [31.]设$\alpha_1,\ldots,\alpha_n$是$F^n$的基,向量组$\beta_1,\ldots,\beta_n$与$\alpha_1,\ldots,\alpha_n$有关系式
+    \[(\beta_1,\ldots,\beta_n)=(\alpha_1,\ldots,\alpha_n)T\]
+    证明: $\beta_1,\ldots,\beta_n$为$F^n$的基当且仅当$T$为可逆方阵.
+    \begin{proof}
+        \begin{enumerate}
+            \item []
+            \item [(1)]充分性:已知$T$可逆.
+            \begin{enumerate}
+                \item [(a)]
+                \[
+                    \forall\ a\in V,a=(\alpha_1,\ldots,\alpha_n)
+                    \begin{pmatrix}
+                        \lambda_1\\
+                        \vdots\\
+                        \lambda_n
+                    \end{pmatrix}
+                    =(\beta_1,\ldots,\beta_n)T^{-1}
+                    \begin{pmatrix}
+                        \lambda_1\\
+                        \vdots\\
+                        \lambda_n
+                    \end{pmatrix}
+                    =(\beta_1,\ldots,\beta_n)
+                    \begin{pmatrix}
+                        \mu_1\\
+                        \vdots\\
+                        \mu_n
+                    \end{pmatrix}.
+                \]
+                \item [(b)]若$(\beta_1,\ldots,\beta_n)$线性相关,则存在不全为$0$的一组数$x_1,\ldots,x_n$
+                \[
+                    (\beta_1,\ldots,\beta_n)
+                    \begin{pmatrix}
+                        x_1\\
+                        \vdots\\
+                        x_n
+                    \end{pmatrix}
+                    =(\alpha_1,\ldots,\beta_n)T
+                    \begin{pmatrix}
+                        x_1\\
+                        \vdots\\
+                        x_n
+                    \end{pmatrix}
+                    =(\alpha_1,\ldots,\beta_n)
+                    \begin{pmatrix}
+                        y_1\\
+                        \vdots\\
+                        y_n
+                    \end{pmatrix}=0.
+                \]
+                矛盾,故$(\beta_1,\ldots,\beta_n)$线性无关.
+            \end{enumerate}
+            综上即证$(\beta_1,\ldots,\beta_n)$为$F^n$的一组基.
+            \item [(2)]必要性:已知$(\beta_1,\ldots,\beta_n)$为$F^n$的一组基.
+            \[
+                \forall\ 1\leqslant i\leqslant n,
+                \beta_i=(\alpha_1,\ldots,\alpha_n)
+                \begin{pmatrix}
+                    x_{1i}\\
+                    \vdots\\
+                    x_{ni}
+                \end{pmatrix},
+                \alpha_i=(\beta_1,\ldots,\beta_n)
+                \begin{pmatrix}
+                    y_{1i}\\
+                    \vdots\\
+                    y_{ni}
+                \end{pmatrix},
+                X=(x_{ij})=T,Y=(y_{ij}).
+            \]
+            则$(\beta_1,\ldots,\beta_n)=(\alpha_1,\ldots,\alpha_n)T,(\alpha_1,\ldots,\alpha_n)=(\beta_1,\ldots,\beta_n)Y$,可得
+            \[
+                (\alpha_1,\ldots,\alpha_n)TY=(\alpha_1,\ldots,\alpha_n)
+                \Rightarrow
+                Y=T^{-1}.
+            \]
+            即证$T$可逆.
+        \end{enumerate}
+        综上即证.
+    \end{proof}
+    \item [48.]给定三阶矩阵
+    \[
+        A=\begin{pmatrix}
+            0 & 0 & 1\\
+            1 & 0 & 0\\
+            4 & -2 & 1
+        \end{pmatrix},
+    \]
+    令$V$是与$A$可交换的所有实矩阵全体.证明: $V$在矩阵加法与数乘下构成实数域上的线性空间，并求$V$的一组基与维数.
+    \begin{enumerate}
+        \item [(1)]
+        \begin{proof}$\forall\ P,Q\in V,\lambda,\mu \in R$,则
+            \[
+                (\lambda P+\mu Q)A=\lambda PA+\mu QA=\lambda AP+\mu AQ=A(\lambda P+\mu Q)
+                \Rightarrow
+                \lambda P+\mu Q \in V.
+            \]
+        \end{proof}
+        \item [(2)]记$X=(x_{ij})\in V,AX=XA$.
+        \[
+            \begin{pmatrix}
+                0 & 0 & 1\\
+                1 & 0 & 0\\
+                4 & -2 & 1
+            \end{pmatrix}
+            \begin{pmatrix}
+                x_{11} & x_{12} & x_{13}\\
+                x_{21} & x_{22} & x_{23}\\
+                x_{31} & x_{32} & x_{33}
+            \end{pmatrix}
+            =
+            \begin{pmatrix}
+                x_{11} & x_{12} & x_{13}\\
+                x_{21} & x_{22} & x_{23}\\
+                x_{31} & x_{32} & x_{33}
+            \end{pmatrix}
+            \begin{pmatrix}
+                0 & 0 & 1\\
+                1 & 0 & 0\\
+                4 & -2 & 1
+            \end{pmatrix}
+        \]
+        \[
+            \begin{pmatrix}
+                x_{31} & x_{32} & x_{33}\\
+                x_{11} & x_{12} & x_{13}\\
+                4x_{11}-2x_{21}+x_{31} & 4x_{12}-2x_{22}+x_{32} & 4x_{13}-2x_{23}+x_{33}
+            \end{pmatrix}
+            =\begin{pmatrix}
+                x_{12} +x_{13} & -2x_{13} & x_{11}+x_{13}\\
+                x_{22} +x_{23} & -2x_{23} & x_{21}+x_{23}\\
+                x_{32} +x_{33} & -2x_{33} & x_{31}+x_{33}
+            \end{pmatrix}
+        \]
+        \[
+            \Rightarrow\quad
+            X=\begin{pmatrix}
+                \frac{1}{2}x_{32}+x_{33} & 2x_{32}+x_{31} & -\frac{1}{2}x_{32}\\
+                & & \\
+                \frac{1}{2}x_{32}+\frac{1}{2}x_{31} & \frac{9}{2}x_{32}+x_{33}+2x_{31} & -x_{32}-\frac{1}{2}b_{31}\\
+                & & \\
+                x_{31} & x_{32} & x_{33}
+            \end{pmatrix}
+        \]
+        显然$V$的维数为3.取$(x_(31),x_{32},x_{33})=(4,-2,1),(1,0,0),(0,0,1)$,可得$V$的一组基:
+        \[
+            A=
+            \begin{pmatrix}
+                0 & 0 & 1\\
+                1 & 0 & 0\\
+                4 & -2 & 1
+            \end{pmatrix};\quad
+            A^{-1}=
+            \begin{pmatrix}
+                0 & 1 & 0\\
+                \frac{1}{2} & 2 & -\frac{1}{2}\\
+                1 & 0 & 0
+            \end{pmatrix};\quad I.
+        \]
+    \end{enumerate}
+    \item [49.]$V=F^{n\times n}$是数域$F$上所有n阶矩阵构成的线性空间,令$W$是数域$F$上所有满足$tr(A)=0$的$n$阶矩阵的全体.
+    证明: $W$是$V$的线性子空间，并求$W$的一组基与维数.
+    \begin{proof}
+        $\forall\ A,B\in W,\lambda,\mu \in F$,有
+        \[
+            tr(\lambda A+\mu B)=\lambda tr(A)+\mu tr(B)=0
+            \Rightarrow
+            \lambda A+\mu B \in W.
+        \]
+    \end{proof}
+    假设$A=\displaystyle{\sum\limits_{i=1}^n \sum\limits_{j=1}^n a_{ij} E_{ij}}$.
+    \[
+        tr(A)=\sum\limits_{i=1} a_{ii}=0
+        \Rightarrow\quad
+        a_{nn}=-\sum\limits_{i=1}^{n-1} a_{ii}
+        \Rightarrow\quad
+        A=\sum\limits_{i=1}^{n-1} a_{ii} (E_{ii}-E_{nn})+\sum\limits_{k=1}^{n}\sum\limits_{l=1}^{n} a_{kl}E_{kl}.
+    \]
+    又$E_{ii}-E_{nn}\ (i=1,\ldots,n-1),E_{ij}\ (1\leqslant i\neq j\leqslant n)$线性无关,可得
+    \[
+        E_{ii}-E_{nn}\ (i=1,\ldots,n-1),E_{ij}\ (1\leqslant i\neq j\leqslant n)\mbox{构成}W\mbox{的一组基},\dim W=n^2 -1.
+    \]
+    \item [51.]证明:有限维线性空间的任何子空间都有补空间.
+    \begin{proof}
+        设$V_1$是有限维线性空间$V$的子空间,$\dim V=n,\dim V_1=r$,即证存在$V$的子空间$V_2$满足$V=V_1\oplus V_2$.
+        \begin{enumerate}
+            \item [(1)]$V_1=\left\{ 0\right\}$,即$r=0$.则有$V_2=V$,满足
+            \[
+                V_1\cap V_2=\left\{ 0\right\},V=V_1+ V_2
+                \Rightarrow\quad
+                V=V_1\oplus V_2.
+            \]
+            \item [(2)]$V_1\neq \left\{ 0\right\}$,即$r\neq 0$.设$V_1$的一组基为$\alpha_1,\ldots,\alpha_r$,扩充为$V$的一组基$\alpha_1,\ldots,\alpha_n$.
+            \[
+                \mbox{取} V_2=\left\langle \alpha_{r+1},\ldots,\alpha_n\right\rangle,\mbox{显然}V=V_1\oplus V_2.
+            \]
+        \end{enumerate}
+    \end{proof}
+\end{enumerate}
+\section{周四}
+\subsection{习题六}
+\begin{enumerate}
+    \item [1.]\begin{enumerate}
+        \item [(1)]非线性变换.$\forall\ (a,b)\in \mathbb{R}^2,\lambda \in \mathbb{R}$,有
+        \[
+            \mathcal{A} \left(\lambda (a,b)\right)=
+            \mathcal{A} \left( \lambda a,\lambda b \right)=
+            (\lambda a+\lambda b,\lambda^2 a^2)\neq (\lambda (a+b),\lambda a^2)=\lambda \mathcal{A}(a,b).
+        \]
+        \item [(2)]非线性变换.$\forall\ (a,b,c)\in \mathbb{R}^3,\lambda \in \mathbb{R}$,有
+        \[
+            \mathcal{A} \left(\lambda (a,b,c)\right)=
+            \mathcal{A} \left( \lambda a,\lambda b,\lambda c \right)=
+            (\lambda a-\lambda b,\lambda c,\lambda a +1)\neq (\lambda (a-b),\lambda c,\lambda(a+1))=\lambda \mathcal{A}(a,b,c).
+        \]
+        \item [(3)]线性变换.$\forall\ X,Y\in M_n(F),\lambda,\mu \in \mathbb{R}$,有
+        \[
+            \mathcal{A}(\lambda X+\mu Y)
+            =A(\lambda X+\mu Y)-(\lambda X+\mu Y)B
+            =\lambda (AX-XB)+\mu (AY-YB)
+            =\lambda\mathcal{A}(X) +\mu\mathcal{A}(Y).
+        \]
+        \item [(4)]若$\alpha\neq 0$,非线性变换.$\forall\ x\in V,\lambda \in \mathbb{R}$,有
+        \[
+            \mathcal{A} \left(\lambda x \right)=\alpha
+            \neq \lambda \alpha=\lambda \mathcal{A}(x).
+        \]
+        $\alpha= 0$,线性变换.$\forall\ x,y\in V,\lambda,\mu \in \mathbb{R}$,有
+        \[
+            \mathcal{A} \left(\lambda x+\mu y \right)=0
+            =\lambda \mathcal{A}(x)+\mu \mathcal{A}(y).
+        \]
+    \end{enumerate}
+    \item [2.]\begin{enumerate}
+        \item [(1)]
+        \[
+            \left(\mathcal{A}(e_1),\mathcal{A}(e_2),\mathcal{A}(e_3) \right)=(e_1,e_2,0)=
+            (e_1,e_2,e_3)
+            \begin{pmatrix}
+                1 & 0 & 0\\
+                0 & 1 & 0\\
+                0 & 0 & 0
+            \end{pmatrix}
+            \Rightarrow\quad
+            A=\begin{pmatrix}
+                1 & 0 & 0\\
+                0 & 1 & 0\\
+                0 & 0 & 0
+            \end{pmatrix}.
+        \]
+        \item [(2)]
+        \[
+            \left(\mathcal{A}(e_0),\mathcal{A}(e_1),\ldots,\mathcal{A}(e_n) \right)
+            =(0,e_0,\ldots,e_{n-1})
+            =(e_0,e_1,\ldots,e_n)
+            \begin{pmatrix}
+                0 & 1 & 0 & \cdots & 0\\
+                0 & 0 & 1 & \cdots & 0\\
+                \vdots & \vdots & \vdots & \ddots & \vdots\\
+                0 & 0 & 0 & \cdots & 1\\
+                0 & 0 & 0 & \cdots & 0
+            \end{pmatrix}
+        \]
+        即$\mathcal{A}$在此组基下的矩阵为
+        \[
+            \begin{pmatrix}
+                0 & 1 & 0 & \cdots & 0\\
+                0 & 0 & 1 & \cdots & 0\\
+                \vdots & \vdots & \vdots & \ddots & \vdots\\
+                0 & 0 & 0 & \cdots & 1\\
+                0 & 0 & 0 & \cdots & 0
+            \end{pmatrix}.
+        \]
+        \item [(3)]
+        \begin{align*}
+            {(\alpha_1)}' 
+            &=a\cdot e^{ax} \cos bx -b\cdot e^{ax} \sin bx\\
+            &=a\cdot \alpha_1 -b\cdot \alpha_2;\\
+            &\\
+            {(\alpha_2)}' 
+            &=a\cdot e^{ax} \sin bx +b\cdot e^{ax} \cos bx\\
+            &=b\cdot \alpha_1+a\cdot \alpha_2;\\
+            &\\
+            {(\alpha_3)}' 
+            &=a\cdot x e^{ax} \cos bx -b\cdot x e^{ax} \sin bx+ e^{ax} \cos bx\\
+            &=\alpha_1+a \alpha_3-b\alpha_4;\\
+            &\\
+            {(\alpha_4)}' 
+            &=a\cdot x e^{ax} \sin bx +b\cdot x e^{ax} \cos bx+ x^{ax} \sin bx\\
+            &=\alpha_2+b\cdot \alpha_3+a\cdot \alpha_4.
+        \end{align*}
+        \[
+            \left(\mathcal{A}(\alpha_1),\mathcal{A}(\alpha_2),\mathcal{A}(\alpha_3),\mathcal{A}(\alpha_4) \right)
+            =(\alpha_1,\alpha_2,\alpha_3,\alpha_4)
+            \begin{pmatrix}
+                a & b & 1 & 0\\
+                -b & a & 0 & 1\\
+                0 & 0 & a & b\\
+                0 & 0 & -b & a
+            \end{pmatrix}.
+        \]
+        即$\mathcal{A}$在此组基下的矩阵为
+        \[
+            \begin{pmatrix}
+                a & b & 1 & 0\\
+                -b & a & 0 & 1\\
+                0 & 0 & a & b\\
+                0 & 0 & -b & a
+            \end{pmatrix}.
+        \]
+        \item [(4)]记$A=(a_{ij})$.
+        \begin{align*}
+            \mathcal{A}(e_1) 
+            &=\begin{pmatrix}
+                a_{11} & 0\\
+                a_{21} & 0
+            \end{pmatrix}
+            -\begin{pmatrix}
+                a_{11} & a_{12}\\
+                0 & 0
+            \end{pmatrix}
+            =-a_{12}\cdot e_2+a_{21}\cdot e_3;\\
+            & \\
+            \mathcal{A}(e_2) 
+            &=\begin{pmatrix}
+                0 & a_{11}\\
+                0 & a_{21}
+            \end{pmatrix}
+            -\begin{pmatrix}
+                a_{21} & a_{22}\\
+                0 & 0
+            \end{pmatrix}
+            =-a_{21}\cdot e_1 + (a_{11}-a{22})\cdot e_2 + a_{21}\cdot e_4;\\
+            & \\
+            \mathcal{A}(e_3) 
+            &=\begin{pmatrix}
+                a_{12} & 0\\
+                a_{22} & 0
+            \end{pmatrix}
+            -\begin{pmatrix}
+                0 & 0\\
+                a_{11} & a_{12}
+            \end{pmatrix}
+            =a_{12}\cdot e_1 + (a_{22}-a_{11})\cdot e_3 - a_{12}\cdot e_4;\\
+            & \\
+            \mathcal{A}(e_4) 
+            &=\begin{pmatrix}
+                0 & a_{12}\\
+                0 & a_{22}
+            \end{pmatrix}
+            -\begin{pmatrix}
+                0 & 0\\
+                a_{21} & a_{22}
+            \end{pmatrix}
+            =a_{12}\cdot e_2 - a_{21}\cdot e_3.
+        \end{align*}
+        \[
+            \left(\mathcal{A}(e_1),\mathcal{A}(e_2),\mathcal{A}(e_3),\mathcal{A}(e_4) \right)
+            =(e_1,e_2,e_3,e_4)
+            \begin{pmatrix}
+                0 & -a_{21} & a_{12} & 0\\
+                -a_{12} & a_{11}-a_{22} & 0 & a_{12}\\
+                a_{21} & 0 & a_{22}-a_{11} &  -a_{21}\\
+                0 & a_{21} & -a_{12} & 0
+            \end{pmatrix}.
+        \]
+        即$\mathcal{A}$在此组基下的矩阵为
+        \[
+            \begin{pmatrix}
+                0 & -a_{21} & a_{12} & 0\\
+                -a_{12} & a_{11}-a_{22} & 0 & a_{12}\\
+                a_{21} & 0 & a_{22}-a_{11} &  -a_{21}\\
+                0 & a_{21} & -a_{12} & 0
+            \end{pmatrix}.
+        \]
+    \end{enumerate}
+    \item [4.]设$\mathcal{A}$在自然基下的矩阵为$A$,在$\alpha_1,\alpha_2,\alpha_3$下的矩阵为$B$.
+    \[
+        \mathcal{A}(e_1,e_2,e_3)
+        =\mathcal{A}(\alpha_3-\alpha_2,\alpha_2-\alpha_1,\alpha_1)
+        =(\beta_3-\beta_2,\beta_2-\beta_1,\beta_1)
+        =(e_1,e_2,e_3)
+        \begin{pmatrix}
+            -1 & -1 & 2 \\
+            1 & -3 & 3 \\
+            -1 & -5 & 5
+        \end{pmatrix}.
+    \]
+    \[
+        \Rightarrow\quad
+        A=\begin{pmatrix}
+            -1 & -1 & 2 \\
+            1 & -3 & 3 \\
+            -1 & -5 & 5
+        \end{pmatrix}.
+    \]
+    \[
+        (\beta_1,\beta_2,\beta_3)=(\alpha_1,\alpha_2,\alpha_3)B
+        \Rightarrow\quad
+        B={(\alpha_1,\alpha_2,\alpha_3)}^{-1} (\beta_1,\beta_2,\beta_3)
+        =\begin{pmatrix}
+            2 & 0 & -2\\
+            1 & -1 & 1\\
+            1 & 1 & 0
+        \end{pmatrix}.
+    \]
+\end{enumerate}
+\end{document}
