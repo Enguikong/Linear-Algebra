@@ -1,0 +1,167 @@
+\documentclass{article}
+\usepackage{xeCJK,amsmath,geometry,graphicx,amssymb,zhnumber,booktabs,setspace,tasks,verbatim,amsthm,amsfonts,mathdots}
+\geometry{a4paper,scale=0.8}   
+\title{线性代数homework (第十一周)}
+\author{PB20000113孔浩宇}
+\date{\today}
+\begin{document}
+\maketitle
+\section{周二}
+\subsection{习题六}
+\begin{enumerate}
+    \item [8.]设$\mathcal{A}$在基$\alpha_1,\alpha_2,\alpha_3$下的矩阵为
+    \[
+        A=\begin{pmatrix}
+            1 & 2 & 3\\
+            -1 & 0 & 3\\
+            2 & 1 & 5
+        \end{pmatrix},
+    \]
+    求$\mathcal{A}$在基$\beta_1,\beta_2,\beta_3$下的矩阵:
+    \begin{enumerate}
+        \item [(1)]$\beta_1=\alpha_3,\ \beta_2=\alpha_1,\ \beta_3=\alpha_2$;
+        \item [(2)]$\beta_1=\alpha_1,\beta_2=\alpha_2+\alpha_3,\beta_3=\alpha_2-\alpha_3$.
+    \end{enumerate}
+    \begin{enumerate}
+        \item [(1)]设$\mathcal{A}$在基$\beta_1,\beta_2,\beta_3$下的矩阵为$B$.
+        \[
+            (\beta_1,\beta_2,\beta_3)=(\alpha_1,\alpha_2,\alpha_3)
+            \begin{pmatrix}
+                0 & 1 & 0\\
+                0 & 0 & 1\\
+                1 & 0 & 0
+            \end{pmatrix}
+        \]
+        \[
+            \Rightarrow
+            B=
+            {\begin{pmatrix}
+                0 & 1 & 0\\
+                0 & 0 & 1\\
+                1 & 0 & 0
+            \end{pmatrix}}^{-1}
+            \begin{pmatrix}
+                1 & 2 & 3\\
+                -1 & 0 & 3\\
+                2 & 1 & 5
+            \end{pmatrix}
+            \begin{pmatrix}
+                0 & 1 & 0\\
+                0 & 0 & 1\\
+                1 & 0 & 0
+            \end{pmatrix}
+            =
+            \begin{pmatrix}
+                5 & 2 & 1\\
+                3 & 1 & 2\\
+                3 & -1 & 0
+            \end{pmatrix}.
+        \]
+        \item [(2)]设$\mathcal{A}$在基$\beta_1,\beta_2,\beta_3$下的矩阵为$B$.
+        \[
+            (\beta_1,\beta_2,\beta_3)=(\alpha_1,\alpha_2,\alpha_3)
+            \begin{pmatrix}
+                1 & 0 & 0\\
+                0 & 1 & 1\\
+                0 & 1 & -1
+            \end{pmatrix}
+        \]
+        \[
+            \Rightarrow
+            B=
+            {\begin{pmatrix}
+                1 & 0 & 0\\
+                0 & 1 & 1\\
+                0 & 1 & -1
+            \end{pmatrix}}^{-1}
+            \begin{pmatrix}
+                1 & 2 & 3\\
+                -1 & 0 & 3\\
+                2 & 1 & 5
+            \end{pmatrix}
+            \begin{pmatrix}
+                1 & 0 & 0\\
+                0 & 1 & 1\\
+                0 & 1 & -1
+            \end{pmatrix}
+            =\begin{pmatrix}
+                1 & 5 & -1\\
+                & &\\
+                \displaystyle{\frac{1}{2}} & \displaystyle{\frac{9}{2}} & -\displaystyle{\frac{7}{2}}\\
+                & &\\
+                -\displaystyle{\frac{3}{2}} & -\displaystyle{\frac{3}{2}} & \displaystyle{\frac{1}{2}}
+            \end{pmatrix}.
+        \]
+    \end{enumerate}
+    \item [10.]如果$A$与$B$相似,$C$与$D$相似,证明
+    $\begin{pmatrix}
+        A & O\\
+        O & C
+    \end{pmatrix}$与
+    $\begin{pmatrix}
+        B & O\\
+        O & D
+    \end{pmatrix}$相似.
+    \begin{proof}
+        设有可逆方阵$P$与$Q$满足$P^{-1} A P=B,\ Q^{-1} C Q=D$,则
+        \[
+            \begin{pmatrix}
+                P^{-1} & O\\
+                O & Q^{-1} 
+            \end{pmatrix}
+            \begin{pmatrix}
+                A & O\\
+                O & C
+            \end{pmatrix}
+            \begin{pmatrix}
+                P & O\\
+                O & Q
+            \end{pmatrix}
+            =\begin{pmatrix}
+                P^{-1} A P & O\\
+                O & Q^{-1} C Q
+            \end{pmatrix}
+            =\begin{pmatrix}
+                B & O\\
+                O & D
+            \end{pmatrix}.
+        \]
+        又
+        \[
+            \begin{pmatrix}
+                P^{-1} & O\\
+                O & Q^{-1} 
+            \end{pmatrix}
+            \begin{pmatrix}
+                P & O\\
+                O & Q
+            \end{pmatrix}
+            =I.
+        \]
+        即证.
+    \end{proof}
+    \item [11.]设方阵$A$与$B$相似,证明:
+    \begin{enumerate}
+        \item [(1)]对每个整数$k$,$A^k$相似于$B^k$;
+        \item [(2)]对每个多项式$f$,$f(A)$相似于$f(B)$.
+    \end{enumerate}
+    \begin{proof}
+        \begin{enumerate}
+            \item []设有可逆方阵$P,P^{-1} A P=B$.
+            \item [(1)]
+            \[ 
+                P^{-1} A^{k} P={(P^{-1}A P)}^{k}=B^{k}.
+            \]
+            \item [(2)]设$f(x)=a_0+a_1 x+\cdots+a_n x^n$.
+            \begin{align*}
+                P^{-1} f(A) P
+                =&P^{-1} (a_0 I+a_1 A +\cdots +a_n A^n) P\\
+                =&a_0 I+a_1 P^{-1} A P+\cdots +a_n P^{-1} A^n P\\
+                =& a_0 I+a_1 B +\cdots +a_n B^n.
+            \end{align*}
+        \end{enumerate}
+    \end{proof}
+\end{enumerate}
+\section{周四}
+\subsection{习题六}
+\end{document}
